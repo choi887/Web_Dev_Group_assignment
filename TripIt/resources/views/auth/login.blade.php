@@ -1,5 +1,8 @@
 <script src="https://cdn.tailwindcss.com"></script>
 <x-guest-layout>
+    <x-slot:titleName>
+        login Page - TripIt
+    </x-slot:titleName>
     <!-- Session Status -->
     <x-auth-session-status class="mb-4" :status="session('status')" />
 
