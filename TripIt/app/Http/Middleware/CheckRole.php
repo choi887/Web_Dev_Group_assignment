@@ -15,10 +15,9 @@ class CheckRole
      */
     public function handle(Request $request, Closure $next): Response
     {
-        if (auth()->user()->role_id !== 2 || auth()->user()->role_id !== 3) {
+        if (auth()->user()->role_id == 1) {
             abort(403, 'Unauthorized action.');
         }
-
         return $next($request);
     }
 }
