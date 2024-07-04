@@ -15,12 +15,12 @@
             font-family: 'Poppins', sans-serif;
         }
 
-        .header-bg {
-            background-color: rgba(48, 84, 178, 1);
-        }
-
         .bg-color {
             background-color: rgba(246, 246, 241, 1);
+        }
+
+        .main-color {
+            color: #05adff;
         }
 
         .button-bg-color {
@@ -43,11 +43,11 @@
 <body class="font-poppins">
     <header class="header-bg py-4 min-h-20">
         <div class="container mx-auto flex items-center justify-between px-4 pt-2">
-            <a href="{{ route('welcome') }}" class="text-white text-2xl font-bold">
-                TripIt
+            <a href="{{ route('welcome') }}">
+                <img src="{{ asset('images/download.png') }}" style="height:50px;" alt="">
             </a>
 
-            <nav class="hidden pl-10 md:flex space-x-6 text-white justify-center">
+            <nav class="hidden pl-10 md:flex space-x-6 main-color justify-center">
                 <a href="#" class="nav-link">All categories</a>
                 <a href="#" class="nav-link">Events</a>
                 <a href="#" class="nav-link">Packages</a>
