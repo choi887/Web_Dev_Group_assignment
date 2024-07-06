@@ -11,7 +11,7 @@
     <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
     <title>{{ $titleName }}</title>
     <style>
-        .font-poppins {
+           .font-poppins {
             font-family: 'Poppins', sans-serif;
         }
 
@@ -33,6 +33,27 @@
 
         .button-text-color {
             color: rgba(30, 79, 255, 1);
+        }
+
+        .nav-link {
+            position: relative;
+            text-decoration: none;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 2px;
+            bottom: -4px;
+            left: 0;
+            background-color: #05adff;
+            transform: scaleX(0);
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .nav-link:hover::after {
+            transform: scaleX(1);
         }
     </style>
     <link rel="preconnect" href="https://fonts.bunny.net">
@@ -63,9 +84,9 @@
                             @csrf
                         </form>
                     @else
-                        <a href="{{ route('login') }}" class="nav-link">Sign in</a>
+                        <a href="{{ route('login') }}" class="nav-link main-color">Sign in</a>
                         @if (Route::has('register'))
-                            <a href="{{ route('register') }}" class="nav-link">Register</a>
+                            <a href="{{ route('register') }}" class="nav-link main-color">Register</a>
                         @endif
                     @endauth
                 @endif
