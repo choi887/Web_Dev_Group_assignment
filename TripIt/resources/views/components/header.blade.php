@@ -11,52 +11,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
     <title>{{ $titleName }}</title>
-    <style>
-           .font-poppins {
-            font-family: 'Poppins', sans-serif;
-        }
-
-        .bg-color {
-            background-color: rgba(246, 246, 241, 1);
-        }
-
-        .main-color {
-            color: #05adff;
-        }
-
-        .button-bg-color {
-            background-color: rgba(30, 79, 255, 1);
-        }
-
-        .button-bg-color-2 {
-            background-color: rgba(243, 236, 220, 1);
-        }
-
-        .button-text-color {
-            color: rgba(30, 79, 255, 1);
-        }
-
-        .nav-link {
-            position: relative;
-            text-decoration: none;
-        }
-
-        .nav-link::after {
-            content: '';
-            position: absolute;
-            width: 100%;
-            height: 2px;
-            bottom: -4px;
-            left: 0;
-            background-color: #05adff;
-            transform: scaleX(0);
-            transition: transform 0.3s ease-in-out;
-        }
-
-        .nav-link:hover::after {
-            transform: scaleX(1);
-        }
-    </style>
+    <link rel="stylesheet" type="text/css" href="{{ url('/css/styles.css') }}">
     <link rel="preconnect" href="https://fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=figtree:400,600&display=swap" rel="stylesheet" />
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
