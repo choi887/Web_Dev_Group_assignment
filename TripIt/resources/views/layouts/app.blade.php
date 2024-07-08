@@ -38,10 +38,26 @@
         </main>
     </div>
     <script>
-        setTimeout(function() {
-            document.getElementById('alertMessage').style.display = 'none';
-        }, 3000);
+        var successMessage = document.getElementById('sucessMessage');
+        var errorMessage = document.getElementById('errorMessage');
+        if (successMessage) {
+            setTimeout(function() {
+                successMessage.style.display = 'none';
+            }, 3000);
+        }
+        if (errorMessage) {
+            setTimeout(function() {
+                document.getElementById('errorMessage').style.display = 'none';
+            }, 3000);
+        }
     </script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <x-search-bar-script>
+        <x-slot:item>
+            category
+        </x-slot:item>
+        <x-slot:route>{{ route('category.search') }}</x-slot:route>
+    </x-search-bar-script>
     <script src="https://cdn.jsdelivr.net/npm/flowbite@2.4.1/dist/flowbite.min.js"></script>
 </body>
 

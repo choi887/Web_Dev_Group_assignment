@@ -21,8 +21,6 @@ class RolesTableSeeder extends Seeder
         DB::table("roles")->insert([
             "role_name" => "Admin",
             "created_at" => now(),
-
-
         ]);
         DB::table("roles")->insert([
             "role_name" => "Planner",

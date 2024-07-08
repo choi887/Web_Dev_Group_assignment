@@ -17,7 +17,7 @@
                     @endif
                 </div>
 
-                <!-- Navigation Links -->
+                <!-- Navigation Links after the logo start-->
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                     @if (Auth::user()->role_id == 1)
                         <x-nav-link :href="route('order')" :active="request()->routeIs('order')">
@@ -27,10 +27,30 @@
                         <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                             {{ __('Dashboard') }}
                         </x-nav-link>
-                        <x-nav-link :href="route('event')" :active="request()->routeIs('event')">Events</x-nav-link>
+                        <button id="dropdownHoverButton" data-dropdown-toggle="dropdownHover"
+                            data-dropdown-trigger="hover"
+                            class="inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm font-medium leading-5 text-gray-500 hover:text-gray-700 hover:border-gray-300 focus:outline-none focus:text-gray-700 focus:border-gray-300 transition duration-150 ease-in-out "
+                            type="button">Events
+                        </button>
+                        <!-- Dropdown menu start -->
+                        <div id="dropdownHover"
+                            class="z-10 hidden bg-white divide-y divide-gray-100 shadow w-44 rounded-md ring-1 ring-black ring-opacity-5 dropdown 0.3s ease-out forwards">
+                            <ul class=" text-sm text-gray-700 " aria-labelledby="dropdownHoverButton">
+                                <li>
+                                    <a href="{{ route('event.list') }}" class="block px-4 py-2 hover:bg-gray-100 ">Event
+                                        List</a>
+                                </li>
+                                <li>
+                                    <a href="{{ route('event.create') }}"
+                                        class="block px-4 py-2 hover:bg-gray-100 ">Create Event</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <!-- Dropdown menu end -->
                     @endif
                 </div>
             </div>
+            <!-- Navigation Links after the logo end-->
 
             <!-- Settings Dropdown -->
             <div class="hidden sm:flex sm:items-center sm:ms-6">
