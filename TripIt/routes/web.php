@@ -2,7 +2,9 @@
 
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\EventController;
+use App\Http\Controllers\LodgingController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\TransportationController;
 use Illuminate\Support\Facades\Route;
 
 //public routes for all start
@@ -38,10 +40,13 @@ Route::prefix('administrator')->middleware(['auth', 'checkRole'])->group(functio
         Route::get('/event-create', function () {
             return view('event-create');
         })->name('event.create');
+        Route::post('/addevent', [EventController::class, 'store'])->name('event.add');
     });
+    // all events routing end
     Route::get('/category/search', [CategoryController::class, 'search'])->name('category.search');
     Route::post('/addcategory', [CategoryController::class, 'store'])->name('category.add');
-    Route::post('/addevent', [EventController::class, 'store'])->name('event.add');
+    Route::post('/addtransportation', [TransportationController::class, 'store'])->name('transportation.add');
+    Route::post('/addlodging', [LodgingController::class, 'store'])->name('lodging.add');
 });
 
 require __DIR__ . '/auth.php';

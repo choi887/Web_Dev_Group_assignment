@@ -13,7 +13,6 @@
     <link href="https://fonts.bunny.net/css?family=figtree:400,500,600&display=swap" rel="stylesheet" />
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
-    <link rel="stylesheet" type="text/css" href="{{ url('/css/styles.css') }}">
     <link href="https://cdn.jsdelivr.net/npm/flowbite@2.4.1/dist/flowbite.min.css" rel="stylesheet" />
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
@@ -43,12 +42,23 @@
         if (successMessage) {
             setTimeout(function() {
                 successMessage.style.display = 'none';
-            }, 3000);
+            }, 5000);
         }
         if (errorMessage) {
             setTimeout(function() {
                 document.getElementById('errorMessage').style.display = 'none';
-            }, 3000);
+            }, 5000);
+        }
+    </script>
+    <script>
+        var loadFile = function(event) {
+            var input = event.target;
+            var file = input.files[0]; // always the first file
+            var output = document.getElementById('previewImage');
+            output.src = URL.createObjectURL(event.target.files[0]);
+            output.onload = function() {
+                URL.revokeObjectURL(output.src) // to free memory
+            }
         }
     </script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
