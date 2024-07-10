@@ -20,14 +20,13 @@
                 </button>
             </div>
             <!-- Modal body -->
-            <form method="POST" action="{{ route('lodging.add') }}">
+            <form method="POST" action="{{ route('lodgings.add') }}">
                 @csrf
-                <!-- form input start -->
                 <div class="grid gap-4 mb-4 sm:grid-cols-2">
                     <div>
-                        <label for="Lodging" class="block mb-2 text-sm font-medium text-gray-900 ">Lodging
+                        <label for="name" class="block mb-2 text-sm font-medium text-gray-900 ">Lodging
                             Name</label>
-                        <input type="text" name="Lodging" id="Lodging"
+                        <input type="text" name="name" id="name"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 "
                             placeholder="Enter Lodging name here" required="">
                     </div>
@@ -35,34 +34,48 @@
                         <label for="address" class="block mb-2 text-sm font-medium text-gray-900 ">Address</label>
                         <!-- input bar with icon -->
                         <div class="relative">
-                            <div class="absolute inset-y-0 start-0 top-0 flex items-center pl-2 pointer-events-none">
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                    stroke-width="1.5" stroke="currentColor" class="size-6">
-                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                        d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
-                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                        d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z" />
-                                </svg>
-                            </div>
                             <input type="text" id="address" name="address"
-                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                                 placeholder="Enter your Address here" required />
                         </div>
                     </div>
+                    <div class="grid grid-cols-3 gap-3 col-span-2">
+                        <div>
+                            <label for="state" class="block mb-2 text-sm font-medium text-black">State
+                            </label>
+                            <input type="text" name="state" id="state"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
+                                placeholder="Example: Selangor">
+                        </div>
+                        <div>
+                            <label for="city" class="block mb-2 text-sm font-medium text-gray-900 ">City</label>
+                            <input type="text" name="city"
+                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 "
+                                placeholder="Example: Kuala Lumpur" required="">
+                        </div>
+                        <div>
+                            <label for="zip_code" class="block mb-2 text-sm font-medium text-gray-900 ">ZIP
+                                code:
+                            </label>
+                            <div class="relative">
+                                <div
+                                    class="absolute inset-y-0 start-0 top-0 flex items-center pl-2 pointer-events-none">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                        stroke-width="1.5" stroke="currentColor" class="size-6">
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                            d="M15 10.5a3 3 0 1 1-6 0 3 3 0 0 1 6 0Z" />
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                            d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1 1 15 0Z" />
+                                    </svg>
+                                </div>
+                                <input type="text" id="zip_code" name="zip_code"
+                                    aria-describedby="helper-text-explanation"
+                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5 "
+                                    placeholder="12345 or 12345-6789" required />
+                            </div>
+                        </div>
+                    </div>
 
-                    <div>
-                        <label for="state" class="block mb-2 text-sm font-medium text-black">State
-                        </label>
-                        <input type="text" name="state" id="state"
-                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
-                            placeholder="Example: Selangor">
-                    </div>
-                    <div>
-                        <label for="city" class="block mb-2 text-sm font-medium text-gray-900 ">City</label>
-                        <input type="text" name="city"
-                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 "
-                            placeholder="Example: Kuala Lumpur" required="">
-                    </div>
                     <div>
                         <label for="phone-input" class="block mb-2 text-sm font-medium text-black">Phone
                             number
@@ -77,7 +90,7 @@
                             </div>
                             <input type="text" id="phone-input" name="phone_number"
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5  "
-                                pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" placeholder="123-456-7890" required />
+                                placeholder="123-456-7890" required />
                         </div>
                     </div>
                     <div>
@@ -90,7 +103,6 @@
                                     <path stroke-linecap="round" stroke-linejoin="round"
                                         d="M21.75 6.75v10.5a2.25 2.25 0 0 1-2.25 2.25h-15a2.25 2.25 0 0 1-2.25-2.25V6.75m19.5 0A2.25 2.25 0 0 0 19.5 4.5h-15a2.25 2.25 0 0 0-2.25 2.25m19.5 0v.243a2.25 2.25 0 0 1-1.07 1.916l-7.5 4.615a2.25 2.25 0 0 1-2.36 0L3.32 8.91a2.25 2.25 0 0 1-1.07-1.916V6.75" />
                                 </svg>
-
                             </div>
                             <input type="email" id="email" name="email"
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5  "
@@ -98,11 +110,11 @@
                         </div>
                     </div>
                     <div class="sm:col-span-2">
-                        <label for="message" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Your
-                            message</label>
-                        <textarea id="message" rows="4"
+                        <label for="description"
+                            class="block mb-2 text-sm font-medium text-gray-900 ">description</label>
+                        <textarea id="description" rows="4" name="description"
                             class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-blue-500 focus:border-blue-500 "
-                            placeholder="Write your thoughts here..."></textarea>
+                            placeholder="Write more information here " maxlength="5000"></textarea>
                     </div>
                 </div>
                 <!-- form input end -->

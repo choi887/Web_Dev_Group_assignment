@@ -16,9 +16,6 @@ class TransportationController extends Controller
             'type' => 'required|string|max:255',
             'phone_number' => 'nullable|string|max:20',
             'date' => 'nullable|date',
-            'departure_location' => 'nullable|string|max:255',
-
-
         ]);
 
         try {
@@ -28,5 +25,15 @@ class TransportationController extends Controller
 
             return redirect()->back()->with('fail', "{$e->getMessage()}");
         }
+    }
+    public function search(Request $request)
+    {
+        $query = $request->input('query');
+
+        $categories = Transportation::where('company', 'LIKE', "%{$query}%")
+            ->limit(10)
+            ->get(['id', 'company']);
+
+        return response()->json($categories);
     }
 }

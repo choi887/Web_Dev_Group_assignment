@@ -17,11 +17,14 @@ class Event extends Model
      */
     protected $fillable = [
         'name',
-        'description',
-        'food',
+        'phone_number',
+        'price',
         'category_id',
         'transportation_id',
         'lodging_id',
+        'food',
+        'image_path',
+        'description',
     ];
     public function category(): BelongsTo
     {
@@ -29,7 +32,7 @@ class Event extends Model
     }
     public function transportation(): BelongsTo
     {
-        return $this->belongsTo(Category::class);
+        return $this->belongsTo(Transportation::class);
     }
     public function lodging(): BelongsTo
     {

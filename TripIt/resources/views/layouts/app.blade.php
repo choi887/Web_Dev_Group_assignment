@@ -68,6 +68,28 @@
         </x-slot:item>
         <x-slot:route>{{ route('category.search') }}</x-slot:route>
     </x-search-bar-script>
+    <x-search-bar-transportation-script>
+        <x-slot:item>
+            transportation
+        </x-slot:item>
+        <x-slot:route>{{ route('transportation.search') }}</x-slot:route>
+    </x-search-bar-transportation-script>
+    <x-search-bar-script>
+        <x-slot:item>
+            lodging
+        </x-slot:item>
+        <x-slot:route>{{ route('lodgings.search') }}</x-slot:route>
+    </x-search-bar-script>
+    <script>
+        function validateDecimal(input) {
+            const value = input.value;
+            const regex = /^\d+(\.\d{0,2})?$/;
+
+            if (!regex.test(value)) {
+                input.value = value.slice(0, -1);
+            }
+        }
+    </script>
     <script src="https://cdn.jsdelivr.net/npm/flowbite@2.4.1/dist/flowbite.min.js"></script>
 </body>
 

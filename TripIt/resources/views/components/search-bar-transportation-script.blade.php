@@ -23,9 +23,8 @@
                     resultsList.empty();
                     if (data.length > 0) {
                         data.forEach(function(category) {
-                            console.log(data);
                             resultsList.append(`
-                            <li class="px-4 py-2 hover:bg-gray-100 cursor-pointer">${category.name}</li>
+                            <li class="px-4 py-2 hover:bg-gray-100 cursor-pointer">${category.company}</li>
                         `);
                         });
                         resultsList.removeClass('hidden');

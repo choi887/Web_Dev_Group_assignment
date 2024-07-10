@@ -19,16 +19,17 @@
                 </button>
             </div>
             <!-- Modal body -->
-            <form action="#">
+            <form method="POST" action="{{ route('event.add') }}" enctype="multipart/form-data">
+                @csrf
                 <div class="grid gap-4 mb-4 sm:grid-cols-2">
                     <div>
-                        <label for="name" class="block mb-2 text-sm font-medium text-black">Name</label>
+                        <label for="name" class="block mb-2 text-sm font-medium text-black">name</label>
                         <input type="text" name="name" id="name"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 "
                             placeholder="Type Event name" required="">
                     </div>
                     <div>
-                        <label for="phone-input" class="block mb-2 text-sm font-medium text-black">Phone
+                        <label for="phone-input" class="block mb-2 text-sm font-medium text-black">phone
                             number
                         </label>
                         <div class="relative">
@@ -39,16 +40,17 @@
                                         d="M18 13.446a3.02 3.02 0 0 0-.946-1.985l-1.4-1.4a3.054 3.054 0 0 0-4.218 0l-.7.7a.983.983 0 0 1-1.39 0l-2.1-2.1a.983.983 0 0 1 0-1.389l.7-.7a2.98 2.98 0 0 0 0-4.217l-1.4-1.4a2.824 2.824 0 0 0-4.218 0c-3.619 3.619-3 8.229 1.752 12.979C6.785 16.639 9.45 18 11.912 18a7.175 7.175 0 0 0 5.139-2.325A2.9 2.9 0 0 0 18 13.446Z" />
                                 </svg>
                             </div>
-                            <input type="text" id="phone-input" name="phone-number"
+                            <input type="text" id="phone_number" name="phone_number"
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5  "
-                                pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" placeholder="123-456-7890" required />
+                                placeholder="123-456-7890" required />
                         </div>
                     </div>
                     <div>
-                        <label for="price" class="block mb-2 text-sm font-medium text-black">Price</label>
+                        <label for="price" class="block mb-2 text-sm font-medium text-black">price</label>
                         <input type="number" name="price" id="price"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 "
-                            required="" min="0">
+                            required="" min="0" step=".01" pattern="^\d+(\.\d{1,2})?$"
+                            oninput="validateDecimal(this)" placeholder="Example: 1000.50">
                     </div>
                     <!-- search category start -->
                     <x-search-bar>
@@ -58,29 +60,47 @@
                         <x-slot:dropdownBarSize>40%</x-slot:dropdownBarSize>
                     </x-search-bar>
                     <!-- search category end -->
+                    <x-search-bar>
+                        <x-slot:item>
+                            transportation
+                        </x-slot:item>
+                        <x-slot:dropdownBarSize>40%</x-slot:dropdownBarSize>
+                    </x-search-bar>
+                    <!-- search transportation end -->
+                    <x-search-bar>
+                        <x-slot:item>
+                            lodging
+                        </x-slot:item>
+                        <x-slot:dropdownBarSize>40%</x-slot:dropdownBarSize>
+                    </x-search-bar>
+                    <input type="hidden" name="food" value="0">
+                    <!-- Checkbox input -->
+                    <div class="flex items-center mb-4">
+                        <input id="food-checkbox" type="checkbox" name="food" value="1"
+                            class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 focus:ring-2 ">
+                        <label for="food-checkbox" class="ms-2 text-sm font-medium text-gray-900 ">food provided</label>
+                    </div>
+                    <div></div>
                     <!-- file submission start -->
-                    <label class="block text-sm font-medium text-gray-900 " for="default_size">Put your image
+                    <label class="block text-sm font-medium text-gray-900 " for="default_size">put your image
                         here in either png or jpeg file
                     </label>
-                    <input
+                    <input name="image"
                         class="block col-span-full w-full text-sm text-gray-900 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 focus:outline-none "
-                        id="default_size" type="file" accept="image/x-png,image/gif,image/jpeg"
-                        onchange="loadFile(event)" name="image">
+                        id="default_size" type="file" accept="image/x-png,image/gif,image/jpeg,image/jpg"
+                        onchange="loadFile(event)" required>
                     <div class="flex flex-col">
-                        <label for="price" class="block mb-2 text-sm font-medium text-black">Image preview</label>
+                        <label for="price" class="block mb-2 text-sm font-medium text-black">image preview</label>
                         <div class="w-full "><img id="previewImage"></div>
                     </div>
-
                     <!-- file submission end -->
-
                     <div class="sm:col-span-2"><label for="description"
-                            class="block mb-2 text-sm font-medium text-black">Description</label>
-                        <textarea id="description" rows="4"
+                            class="block mb-2 text-sm font-medium text-black">description</label>
+                        <textarea id="description" rows="4" name="description"
                             class="block p-2.5 w-full text-sm text-black bg-gray-50 rounded-lg border border-gray-300 focus:ring-primary-500 focus:border-primary-500"
-                            placeholder="Write product description here"></textarea>
+                            placeholder="Write product description here" maxlength="5000"></textarea>
                     </div>
                 </div>
-
                 <button type="submit"
                     class="text-black inline-flex justify-center border border-black bg-primary-700 hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center ">
                     <svg class="mr-1 -ml-1 w-6 h-6" fill="currentColor" viewbox="0 0 20 20"

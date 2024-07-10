@@ -16,7 +16,6 @@ return new class extends Migration
             $table->string('company');
             $table->string('type');
             $table->date('date')->nullable();
-            $table->string('departure_location')->nullable();
             $table->string('phone_number')->nullable();
             $table->timestamps();
         });

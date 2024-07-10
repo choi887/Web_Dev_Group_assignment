@@ -15,7 +15,6 @@ class Transportation extends Model
         'name',
         'type',
         'date',
-        'departure_location',
         'phone_number',
     ];
     public function events(): HasMany

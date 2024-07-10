@@ -2,7 +2,7 @@
 
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\EventController;
-use App\Http\Controllers\LodgingController;
+use App\Http\Controllers\LodgingsController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TransportationController;
 use Illuminate\Support\Facades\Route;
@@ -43,10 +43,18 @@ Route::prefix('administrator')->middleware(['auth', 'checkRole'])->group(functio
         Route::post('/addevent', [EventController::class, 'store'])->name('event.add');
     });
     // all events routing end
-    Route::get('/category/search', [CategoryController::class, 'search'])->name('category.search');
-    Route::post('/addcategory', [CategoryController::class, 'store'])->name('category.add');
-    Route::post('/addtransportation', [TransportationController::class, 'store'])->name('transportation.add');
-    Route::post('/addlodging', [LodgingController::class, 'store'])->name('lodging.add');
+    Route::prefix('category')->group(function () {
+        Route::get('/search', [CategoryController::class, 'search'])->name('category.search');
+        Route::post('/addcategory', [CategoryController::class, 'store'])->name('category.add');
+    });
+    Route::prefix('transportation')->group(function () {
+        Route::get('/search', [TransportationController::class, 'search'])->name('transportation.search');
+        Route::post('/addtransportation', [TransportationController::class, 'store'])->name('transportation.add');
+    });
+    Route::prefix('lodgings')->group(function () {
+        Route::get('/search', [LodgingsController::class, 'search'])->name('lodgings.search');
+        Route::post('/addlodgings', [LodgingsController::class, 'store'])->name('lodgings.add');
+    });
 });
 
 require __DIR__ . '/auth.php';

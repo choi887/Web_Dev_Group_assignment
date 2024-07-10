@@ -51,7 +51,7 @@
                             </div>
                             <input type="text" id="phone-input" name="phone_number"
                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5  "
-                                pattern="[0-9]{3}-[0-9]{3}-[0-9]{4}" placeholder="123-456-7890" required />
+                                placeholder="123-456-7890" required />
                         </div>
                     </div>
                     <div>
@@ -61,13 +61,7 @@
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 "
                             placeholder="Select a date">
                     </div>
-                    <div>
-                        <label for="departure-location" class="block mb-2 text-sm font-medium text-gray-900 ">Departure
-                            Location</label>
-                        <input type="text" name="departure_location"
-                            class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 "
-                            placeholder="Example: Hilton Hotel" required="">
-                    </div>
+
                 </div>
                 <!-- form input end -->
                 <button type="submit"
