@@ -11,6 +11,9 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 })->name('welcome');
+Route::get('/event-list', function () {
+    return view('event-list');
+})->name('event-list');
 Route::get('/package', function () {
     return view('package');
 })->name('package');
