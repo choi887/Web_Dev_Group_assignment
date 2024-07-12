@@ -21,6 +21,6 @@
                 </ul>
             </div>
         </div>
-        <input type="hidden" name="category" id="category">
+        <input type="hidden" name="category_id" id="category">
     </div>
 </div>

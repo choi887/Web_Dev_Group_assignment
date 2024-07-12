@@ -46,7 +46,6 @@ Route::prefix('administrator')->middleware(['auth', 'checkRole'])->group(functio
         Route::get('/event-create', function () {
             return view('event-create');
         })->name('event.create');
-
         Route::post('/addevent', [EventController::class, 'store'])->name('event.add');
     });
     // all events routing end
@@ -55,13 +54,9 @@ Route::prefix('administrator')->middleware(['auth', 'checkRole'])->group(functio
         Route::post('/addcategory', [CategoryController::class, 'store'])->name('category.add');
         Route::get('/firstfive', [CategoryController::class, 'firstFive'])->name('category.firstFive');
     });
-    Route::prefix('transportation')->group(function () {
-        Route::get('/search', [TransportationController::class, 'search'])->name('transportation.search');
-        Route::post('/addtransportation', [TransportationController::class, 'store'])->name('transportation.add');
-    });
-    Route::prefix('lodgings')->group(function () {
-        Route::get('/search', [LodgingsController::class, 'search'])->name('lodgings.search');
-        Route::post('/addlodgings', [LodgingsController::class, 'store'])->name('lodgings.add');
+    Route::prefix('gallery')->group(function () {
+        // Route::get('/search', [TransportationController::class, 'search'])->name('transportation.search');
+        // Route::post('/addtransportation', [TransportationController::class, 'store'])->name('transportation.add');
     });
 });
 

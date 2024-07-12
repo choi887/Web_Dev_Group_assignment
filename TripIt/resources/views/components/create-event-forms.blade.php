@@ -99,9 +99,9 @@
                         </div>
                         <div class="mt-4 flex text-sm leading-6 text-gray-600">
                             <label for="file-upload"
-                                class="relative cursor-pointer rounded-md bg-white font-semibold text-blue-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-600 focus-within:ring-offset-2 hover:text-indigo-500">
+                                class="relative cursor-pointer rounded-md bg-white font-semibold text-blue-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-blue-600 focus-within:ring-offset-2 hover:text-blue-500">
                                 <span>Upload a file</span>
-                                <input id="file-upload" name="cover-image" type="file" class="sr-only"
+                                <input id="file-upload" name="cover_image" type="file" class="sr-only"
                                     accept="image/x-png,image/gif,image/jpeg,image/jpg" required>
                             </label>
                             <p class="pl-1">or drag and drop</p>
@@ -131,11 +131,11 @@
                         </svg>
                         <div class="mt-4 flex text-sm leading-6 text-gray-600">
                             <label for="multiple-file-upload"
-                                class="relative cursor-pointer rounded-md bg-white font-semibold text-blue-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-indigo-600 focus-within:ring-offset-2 hover:text-indigo-500">
+                                class="relative cursor-pointer rounded-md bg-white font-semibold text-blue-600 focus-within:outline-none focus-within:ring-2 focus-within:ring-blue-600 focus-within:ring-offset-2 hover:text-blue-500">
                                 <span>Upload files</span>
-                                <input id="multiple-file-upload" name="multiple-file-upload[]" type="file"
+                                <input id="multiple-file-upload" name="multiple_file_upload[]" type="file"
                                     class="sr-only"accept="image/x-png,image/gif,image/jpeg,image/jpg" required
-                                    multiple="multiple">
+                                    multiple>
                             </label>
                             <p class="pl-1">or drag and drop</p>
                         </div>

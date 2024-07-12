@@ -20,10 +20,10 @@ return new class extends Migration
             $table->string('phone_number');
             $table->decimal('price', 8, 2);
             $table->foreignIdFor(Category::class)->default(1);
-            $table->foreignIdFor(Transportation::class)->default(1);
-            $table->foreignIdFor(Lodging::class)->default(1);
             $table->boolean('food')->default(false);
-            $table->string('image_path')->nullable();
+            $table->boolean('transportation')->default(false);
+            $table->boolean('lodging')->default(false);
+            $table->string('cover_image_path');
             $table->text('description')->nullable();
             $table->timestamps();
         });

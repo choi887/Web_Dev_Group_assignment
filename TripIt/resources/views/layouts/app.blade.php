@@ -98,7 +98,7 @@
                     reader.onload = function(e) {
                         const img = document.createElement('img');
                         img.src = e.target.result;
-                        img.className = ' h-32 object-cover rounded-md';
+                        img.className = ' h-32 w-32 object-cover rounded-md';
                         previewContainer.appendChild(img);
                     }
                     reader.readAsDataURL(file);

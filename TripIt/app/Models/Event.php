@@ -20,22 +20,14 @@ class Event extends Model
         'phone_number',
         'price',
         'category_id',
-        'transportation_id',
-        'lodging_id',
         'food',
-        'image_path',
+        'transportation',
+        'lodging',
+        'cover_image_path',
         'description',
     ];
     public function category(): BelongsTo
     {
         return $this->belongsTo(Category::class);
-    }
-    public function transportation(): BelongsTo
-    {
-        return $this->belongsTo(Transportation::class);
-    }
-    public function lodging(): BelongsTo
-    {
-        return $this->belongsTo(Lodging::class);
     }
 }

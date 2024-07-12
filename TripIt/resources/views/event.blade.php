@@ -245,13 +245,6 @@
             </div>
         </section>
         <!-- End block -->
-        <!-- create category modal start-->
-        <x-create-category-modal></x-create-category-modal>
-        <!-- Create event modal start -->
-        <x-create-event-modal></x-create-event-modal>
-        <!-- create event modal end -->
-        <!-- Update modal -->
-        <!-- Delete modal -->
-        <x-delete-event-modal></x-delete-event-modal>
+
     </div>
 </x-app-layout>
