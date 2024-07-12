@@ -40,18 +40,20 @@ Route::prefix('administrator')->middleware(['auth', 'checkRole'])->group(functio
         return view('dashboard');
     })->name('dashboard');
     Route::prefix('event')->group(function () {
-        Route::get('/event-list', function () {
+        Route::get('/event-list-admin', function () {
             return view('event'); // the blade page
-        })->name('event.list');
+        })->name('event.list.admin');
         Route::get('/event-create', function () {
             return view('event-create');
         })->name('event.create');
+
         Route::post('/addevent', [EventController::class, 'store'])->name('event.add');
     });
     // all events routing end
     Route::prefix('category')->group(function () {
         Route::get('/search', [CategoryController::class, 'search'])->name('category.search');
         Route::post('/addcategory', [CategoryController::class, 'store'])->name('category.add');
+        Route::get('/firstfive', [CategoryController::class, 'firstFive'])->name('category.firstFive');
     });
     Route::prefix('transportation')->group(function () {
         Route::get('/search', [TransportationController::class, 'search'])->name('transportation.search');

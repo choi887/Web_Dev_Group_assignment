@@ -1,9 +1,10 @@
-<aside id="sidebar-multi-level-sidebar" class="relative  w-64  transition-transform -translate-x-full sm:translate-x-0"
-    aria-label="Sidebar">
-    <div class="h-full px-3 py-4 overflow-y-auto bg-sky-100 ">
+<aside id="sidebar-multi-level-sidebar"
+    class="relative hidden sm:block w-64  transition-transform -translate-x-full sm:translate-x-0" aria-label="Sidebar">
+    <div class="h-full px-3 py-4 overflow-y-auto bg-gradient-to-r from-cyan-100 to-sky-200">
         <ul class="space-y-2 font-medium">
             <li>
-                <a href="#" class="flex items-center p-2 text-gray-900 rounded-lg  hover:bg-blue-200 group">
+                <a href="#"
+                    class="flex items-center p-2 text-gray-900 rounded-lg hover:bg-gradient-to-r from-cyan-50 to-sky-100 group">
                     <svg class="w-5 h-5 text-gray-500 transition duration-75  group-hover:text-gray-900 "
                         aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 22 21">
                         <path
@@ -16,7 +17,7 @@
             </li>
             <li>
                 <button type="button"
-                    class="flex items-center w-full p-2 text-base text-gray-900 transition duration-75 rounded-lg group hover:bg-blue-200"
+                    class="flex items-center w-full p-2 text-base text-gray-900 transition duration-75 rounded-lg group hover:bg-gradient-to-r from-cyan-50 to-sky-100"
                     aria-controls="dropdown-example" data-collapse-toggle="dropdown-example">
                     <svg class="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 group-hover:text-gray-900 "
                         aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 21">
@@ -33,20 +34,21 @@
                 <ul id="dropdown-example" class="hidden py-2 space-y-2">
                     <li>
                         <a href="#"
-                            class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-blue-200 ">Products</a>
+                            class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group hover:bg-gradient-to-r from-cyan-50 to-sky-100 ">Products</a>
                     </li>
                     <li>
                         <a href="#"
-                            class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group  hover:bg-blue-200 ">Billing</a>
+                            class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group  hover:bg-gradient-to-r from-cyan-50 to-sky-100 ">Billing</a>
                     </li>
                     <li>
                         <a href="#"
-                            class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group  hover:bg-blue-200 ">Invoice</a>
+                            class="flex items-center w-full p-2 text-gray-900 transition duration-75 rounded-lg pl-11 group  hover:bg-gradient-to-r from-cyan-50 to-sky-100 ">Invoice</a>
                     </li>
                 </ul>
             </li>
             <li>
-                <a href="#" class="flex items-center p-2 text-gray-900 rounded-lg  hover:bg-blue-200">
+                <a href="#"
+                    class="flex items-center p-2 text-gray-900 rounded-lg  hover:bg-gradient-to-r from-cyan-50 to-sky-100">
                     <svg class="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 "
                         aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 18">
                         <path
@@ -58,7 +60,8 @@
                 </a>
             </li>
             <li>
-                <a href="#" class="flex items-center p-2 text-gray-900 rounded-lg  hover:bg-blue-200 group">
+                <a href="#"
+                    class="flex items-center p-2 text-gray-900 rounded-lg  hover:bg-gradient-to-r from-cyan-50 to-sky-100 group">
                     <svg class="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 "
                         aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
                         <path
@@ -70,7 +73,8 @@
                 </a>
             </li>
             <li>
-                <a href="#" class="flex items-center p-2 text-gray-900 rounded-lg  hover:bg-blue-200 group">
+                <a href="#"
+                    class="flex items-center p-2 text-gray-900 rounded-lg  hover:bg-gradient-to-r from-cyan-50 to-sky-100 group">
                     <svg class="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 dark:text-gray-400 group-hover:text-gray-900 "
                         aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 18">
                         <path
@@ -80,7 +84,8 @@
                 </a>
             </li>
             <li>
-                <a href="#" class="flex items-center p-2 text-gray-900 rounded-lg  hover:bg-blue-200  group">
+                <a href="#"
+                    class="flex items-center p-2 text-gray-900 rounded-lg  hover:bg-gradient-to-r from-cyan-50 to-sky-100 group">
                     <svg class="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75  group-hover:text-gray-900 "
                         aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 18 20">
                         <path

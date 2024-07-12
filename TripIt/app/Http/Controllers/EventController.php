@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Event;
 use Exception;
 use Illuminate\Http\Request;
@@ -11,6 +12,7 @@ use Illuminate\Support\Facades\Log;
 
 class EventController extends Controller
 {
+
     public function getCategoryIdWithName(String $tableName, String $tableColumn,  String $categoryName)
     {
         $category = DB::table($tableName)->where($tableColumn, $categoryName)

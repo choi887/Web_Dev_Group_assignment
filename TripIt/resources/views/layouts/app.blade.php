@@ -14,12 +14,13 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
     <link href="https://cdn.jsdelivr.net/npm/flowbite@2.4.1/dist/flowbite.min.css" rel="stylesheet" />
+    <link rel="stylesheet" type="text/css" href="{{ url('/css/styles.css') }}">
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 
 <body class="font-sans antialiased">
-    <div class="min-h-screen bg-gray-100">
+    <div class="min-h-screen ">
         @include('layouts.navigation')
 
         <!-- Page Heading -->
@@ -61,25 +62,55 @@
             }
         }
     </script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <x-search-bar-script>
-        <x-slot:item>
-            category
-        </x-slot:item>
-        <x-slot:route>{{ route('category.search') }}</x-slot:route>
-    </x-search-bar-script>
-    <x-search-bar-transportation-script>
-        <x-slot:item>
-            transportation
-        </x-slot:item>
-        <x-slot:route>{{ route('transportation.search') }}</x-slot:route>
-    </x-search-bar-transportation-script>
-    <x-search-bar-script>
-        <x-slot:item>
-            lodging
-        </x-slot:item>
-        <x-slot:route>{{ route('lodgings.search') }}</x-slot:route>
-    </x-search-bar-script>
+
+    <script>
+        document.getElementById('file-upload').addEventListener('change', function(event) {
+            const file = event.target.files[0]; // keep targeting the first one only
+            const preview = document.getElementById('image-preview');
+            const svg = document.getElementById('image_upload_svg');
+            if (file) {
+                const reader = new FileReader();
+                reader.onload = function(e) {
+                    preview.src = e.target.result;
+                    preview.hidden = false;
+                    svg.style.display = 'none';
+                }
+                reader.readAsDataURL(file);
+            } else {
+                preview.src = "";
+                preview.hidden = true;
+            }
+
+
+        });
+    </script>
+    <script>
+        document.getElementById('multiple-file-upload').addEventListener('change', function(event) {
+            const files = event.target.files;
+            const previewContainer = document.getElementById('multiple-image-preview');
+            const svgIcon = document.getElementById('svgIcon');
+
+            if (files.length > 0) {
+                svgIcon.style.display = 'none';
+                for (let i = 0; i < files.length; i++) {
+                    const file = files[i];
+                    const reader = new FileReader();
+                    reader.onload = function(e) {
+                        const img = document.createElement('img');
+                        img.src = e.target.result;
+                        img.className = ' h-32 object-cover rounded-md';
+                        previewContainer.appendChild(img);
+                    }
+                    reader.readAsDataURL(file);
+                }
+            }
+        });
+    </script>
+    <script>
+        document.getElementById('cancelButton').addEventListener('click', function() {
+            location.reload();
+        });
+    </script>
     <script>
         function validateDecimal(input) {
             const value = input.value;
@@ -90,6 +121,34 @@
             }
         }
     </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', (event) => {
+            const dropdownButton = document.getElementById('dropdownButton');
+            const dropdownMenu = document.getElementById('dropdownMenu');
+            const categoryInput = document.getElementById('category');
+
+            dropdownButton.addEventListener('click', (event) => {
+                event.preventDefault();
+                dropdownMenu.classList.toggle(
+                    'hidden'); // if hidden and add hidden again it will overwrite and not be hidden
+            });
+
+            document.querySelectorAll('#dropdownMenu li').forEach(item => {
+                item.addEventListener('click', (event) => {
+                    dropdownButton.textContent = item.textContent;
+                    categoryInput.value = item.getAttribute('data-value');
+                    dropdownMenu.classList.add('hidden');
+                });
+            });
+
+            document.addEventListener('click', (event) => {
+                if (!dropdownButton.contains(event.target) && !dropdownMenu.contains(event.target)) {
+                    dropdownMenu.classList.add('hidden');
+                }
+            });
+        });
+    </script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/flowbite@2.4.1/dist/flowbite.min.js"></script>
 </body>
 
