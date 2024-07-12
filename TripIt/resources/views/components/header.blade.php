@@ -26,7 +26,7 @@
 
             <nav class="hidden pl-10 md:flex space-x-6 main-color justify-center mt-2">
                 <a href="#" class="nav-link">All categories</a>
-                <a href="#" class="nav-link">Events</a>
+                <a href="{{ route('event-list') }}" class="nav-link">Events</a>
                 <a href="#" class="nav-link">Packages</a>
                 <a href="#" class="nav-link">FAQs</a>
             </nav>
