@@ -10,7 +10,7 @@
             <!-- form info end -->
             <div class="mt-6 grid grid-cols-1 gap-x-6 gap-y-8 sm:grid-cols-8">
                 <div class="sm:col-span-4">
-                    <label for="name" class="block mb-2 text-sm font-medium text-black">name</label>
+                    <label for="name" class="block mb-2 text-sm font-medium text-black">Name</label>
                     <div class="mt-2">
                         <input type="text" name="name" id="name"
                             class=" border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 "
@@ -19,8 +19,8 @@
                 </div>
                 <!-- name end -->
                 <div class="sm:col-span-4">
-                    <label for="phone_number" class="block mb-2 text-sm font-medium text-black">phone
-                        number
+                    <label for="phone_number" class="block mb-2 text-sm font-medium text-black">Phone
+                        Number
                     </label>
                     <div class="relative">
                         <div class="absolute inset-y-0 start-0 top-0 flex items-center ps-3.5 pointer-events-none">
@@ -36,7 +36,7 @@
                     </div>
                 </div>
                 <div class="sm:col-span-4">
-                    <label for="price" class="block mb-2 text-sm font-medium text-black">price</label>
+                    <label for="price" class="block mb-2 text-sm font-medium text-black">Price</label>
                     <input type="number" name="price" id="price"
                         class="border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 "
                         required="" min="0" step=".01" pattern="^\d+(\.\d{1,2})?$"
@@ -45,32 +45,63 @@
                 <!-- phone end -->
                 <x-category-dropdown />
                 <!-- dropdown end -->
+                <div class="sm:col-span-4">
+                    <label for="start_date" class="block mb-2 text-sm font-medium text-black">Start Date</label>
+                    <div class="relative max-w-sm">
+                        <div class="absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none">
+                            <svg class="w-4 h-4 text-gray-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                                fill="currentColor" viewBox="0 0 20 20">
+                                <path
+                                    d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z" />
+                            </svg>
+                        </div>
+                        <input id="start_date" name="start_date" type="date"
+                            class="border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5 "
+                            placeholder="Select date">
+                    </div>
+                </div>
+                <div class="sm:col-span-4">
+                    <label for="end_date" class="block mb-2 text-sm font-medium text-black">End Date</label>
+                    <div class="relative max-w-sm">
+                        <div class="absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none">
+                            <svg class="w-4 h-4 text-gray-500" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                                fill="currentColor" viewBox="0 0 20 20">
+                                <path
+                                    d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z" />
+                            </svg>
+                        </div>
+                        <input id="end_date" name="end_date" type="date"
+                            class="border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5 "
+                            placeholder="Select date">
+                    </div>
+                </div>
                 <!-- checkboxes start -->
                 <div class="col-span-full flex justify-between">
                     <div class="sm:col-span-2">
                         <input type="hidden" name="food" value="0">
                         <input id="food-checkbox" type="checkbox" name="food" value="1"
                             class="w-4 h-4 text-blue-600  border-gray-300 rounded focus:ring-blue-600 focus:ring-1 ">
-                        <label for="food" class="ms-2 text-sm font-medium text-gray-900 ">food provided</label>
+                        <label for="food" class="ms-2 text-sm font-medium text-gray-900 ">Food Provided</label>
                     </div>
                     <div class="sm:col-span-2">
                         <input type="hidden" name="transportation" value="0">
                         <input id="transportation-checkbox" type="checkbox" name="transportation" value="1"
                             class="w-4 h-4 text-blue-600  border-gray-300 rounded focus:ring-blue-600 focus:ring-1 ">
-                        <label for="transportation" class="ms-2 text-sm font-medium text-gray-900 ">transportation
-                            provided</label>
+                        <label for="transportation" class="ms-2 text-sm font-medium text-gray-900 ">Transportation
+                            Provided</label>
                     </div>
                     <div class="sm:col-span-2">
                         <input type="hidden" name="lodging" value="0">
                         <input id="lodging-checkbox" type="checkbox" name="lodging" value="1"
                             class="w-4 h-4 text-blue-600  border-gray-300 rounded focus:ring-blue-600 focus:ring-1 ">
-                        <label for="lodging" class="ms-2 text-sm font-medium text-gray-900 ">lodging
-                            provided</label>
+                        <label for="lodging" class="ms-2 text-sm font-medium text-gray-900 ">Lodging
+                            Provided</label>
                     </div>
+
                 </div>
                 <!--checkboxes end -->
                 <div class="col-span-full">
-                    <label for="description" class="block mb-2 text-sm font-medium text-black">description</label>
+                    <label for="description" class="block mb-2 text-sm font-medium text-black">Description</label>
                     <textarea id="description" rows="4" name="description"
                         class="block p-2.5 w-full text-sm text-black  rounded-lg border border-gray-300 focus:ring-primary-500 focus:border-primary-500"
                         placeholder="Write product description here" maxlength="5000"></textarea>
@@ -80,7 +111,7 @@
         <!-- filling in info end -->
         <div class="border-b border-gray-900/10 pb-12 ">
             <h2 class="text-base font-semibold leading-7 text-gray-900">Insert Image for Event</h2>
-            <p class="mt-1 text-sm leading-6 text-gray-600">Insert your images here for your events</p>
+            <p class="mt-1 text-sm leading-6 text-gray-600 mb-1">Insert your images here for your events</p>
             <!-- cover image start -->
             <div class="col-span-full">
                 <label for="cover-photo" class="block text-sm font-medium leading-6 text-gray-900">Cover
@@ -140,6 +171,9 @@
                             <p class="pl-1">or drag and drop</p>
                         </div>
                         <p class="text-xs leading-5 text-gray-600">PNG, JPG, GIF up to 10MB each</p>
+                        <p class="text-xs leading-5 text-gray-600">and hold CRTL when</p>
+                        <p class="text-xs leading-5 text-gray-600">selecting images</p>
+
                     </div>
                 </div>
 

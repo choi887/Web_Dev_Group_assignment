@@ -23,8 +23,11 @@ return new class extends Migration
             $table->boolean('food')->default(false);
             $table->boolean('transportation')->default(false);
             $table->boolean('lodging')->default(false);
+            $table->date('start_date');
+            $table->date('end_date');
             $table->string('cover_image_path');
             $table->text('description')->nullable();
+            $table->string("created_by");
             $table->timestamps();
         });
     }

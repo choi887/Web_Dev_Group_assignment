@@ -25,6 +25,10 @@ class Event extends Model
         'lodging',
         'cover_image_path',
         'description',
+        'start_date',
+        'end_date',
+        'created_by',
+
     ];
     public function category(): BelongsTo
     {

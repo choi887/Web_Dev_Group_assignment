@@ -107,6 +107,15 @@
         });
     </script>
     <script>
+        document.getElementById('start_date').addEventListener('change', function() {
+            const startDate = this.value;
+            const endDateInput = document.getElementById('end_date');
+
+            // Set the minimum date for the end date input
+            endDateInput.min = startDate;
+        });
+    </script>
+    <script>
         document.getElementById('cancelButton').addEventListener('click', function() {
             location.reload();
         });

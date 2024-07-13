@@ -30,14 +30,16 @@ class EventController extends Controller
                 'phone_number' => 'nullable|string|max:50',
                 'price' => 'required|numeric|min:0',
                 'category_id' => 'required|exists:categories,id',
+                'start_date' => 'required|date',
+                'end_date' => 'required|date',
+                'food' => 'boolean',
                 'transportation' => 'boolean',
                 'lodging' => 'boolean',
-                'food' => 'boolean',
                 'description' => 'required|string|max:5000',
                 'cover_image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
                 'multiple_file_upload.*' => 'image|mimes:jpeg,png,jpg,gif|max:10240', // 10MB max size for each file
             ]);
-
+            $data['created_by'] =  $request->user()->name;
             if ($request->hasFile('cover_image')) {
                 $file = $request->file('cover_image');
                 $fileName = time() . '_' . $file->getClientOriginalName();
@@ -45,7 +47,6 @@ class EventController extends Controller
                 $data['cover_image_path'] = $filePath;
                 unset($data['cover_image']);
             }
-
             $createdEvent =  Event::create($data);
             $eventId = $createdEvent->id;
             if ($request->hasFile('multiple_file_upload')) {
