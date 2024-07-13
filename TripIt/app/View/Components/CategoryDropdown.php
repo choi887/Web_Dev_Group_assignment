@@ -12,7 +12,7 @@ class CategoryDropdown extends Component
     public $categories;
     public function __construct()
     {
-        $this->categories = Category::all();
+        $this->categories = Category::orderBy('name')->get();
     }
 
     /**

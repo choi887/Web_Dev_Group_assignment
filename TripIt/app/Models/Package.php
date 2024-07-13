@@ -9,8 +9,13 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 class Package extends Model
 {
     use HasFactory;
-    public function events(): HasMany
+    protected $fillable = [
+        'name',
+        'duration',
+        'cover_image_path',
+    ];
+    public function packageEventsList(): HasMany
     {
-        return $this->hasMany(Event::class);
+        return $this->hasMany(packageEventsList::class);
     }
 }
