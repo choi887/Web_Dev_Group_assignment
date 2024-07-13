@@ -79,10 +79,17 @@ class EventController extends Controller
         ]);
     }
 
-    public function getAllEvents()
+    public function getAllEvents($categoryId = null)
     {
         try {
-            $events = Event::all();
+            if ($categoryId) {
+                $events = Event::where('category_id', $categoryId)
+                    ->with('category')
+                    ->get();
+            } else {
+                $events = Event::with('category')
+                    ->get();
+            }
 
             return $events;
         } catch (Exception $e) {

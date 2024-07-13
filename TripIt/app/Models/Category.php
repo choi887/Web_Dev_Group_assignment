@@ -11,7 +11,10 @@ class Category extends Model
     use HasFactory;
 
     protected $fillable = [
+        'id',
         'name',
+        'created_by',
+        'updated_by'
     ];
     public function events(): HasMany
     {

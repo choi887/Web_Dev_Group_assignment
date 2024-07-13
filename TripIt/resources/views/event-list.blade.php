@@ -7,7 +7,7 @@
             <x-filter>
                 @foreach ($events as $event)
                     <a href="#"
-                        class="my-4 flex flex-col items-center bg-white rounded-lg shadow md:flex-row w-full hover:bg-gray-100">
+                        class="my-4 flex flex-col bg-white rounded-lg shadow md:flex-row w-full hover:bg-gray-100">
                         <div
                             class="relative w-full md:w-2/5 m-0 overflow-hidden rounded-t-lg md:rounded-l-lg md:rounded-tr-none">
                             <img src="{{ asset('storage/' . $event->cover_image_path) }}"
@@ -24,12 +24,31 @@
                                     </svg>
                                     Members only
                                 </p>
-                                <div class="text-gray-900 font-bold text-xl mb-2">
-                                    {{ $event->name }}
+                                <div class="text-gray-900 font-bold text-xl mb-2 flex ">
+                                    <div class="flex-1">
+                                        {{ $event->name }}
+                                        <span
+                                            class="ml-4 bg-blue-100 text-blue-800 text-sm font-large me-2 px-2.5 py-0.5 rounded">
+                                            {{ $event->category->name }}</span>
+                                    </div>
+                                    <div class="flex-none">
+
+                                    </div>
+                                    <div class="flex-none">
+                                        ${{ $event->price }}
+                                    </div>
                                 </div>
                                 <p class="font-normal text-gray-600">
+                                    Date: {{ $event->start_date }} to {{ $event->end_date }}
+                                </p>
+                                <p class="font-normal text-gray-600 my-2">
                                     {{ $event->description }}
                                 </p>
+                            </div>
+                            <div class="flex flex-row mb-5">
+                                <x-conditional-icon :condition="$event->food" text="Food"></x-conditional-icon>
+                                <x-conditional-icon :condition="$event->transportation" text="Transportation"></x-conditional-icon>
+                                <x-conditional-icon :condition="$event->lodging" text="Lodging"></x-conditional-icon>
                             </div>
                             <div class="flex items-center">
                                 <img class="w-10 h-10 rounded-full mr-4" src="{{ asset('images/owl.jpg') }}"
