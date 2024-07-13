@@ -70,4 +70,27 @@ class EventController extends Controller
             return redirect()->back()->with('fail', "{$e->getMessage()}");
         }
     }
+
+    public function showEventList(Request $request)
+    {
+        $events = $this->getAllEvents();
+        return view('event-list', [
+            'events' => $events,
+        ]);
+    }
+
+    public function getAllEvents()
+    {
+        try {
+            $events = Event::all();
+
+            return $events;
+        } catch (Exception $e) {
+            Log::error("Error fetching events: " . $e->getMessage());
+            return response()->json([
+                'success' => false,
+                'message' => "Error fetching events: " . $e->getMessage()
+            ], 500);
+        }
+    }
 }
