@@ -78,6 +78,15 @@ class EventController extends Controller
         ]);
     }
 
+    public function showEvent(Request $request)
+    {
+        $event = $this->getSpecificEvent($request->event_id);
+
+        return view('event-specific', [
+            'event' => $event,
+        ]);
+    }
+
     public function getAllEvents($categoryId = null)
     {
         try {
@@ -91,6 +100,31 @@ class EventController extends Controller
             }
 
             return $events;
+        } catch (Exception $e) {
+            Log::error("Error fetching events: " . $e->getMessage());
+            return response()->json([
+                'success' => false,
+                'message' => "Error fetching events: " . $e->getMessage()
+            ], 500);
+        }
+    }
+
+    public function getSpecificEvent($eventId)
+    {
+        try {
+            if ($eventId) {
+                $event = Event::where('id', $eventId)
+                    ->with('category')
+                    ->first();
+            } else {
+                Log::error("Error fetching events: No Availble Event ID");
+                return response()->json([
+                    'success' => false,
+                    'message' => "Error fetching events: No Availble Event ID"
+                ], 400);
+            }
+
+            return $event;
         } catch (Exception $e) {
             Log::error("Error fetching events: " . $e->getMessage());
             return response()->json([
