@@ -176,7 +176,7 @@
                             </h5>
 
                         </a>
-                        <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">
+                        <p class="mb-3 font-normal text-gray-700 dark:text-gray-400 line-clamp-4">
                             {{ $similarEvent->description }}
                         </p>
                         <a href="{{ route('event-specific', ['category' => $similarEvent->name, 'event_id' => $similarEvent->id]) }}"
