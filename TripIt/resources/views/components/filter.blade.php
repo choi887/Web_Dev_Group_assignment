@@ -211,7 +211,7 @@
 
         <main class="mx-auto px-4 py-4 ">
             <div class="border-b border-gray-200 pb-10">
-                <h1 class="text-4xl font-bold tracking-tight text-gray-900">New Events</h1>
+                <h1 class="text-4xl font-bold tracking-tight button-text-color">New Events</h1>
                 <p class="mt-4 text-base text-gray-500">Checkout out the latest release of our new events!</p>
             </div>
 
