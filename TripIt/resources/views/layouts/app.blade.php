@@ -15,6 +15,7 @@
     <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
     <link href="https://cdn.jsdelivr.net/npm/flowbite@2.4.1/dist/flowbite.min.css" rel="stylesheet" />
     <link rel="stylesheet" type="text/css" href="{{ url('/css/styles.css') }}">
+    <link rel="icon" href="{{ asset('images/download.png') }}">
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
@@ -106,6 +107,7 @@
             }
         });
     </script>
+    <!-- date disable script start -->
     <script>
         document.getElementById('start_date').addEventListener('change', function() {
             const startDate = this.value;
@@ -115,6 +117,7 @@
             endDateInput.min = startDate;
         });
     </script>
+    <!-- date disable script end -->
     <script>
         document.getElementById('cancelButton').addEventListener('click', function() {
             location.reload();
@@ -157,6 +160,46 @@
             });
         });
     </script>
+    <!-- scripts for package start -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const chooseEventButtons = document.querySelectorAll('.choose-event-button');
+            const selectedEventsInput = document.getElementById('selected_events');
+            const selectedEventsContainer = document.getElementById('selected-events-container');
+
+            // This will store the selected events as an array of objects
+            let selectedEvents = [];
+
+            chooseEventButtons.forEach(button => {
+                button.addEventListener('click', function() {
+                    const eventName = this.getAttribute('data-event-name');
+
+                    // Check if the event is already selected
+                    const eventExists = selectedEvents.find(event => event.name == eventName);
+                    if (!eventExists) {
+                        // Add the selected event to the array
+                        selectedEvents.push({
+                            name: eventName
+                        });
+
+                        // Update the hidden input field with the JSON string of selected events
+                        selectedEventsInput.value = JSON.stringify(
+                            selectedEvents); // remember to decode at contoller
+                        selectedEventsContainer.innerHTML = ''; //clears any previous field
+                        selectedEvents.forEach(
+                            event => { // Loops through selectedEvents array and add each event name to the container
+                                const eventElement = document.createElement('p');
+                                eventElement.textContent = event.name;
+                                selectedEventsContainer.appendChild(eventElement);
+                            });
+                    } else {
+                        alert(`${eventName} is already selected`);
+                    }
+                });
+            });
+        });
+    </script>
+    <!-- scripts for package end -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/flowbite@2.4.1/dist/flowbite.min.js"></script>
 </body>

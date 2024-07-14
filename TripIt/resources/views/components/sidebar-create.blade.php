@@ -98,7 +98,7 @@
 
                     </li>
                     <li>
-                        <a href="#"
+                        <a href="{{ route('package.create') }}"
                             class="flex items-center p-2 text-gray-900 transition duration-75 rounded-lg group hover:bg-gradient-to-r from-cyan-200 to-sky-400">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor"
                                 class="flex-shrink-0 w-5 h-5 text-gray-500 transition duration-75 group-hover:text-gray-900 ">

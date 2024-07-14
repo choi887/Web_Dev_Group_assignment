@@ -1,8 +1,6 @@
 <?php
 
 use App\Models\Category;
-use App\Models\Lodging;
-use App\Models\Transportation;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;

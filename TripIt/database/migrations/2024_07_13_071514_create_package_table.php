@@ -11,18 +11,22 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('package', function (Blueprint $table) {
+        Schema::create('packages', function (Blueprint $table) {
             $table->id();
-            $table->string('cover_page_path');
+            $table->string('name');
+            $table->decimal('price', 8, 2);
+            $table->date('start_date');
+            $table->date('end_date');
+            $table->string('description');
+            $table->string('cover_image_path');
             $table->timestamps();
         });
     }
-
     /**
      * Reverse the migrations.
      */
     public function down(): void
     {
-        Schema::dropIfExists('package');
+        Schema::dropIfExists('packages');
     }
 };

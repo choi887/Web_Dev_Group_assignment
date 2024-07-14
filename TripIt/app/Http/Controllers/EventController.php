@@ -59,7 +59,6 @@ class EventController extends Controller
                         'image_path' => $path,
                         'event_id' => $eventId,
                     ];
-                    // You can save the path to the database or perform other actions
                     Gallery::create($galleryInputData);
                 }
             }

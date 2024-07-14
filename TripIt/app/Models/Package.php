@@ -11,7 +11,10 @@ class Package extends Model
     use HasFactory;
     protected $fillable = [
         'name',
-        'duration',
+        'price',
+        'start_date',
+        'end_date',
+        'description',
         'cover_image_path',
     ];
     public function packageEventsList(): HasMany

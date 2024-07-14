@@ -81,20 +81,21 @@
                         <input type="hidden" name="food" value="0">
                         <input id="food-checkbox" type="checkbox" name="food" value="1"
                             class="w-4 h-4 text-blue-600  border-gray-300 rounded focus:ring-blue-600 focus:ring-1 ">
-                        <label for="food" class="ms-2 text-sm font-medium text-gray-900 ">Food Provided</label>
+                        <label for="food-checkbox" class="ms-2 text-sm font-medium text-gray-900 ">Food Provided</label>
                     </div>
                     <div class="sm:col-span-2">
                         <input type="hidden" name="transportation" value="0">
                         <input id="transportation-checkbox" type="checkbox" name="transportation" value="1"
                             class="w-4 h-4 text-blue-600  border-gray-300 rounded focus:ring-blue-600 focus:ring-1 ">
-                        <label for="transportation" class="ms-2 text-sm font-medium text-gray-900 ">Transportation
+                        <label for="transportation-checkbox"
+                            class="ms-2 text-sm font-medium text-gray-900 ">Transportation
                             Provided</label>
                     </div>
                     <div class="sm:col-span-2">
                         <input type="hidden" name="lodging" value="0">
                         <input id="lodging-checkbox" type="checkbox" name="lodging" value="1"
                             class="w-4 h-4 text-blue-600  border-gray-300 rounded focus:ring-blue-600 focus:ring-1 ">
-                        <label for="lodging" class="ms-2 text-sm font-medium text-gray-900 ">Lodging
+                        <label for="lodging-checkbox" class="ms-2 text-sm font-medium text-gray-900 ">Lodging
                             Provided</label>
                     </div>
 
@@ -114,7 +115,7 @@
             <p class="mt-1 text-sm leading-6 text-gray-600 mb-1">Insert your images here for your events</p>
             <!-- cover image start -->
             <div class="col-span-full">
-                <label for="cover-photo" class="block text-sm font-medium leading-6 text-gray-900">Cover
+                <label for="file-upload" class="block text-sm font-medium leading-6 text-gray-900">Cover
                     photo</label>
                 <div class="mt-2 flex justify-center rounded-lg border border-dashed border-gray-900/25 px-6 py-10">
                     <div class="text-center mx-2">
@@ -145,7 +146,7 @@
             <!-- cover image end -->
             <!-- Multiple Images Upload Section start -->
             <div class="col-span-full mt-4">
-                <label for="multiple-photos" class="block text-sm font-medium leading-6 text-gray-900">Upload
+                <label for="multiple-file-upload" class="block text-sm font-medium leading-6 text-gray-900">Upload
                     Additional Images </label>
                 <!-- show uploaded img start -->
                 <div class="col-span-full">

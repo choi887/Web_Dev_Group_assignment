@@ -10,6 +10,7 @@ class PackageEventsList extends Model
 {
 
     use HasFactory;
+    protected $table = 'package_events_list';
     protected $fillable = [
         'name',
         'event_id',
