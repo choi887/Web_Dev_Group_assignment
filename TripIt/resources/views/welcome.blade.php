@@ -16,7 +16,7 @@
                     <a href="#"
                         class=" button-bg-color text-white px-4 py-3 rounded-2xl transition hover:bg-blue-700">See
                         Packages</a>
-                    <a href="#"
+                    <a href="{{ route('event-list') }}"
                         class="button-bg-color-2 button-text-color px-4 py-3 rounded-2xl transition hover:bg-gray-300">See
                         Events</a>
                 </div>
@@ -185,25 +185,27 @@
 
         <div class="mx-auto items-center gap-4 grid md:grid-cols-3 max-w-screen-xl">
             @foreach ($events as $event)
-                <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow h-full">
+                <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow h-full flex flex-col">
                     <a href="{{ route('event-specific', ['category' => $event->name, 'event_id' => $event->id]) }}">
-                        <img class="rounded-t-lg" src="{{ asset('storage/' . $event->cover_image_path) }}"
-                            alt="" />
+                        <img class="rounded-t-lg h-48 w-full object-cover"
+                            src="{{ asset('storage/' . $event->cover_image_path) }}" alt="" />
                     </a>
-                    <div class="p-5 flex flex-col justify-between">
-                        <a
-                            href="{{ route('event-specific', ['category' => $event->name, 'event_id' => $event->id]) }}">
-                            <h5 class="flex flex-1 text-2xl font-bold items-center button-text-color">
-                                {{ $event->name }}
-                                <span
-                                    class="ml-4 bg-blue-100 text-blue-800 text-sm font-large me-2 px-2.5 py-0.5 rounded">
-                                    {{ $event->category->name }}</span>
-                            </h5>
-
-                        </a>
-                        <p class="mb-3 font-normal text-gray-700 dark:text-gray-400 line-clamp-2">
-                            {{ $event->description }}
-                        </p>
+                    <div class="p-5 flex flex-col justify-between flex-1">
+                        <div>
+                            <a
+                                href="{{ route('event-specific', ['category' => $event->name, 'event_id' => $event->id]) }}">
+                                <h5 class="flex flex-1 text-2xl font-bold items-center button-text-color">
+                                    {{ $event->name }}
+                                    <span
+                                        class="ml-4 bg-blue-100 text-blue-800 text-sm font-large me-2 px-2.5 py-0.5 rounded">
+                                        {{ $event->category->name }}
+                                    </span>
+                                </h5>
+                            </a>
+                            <p class="mb-3 font-normal text-gray-700 dark:text-gray-400 line-clamp-4">
+                                {{ $event->description }}
+                            </p>
+                        </div>
                         <a href="{{ route('event-specific', ['category' => $event->name, 'event_id' => $event->id]) }}"
                             class="inline-flex self-start items-center px-3 py-2 text-sm font-medium text-center text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300">
                             Read more
@@ -217,6 +219,7 @@
                 </div>
             @endforeach
         </div>
+
 
         <h2 class="mx-auto mt-20 mb-4 text-3xl tracking-tight font-extrabold button-text-color max-w-screen-xl">
             Review to Us

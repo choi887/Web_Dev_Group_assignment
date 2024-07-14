@@ -44,7 +44,7 @@ Route::prefix('administrator')->middleware(['auth', 'checkRole'])->group(functio
             return view('event-admin-list'); // the blade page
         })->name('event.list.admin');
         Route::get('/event-create', function () {
-            return view('event-create');
+            return view('event-create'); //page to create event
         })->name('event.create');
         Route::post('/addevent', [EventController::class, 'store'])->name('event.add');
     });
