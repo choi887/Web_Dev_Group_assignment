@@ -13,7 +13,7 @@ Route::get('/', function () {
     return view('welcome');
 })->name('welcome');
 Route::get('/event-list', [EventController::class, 'showEventList'])->name('event-list');
-Route::get('/event-list/{event_id}', [EventController::class, 'showEvent'])->name('event-specific');
+Route::get('/event-list/{category}/{event_id}', [EventController::class, 'showEvent'])->name('event-specific');
 Route::get('/package', function () {
     return view('package');
 })->name('package');

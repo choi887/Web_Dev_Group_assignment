@@ -80,12 +80,18 @@ class EventController extends Controller
 
     public function showEvent(Request $request)
     {
-        $event = $this->getSpecificEvent($request->event_id);
+        $result = $this->getSpecificEvent($request->event_id);
 
-        return view('event-specific', [
-            'event' => $event,
-        ]);
+        if (is_array($result) && isset($result['event'])) {
+            return view('event-specific', [
+                'event' => $result['event'],
+                'similarEvents' => $result['similarEvents'],
+            ]);
+        } else {
+            return $result; // Return the error response if fetching failed
+        }
     }
+
 
     public function getAllEvents($categoryId = null)
     {
@@ -112,19 +118,37 @@ class EventController extends Controller
     public function getSpecificEvent($eventId)
     {
         try {
-            if ($eventId) {
-                $event = Event::where('id', $eventId)
-                    ->with('category')
-                    ->first();
-            } else {
-                Log::error("Error fetching events: No Availble Event ID");
+            if (!$eventId) {
+                Log::error("Error fetching events: No Available Event ID");
                 return response()->json([
                     'success' => false,
-                    'message' => "Error fetching events: No Availble Event ID"
+                    'message' => "Error fetching events: No Available Event ID"
                 ], 400);
             }
 
-            return $event;
+            $event = Event::where('id', $eventId)
+                ->with(['category', 'gallery'])
+                ->first();
+
+            if (!$event) {
+                Log::error("Error fetching events: Events not found");
+                return response()->json([
+                    'success' => false,
+                    'message' => "Error fetching events: Events not found"
+                ], 404);
+            }
+
+            // Fetch 3 similar events from the same category, excluding the current event
+            $similarEvents = Event::where('category_id', $event->category_id)
+                ->where('id', '!=', $eventId)
+                ->with(['category', 'gallery'])
+                ->take(3)
+                ->get();
+
+            return [
+                'event' => $event,
+                'similarEvents' => $similarEvents,
+            ];
         } catch (Exception $e) {
             Log::error("Error fetching events: " . $e->getMessage());
             return response()->json([
