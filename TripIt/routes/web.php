@@ -6,12 +6,11 @@ use App\Http\Controllers\LodgingsController;
 use App\Http\Controllers\PackageController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TransportationController;
+use App\Http\Controllers\WelcomeController;
 use Illuminate\Support\Facades\Route;
 
 //public routes for all start
-Route::get('/', function () {
-    return view('welcome');
-})->name('welcome');
+Route::get('/', [WelcomeController::class, 'showWelcome'])->name('welcome');
 Route::get('/event-list', [EventController::class, 'showEventList'])->name('event-list');
 Route::get('/event-list/{category}/{event_id}', [EventController::class, 'showEvent'])->name('event-specific');
 Route::get('/package', function () {

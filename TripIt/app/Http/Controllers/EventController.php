@@ -142,6 +142,7 @@ class EventController extends Controller
             $similarEvents = Event::where('category_id', $event->category_id)
                 ->where('id', '!=', $eventId)
                 ->with(['category', 'gallery'])
+                ->inRandomOrder()
                 ->take(3)
                 ->get();
 

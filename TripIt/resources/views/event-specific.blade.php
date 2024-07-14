@@ -119,7 +119,7 @@
                                 {{ $similarEvent->name }}
                                 <span
                                     class="ml-4 bg-blue-100 text-blue-800 text-sm font-large me-2 px-2.5 py-0.5 rounded">
-                                    {{ $event->category->name }}</span>
+                                    {{ $similarEvent->category->name }}</span>
                             </h5>
 
                         </a>
