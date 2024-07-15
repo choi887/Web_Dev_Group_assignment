@@ -9,6 +9,10 @@ use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Storage;
+use Intervention\Image\Drivers\Gd\Driver;
+use Intervention\Image\Laravel\Facades\Image;
+use Intervention\Image\ImageManager;
 
 
 class EventController extends Controller
@@ -36,14 +40,30 @@ class EventController extends Controller
                 'transportation' => 'boolean',
                 'lodging' => 'boolean',
                 'description' => 'required|string|max:5000',
-                'cover_image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
-                'multiple_file_upload.*' => 'image|mimes:jpeg,png,jpg,gif|max:10240', // 10MB max size for each file
+                'cover_image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048|dimensions:min_width=800,min_height=600',
+                'multiple_file_upload.*' => 'image|mimes:jpeg,png,jpg,gif|max:10240|dimensions:min_width=800,min_height=600', // 10MB max size for each file
             ]);
             $data['created_by'] =  $request->user()->name;
+
             if ($request->hasFile('cover_image')) {
                 $file = $request->file('cover_image');
                 $fileName = time() . '_' . $file->getClientOriginalName();
-                $filePath = $file->storeAs('event_images', $fileName, 'public');
+
+                // Create an instance of ImageManager
+                $manager = new ImageManager(new Driver());
+
+                // Read the image
+                $image = $manager->read($file);
+
+                // Resize the image
+                $image->resize(1024, 683);
+
+                // Generate the file path
+                $filePath = 'event_images/' . $fileName;
+
+                // Save the resized image to the storage
+                Storage::disk('public')->put($filePath, $image->encode());
+
                 $data['cover_image_path'] = $filePath;
                 unset($data['cover_image']);
             }
@@ -53,7 +73,22 @@ class EventController extends Controller
                 $multipleFiles = $request->file('multiple_file_upload');
                 foreach ($multipleFiles as $file) {
                     $multipleFileName = time() . '_' . $file->getClientOriginalName();
-                    $path = $file->storeAs('event_images', $multipleFileName, 'public'); // Example storage path
+
+                    // Create an instance of ImageManager
+                    $manager = new ImageManager(new Driver());
+
+                    // Read the image (use $file, not $multipleFiles)
+                    $image = $manager->read($file);
+
+                    // Resize the image
+                    $image->resize(1024, 683);
+
+                    // Generate the file path
+                    $path = 'event_images/' . $multipleFileName;  // Use $multipleFileName, not $fileName
+
+                    // Save the resized image to the storage
+                    Storage::disk('public')->put($path, $image->encode());
+
                     $galleryInputData = [
                         'name' => $multipleFileName,
                         'image_path' => $path,
