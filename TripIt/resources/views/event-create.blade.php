@@ -12,7 +12,7 @@
         <x-fail-notification></x-fail-notification>
         <div class="flex">
             <x-sidebar-create></x-sidebar-create>
-            <div class="max-w-screen-xl  lg:px-12 overflow-hidden">
+            <div class="max-w-screen-xl mx-10 lg:px-12 overflow-hidden">
                 <!-- content container start -->
                 <div class="flex flex-col mt-8 bg-white  mx-8 px-10 pb-10 relative sm:rounded-lg overflow-hidden">
                     <div class="my-4 ">

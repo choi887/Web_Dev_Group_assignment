@@ -25,6 +25,8 @@ class Event extends Model
         'lodging',
         'cover_image_path',
         'description',
+        'max_number_pax',
+        'address',
         'start_date',
         'end_date',
         'created_by',

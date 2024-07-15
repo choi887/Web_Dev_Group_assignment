@@ -57,8 +57,8 @@
         </div>
         <!-- filling in info end -->
         <div class="border-b border-gray-900/10 pb-12  ">
-            <h2 class="text-base font-semibold leading-7 text-gray-900">Insert Image for Event</h2>
-            <p class="mt-1 text-sm leading-6 text-gray-600 mb-1">Insert your images here for your events</p>
+            <h2 class="text-base font-semibold leading-7 text-gray-900">Insert Image for Package</h2>
+            <p class="mt-1 text-sm leading-6 text-gray-600 mb-1">Insert your images here for your package</p>
             <!-- cover image start -->
             <div class="col-span-full">
                 <label for="file-upload" class="block text-sm font-medium leading-6 text-gray-900">Cover

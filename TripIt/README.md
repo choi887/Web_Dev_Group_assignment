@@ -73,10 +73,8 @@ The Laravel framework is open-sourced software licensed under the [MIT license](
 4. configure .env ( localhost database section in .env but make sure the database name already exists in the phpmyadmin )
 5. php artisan migrate
 6. run all php seeds
-   -php artisan db:seed --class=RolesTableSeeder
-   -php artisan db:seed --class=CategoriesTable  
-   -php artisan db:seed --class=TransportationsSeeder  
-   -php artisan db:seed --class=LodgingsTableSeeder
+   php artisan db:seed --class=RolesTableSeeder
+   php artisan db:seed --class=CategoriesTable
 7. go to the next step
 
 ## Instructions to set up laravel breeze

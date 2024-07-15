@@ -46,6 +46,13 @@
                 <x-category-dropdown />
                 <!-- dropdown end -->
                 <div class="sm:col-span-4">
+                    <label for="max_number_pax" class="block mb-2 text-sm font-medium text-black">Max Number of
+                        Pax</label>
+                    <input type="number" name="max_number_pax" id="max_number_pax"
+                        class="border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 "
+                        required="" min="0" placeholder="Example: 10">
+                </div>
+                <div class="sm:col-span-4">
                     <label for="start_date" class="block mb-2 text-sm font-medium text-black">Start Date</label>
                     <div class="relative max-w-sm">
                         <div class="absolute inset-y-0 start-0 flex items-center ps-3.5 pointer-events-none">
@@ -81,7 +88,8 @@
                         <input type="hidden" name="food" value="0">
                         <input id="food-checkbox" type="checkbox" name="food" value="1"
                             class="w-4 h-4 text-blue-600  border-gray-300 rounded focus:ring-blue-600 focus:ring-1 ">
-                        <label for="food-checkbox" class="ms-2 text-sm font-medium text-gray-900 ">Food Provided</label>
+                        <label for="food-checkbox" class="ms-2 text-sm font-medium text-gray-900 ">Food
+                            Provided</label>
                     </div>
                     <div class="sm:col-span-2">
                         <input type="hidden" name="transportation" value="0">
@@ -139,7 +147,7 @@
                             <p class="pl-1">or drag and drop</p>
                         </div>
                         <p class="text-xs leading-5 text-gray-600">PNG, JPG, GIF up to 10MB</p>
-
+                        <p class="text-xs leading-5 text-gray-600">Image must be (800px X 600px)</p>
                     </div>
                 </div>
             </div>
@@ -150,7 +158,8 @@
                     Additional Images </label>
                 <!-- show uploaded img start -->
                 <div class="col-span-full">
-                    <div id="multiple-image-preview" class="my-4 flex flex-grow flex-wrap gap-2"></div>
+                    <div id="multiple-image-preview" class="my-4 flex flex-grow flex-wrap gap-2 overflow-hidden">
+                    </div>
                 </div>
                 <!-- show uploaded img end -->
                 <div class="mt-2 flex justify-center rounded-lg border border-dashed border-gray-900/25 px-6 py-10">
@@ -174,6 +183,7 @@
                         <p class="text-xs leading-5 text-gray-600">PNG, JPG, GIF up to 10MB each</p>
                         <p class="text-xs leading-5 text-gray-600">and hold CRTL when</p>
                         <p class="text-xs leading-5 text-gray-600">selecting images</p>
+                        <p class="text-xs leading-5 text-gray-600">Image must be (800px X 600px)</p>
 
                     </div>
                 </div>

@@ -4,7 +4,8 @@
     </x-slot:titleName>
     <section class="bg-white ">
         <nav aria-label="Breadcrumb">
-            <ol role="list" class="mx-auto flex max-w-2xl items-center space-x-2 px-4 sm:px-6 lg:max-w-7xl lg:px-8">
+            <ol role="list"
+                class="mx-auto flex max-w-2xl items-center space-x-2 px-4 mt-6 sm:px-6 lg:max-w-7xl lg:px-8">
                 <li>
                     <div class="flex items-center">
                         <a href="{{ route('welcome') }}" class="mr-2 text-sm font-medium text-gray-900">Home</a>
@@ -34,24 +35,71 @@
 
         <div class="py-8 px-4 mx-auto max-w-screen-xl w-full">
             <div href="#" class="my-4 flex flex-col bg-white rounded-lg  md:flex-row w-full">
-                <div class="flex flex-col justify-between leading-normal p-5 w-full md:w-3/5">
+                <div class="flex flex-col justify-between leading-normal p-5 w-full  md:w-3/5">
                     <div class="mb-2">
-                        <h2 class="mb-2 text-3xl tracking-tight font-extrabold button-text-color flex">
+                        <h2 class=" text-3xl tracking-tight font-extrabold button-text-color flex">
                             <div class="flex flex-1 items-center button-text-color">
                                 {{ $event->name }}
 
                             </div>
-                            <div class="flex-none self-end text-2xl text-black">
+                            <div class="flex-none self-end text-xl text-black">
                                 ${{ $event->price }}
                             </div>
                         </h2>
                     </div>
-                    <p class="font-bold text-xl text-blue-600 mb-4">
+                    <p class="font-bold text-md text-blue-600 mb-2">
                         Date: {{ $event->start_date }} to {{ $event->end_date }}
                     </p>
-                    <p class="mb-6 pt-4  text-md main-color border-t border-grey-300 tracking-wide leading-relaxed ">
+                    <p class="font-bold text-md text-blue-600 mb-2">
+                        Address: {{ $event->address }}
+                    </p>
+                    <p
+                        class=" pt-4 text-md main-color border-t border-grey-300 tracking-wide leading-relaxed line-clamp-3 ">
                         {{ $event->description }}
                     </p>
+                    <button data-modal-target="description-modal" data-modal-toggle="description-modal"
+                        class="flex justify-start main-color hover:underline font-semibold my-2 w-max">See More
+                        <span><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20"
+                                stroke-width="1.5" stroke="currentColor" class="size-5">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
+                            </svg>
+                        </span></button>
+
+                    <!-- Modal toggle -->
+
+                    <!-- Main modal -->
+                    <div id="description-modal" tabindex="-1" aria-hidden="true"
+                        class="hidden overflow-y-auto overflow-x-hidden fixed top-0 right-0 left-0 z-50 justify-center items-center w-full md:inset-0 h-[calc(100%-1rem)] max-h-full">
+                        <div class="relative p-4 w-full max-w-2xl max-h-full">
+                            <!-- Modal content -->
+                            <div class="relative bg-white rounded-lg shadow ">
+                                <!-- Modal header -->
+                                <div class="flex items-center justify-between p-4 md:p-5 border-b rounded-t mt-2 ">
+                                    <h3 class="text-xl font-semibold text-gray-900 ">
+                                        Description
+                                    </h3>
+                                    <button type="button"
+                                        class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center"
+                                        data-modal-hide="description-modal">
+                                        <svg class="w-3 h-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                                            fill="none" viewBox="0 0 14 14">
+                                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                                stroke-width="2" d="m1 1 6 6m0 0 6 6M7 7l6-6M7 7l-6 6" />
+                                        </svg>
+                                        <span class="sr-only">Close modal</span>
+                                    </button>
+                                </div>
+                                <!-- Modal body -->
+                                <div class="p-6 md:p-6 space-y-4">
+                                    <p class="text-base leading-relaxed  tracking-wide text-gray-700 ">
+                                        {{ $event->description }}
+                                    </p>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
                     <div class="flex flex-row mb-5">
                         <x-conditional-icon :condition="$event->food" text="Food"></x-conditional-icon>
                         <x-conditional-icon :condition="$event->transportation" text="Transportation"></x-conditional-icon>
@@ -69,71 +117,9 @@
                     </div>
                 </div>
                 <!-- event image -->
-                <div class="relative w-full md:w-2/5 m-0 overflow-hidden rounded-r-lg">
-                    {{-- <img src="{{ asset('storage/' . $event->cover_image_path) }}"
-                        class="object-cover w-full h-64 md:h-full" alt="Owl image" /> --}}
-
-
-                    <div id="default-carousel" class="relative w-full" data-carousel="slide">
-                        <!-- Carousel wrapper -->
-                        <div class="relative h-56 overflow-hidden rounded-lg md:h-96">
-                            <!-- Item 1 -->
-                            <div class="hidden duration-700 ease-out" data-carousel-item>
-                                <img src="{{ asset('storage/' . $event->cover_image_path) }}"
-                                    class="object-cover w-full h-64 md:h-full" alt="Carousel image" />
-                            </div>
-                            @foreach ($event->gallery as $image)
-                                <div class="hidden duration-700 ease-out" data-carousel-item>
-                                    <img src="{{ asset('storage/' . $image->image_path) }}"
-                                        alt="Model wearing plain white basic tee."
-                                        class="object-cover w-full h-64 md:h-full" alt="Carousel image">
-                                </div>
-                            @endforeach
-                            <!-- carousel image end -->
-                        </div>
-                        <!-- Slider indicators -->
-                        <div
-                            class="absolute z-30 flex -translate-x-1/2 bottom-5 left-1/2 space-x-3 rtl:space-x-reverse">
-                            <button type="button" class="w-3 h-3 rounded-full" aria-current="true" aria-label="Slide 1"
-                                data-carousel-slide-to="0"></button>
-                            <button type="button" class="w-3 h-3 rounded-full" aria-current="false"
-                                aria-label="Slide 2" data-carousel-slide-to="1"></button>
-                            <button type="button" class="w-3 h-3 rounded-full" aria-current="false"
-                                aria-label="Slide 3" data-carousel-slide-to="2"></button>
-                            <button type="button" class="w-3 h-3 rounded-full" aria-current="false"
-                                aria-label="Slide 4" data-carousel-slide-to="3"></button>
-                            <button type="button" class="w-3 h-3 rounded-full" aria-current="false"
-                                aria-label="Slide 5" data-carousel-slide-to="4"></button>
-                        </div>
-                        <!-- Slider controls -->
-                        <button type="button"
-                            class="absolute top-0 start-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none"
-                            data-carousel-prev>
-                            <span
-                                class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none">
-                                <svg class="w-4 h-4 text-white dark:text-gray-800 rtl:rotate-180" aria-hidden="true"
-                                    xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
-                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                        stroke-width="2" d="M5 1 1 5l4 4" />
-                                </svg>
-                                <span class="sr-only">Previous</span>
-                            </span>
-                        </button>
-                        <button type="button"
-                            class="absolute top-0 end-0 z-30 flex items-center justify-center h-full px-4 cursor-pointer group focus:outline-none"
-                            data-carousel-next>
-                            <span
-                                class="inline-flex items-center justify-center w-10 h-10 rounded-full bg-white/30 dark:bg-gray-800/30 group-hover:bg-white/50 dark:group-hover:bg-gray-800/60 group-focus:ring-4 group-focus:ring-white dark:group-focus:ring-gray-800/70 group-focus:outline-none">
-                                <svg class="w-4 h-4 text-white dark:text-gray-800 rtl:rotate-180" aria-hidden="true"
-                                    xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
-                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                        stroke-width="2" d="m1 9 4-4-4-4" />
-                                </svg>
-                                <span class="sr-only">Next</span>
-                            </span>
-                        </button>
-                    </div>
-
+                <div class="relative w-full md:w-2/5 m-0 overflow-hidden ">
+                    <img src="{{ asset('storage/' . $event->cover_image_path) }}"
+                        class="object-cover w-full h-64 md:h-full" alt="Owl image" />
                 </div>
 
             </div>
@@ -143,12 +129,11 @@
             </h2>
 
             <!-- Image gallery -->
-            <div class="mx-auto mt-6 max-w-7xl px-8 flex justify-between">
+            <div class="mx-auto mt-6 max-w-7xl px-2 flex justify-between">
                 @foreach ($event->gallery as $image)
                     <div class="w-100 h-64 sm:overflow-hidden sm:rounded-lg">
                         <img src="{{ asset('storage/' . $image->image_path) }}"
-                            alt="Model wearing plain white basic tee."
-                            class="h-full w-full object-cover object-center">
+                            alt="Model wearing plain white basic tee." class="h-full w-full object-cover object-center">
                     </div>
                 @endforeach
             </div>
