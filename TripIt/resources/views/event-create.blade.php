@@ -7,7 +7,7 @@
             {{ __('Create Event page') }}
         </h2>
     </x-slot>
-    <section class="">
+    <section>
         <x-sucess-notification></x-sucess-notification>
         <x-fail-notification></x-fail-notification>
         <div class="flex">

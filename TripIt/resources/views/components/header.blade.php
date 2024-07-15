@@ -19,7 +19,7 @@
 </head>
 
 <body class="font-poppins">
-    <header class="header-bg py-4 min-h-20">
+    <header class="py-4 min-h-20 border border-grey-100 sticky top-0 z-50 bg-white shadow-sm">
         <div class="container mx-auto flex items-center justify-between px-4 ">
             <a href="{{ route('welcome') }}">
                 <img src="{{ asset('images/download.png') }}" style="height:50px;" alt="">
