@@ -103,3 +103,8 @@ The Laravel framework is open-sourced software licensed under the [MIT license](
 4. run php artisan storage:link
 5. check your most top public folder
 6. it should have a storage with an subfolder called event_images with an arrow which says symbolic link (to access the images stored in the storage)
+
+## setting up Intervention Image
+
+composer require intervention/image-laravel
+php artisan vendor:publish --provider="Intervention\Image\Laravel\ServiceProvider
