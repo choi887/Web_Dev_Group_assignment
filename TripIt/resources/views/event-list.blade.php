@@ -4,7 +4,8 @@
     </x-slot:titleName>
     <section class="bg-white ">
         <div class="py-8 px-4 mx-auto max-w-screen-xl w-full">
-            <x-filter>
+            <x-filter item="event" :filters="['category', 'date', 'food', 'price']">
+                <x-slot:filterFormId></x-slot:filterFormId>
                 @foreach ($events as $event)
                     <a href="{{ route('event-specific', ['category' => $event->category->name, 'event_id' => $event->id]) }}"
                         class="my-4 flex flex-col bg-white rounded-lg shadow md:flex-row w-full hover:bg-gray-100">

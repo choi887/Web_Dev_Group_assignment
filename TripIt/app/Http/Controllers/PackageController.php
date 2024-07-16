@@ -69,4 +69,27 @@ class PackageController extends Controller
             return redirect()->back()->with('fail', "{$e->getMessage()}");
         }
     }
+
+    public function showPackageList(Request $request)
+    {
+        $packages = $this->getAllPackages();
+        return view('package-list', [
+            'packages' => $packages,
+        ]);
+    }
+
+    public function getAllPackages()
+    {
+        try {
+            $package = Package::get();
+
+            return $package;
+        } catch (Exception $e) {
+            Log::error("Error fetching packages: " . $e->getMessage());
+            return response()->json([
+                'success' => false,
+                'message' => "Error fetching packages: " . $e->getMessage()
+            ], 500);
+        }
+    }
 }

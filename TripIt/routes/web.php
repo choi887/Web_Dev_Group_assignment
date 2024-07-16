@@ -7,12 +7,14 @@ use App\Http\Controllers\PackageController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TransportationController;
 use App\Http\Controllers\WelcomeController;
+use App\Models\Package;
 use Illuminate\Support\Facades\Route;
 
 //public routes for all start
 Route::get('/', [WelcomeController::class, 'showWelcome'])->name('welcome');
 Route::get('/event-list', [EventController::class, 'showEventList'])->name('event-list');
 Route::get('/event-list/{category}/{event_id}', [EventController::class, 'showEvent'])->name('event-specific');
+Route::get('/package-list', [PackageController::class, 'showPackageList'])->name('package-list');
 Route::get('/package', function () {
     return view('package');
 })->name('package');
