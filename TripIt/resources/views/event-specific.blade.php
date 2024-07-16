@@ -33,7 +33,7 @@
             </ol>
         </nav>
 
-        <div class="py-8 px-4 mx-auto max-w-screen-xl w-full">
+        <div class="pb-8 px-4 mx-auto max-w-screen-xl w-full">
             <div href="#" class="my-4 flex flex-col bg-white rounded-lg  md:flex-row w-full">
                 <div class="flex flex-col justify-between leading-normal p-5 w-full  md:w-3/5">
                     <div class="mb-2">
@@ -42,7 +42,7 @@
                                 {{ $event->name }}
 
                             </div>
-                            <div class="flex-none self-end text-xl text-black">
+                            <div class="flex-none self-end text-xl text-black me-3">
                                 ${{ $event->price }}
                             </div>
                         </h2>
@@ -63,7 +63,8 @@
                                 stroke-width="1.5" stroke="currentColor" class="size-5">
                                 <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
                             </svg>
-                        </span></button>
+                        </span>
+                    </button>
 
                     <!-- Modal toggle -->
 
@@ -114,6 +115,60 @@
                                 <p class="text-gray-600">{{ $event->phone_number }}</p>
                             </div>
                         </div>
+                        <div class="flex items-center">
+                            @if (Auth::user())
+                                <form action="{{ route('join-event') }}" method="POST">
+                                    @csrf
+                                    <input type="hidden" name="event_id" value="{{ $event->id }}">
+                                    <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
+                                    <button type="submit" name="submit"
+                                        class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center">
+                                        Join Now
+                                        <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true"
+                                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+                                            <path stroke="currentColor" stroke-linecap="round"
+                                                stroke-linejoin="round" stroke-width="2"
+                                                d="M1 5h12m0 0L9 1m4 4L9 9" />
+                                        </svg>
+                                    </button>
+                                </form>
+                            @else
+                                <a href="{{ route('login') }}"
+                                    class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center">
+                                    Join Now
+                                    <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true"
+                                        xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
+                                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                            stroke-width="2" d="M1 5h12m0 0L9 1m4 4L9 9" />
+                                    </svg>
+                                </a>
+                            @endif
+                        </div>
+
+                        @if (session('success'))
+                            <script>
+                                Swal.fire({
+                                    icon: 'success',
+                                    title: 'Success',
+                                    html: `<div style="min-height: 50px;">{{ session('success') }}</div>`,
+                                    showConfirmButton: false,
+                                    showCloseButton: true,
+                                });
+                            </script>
+                        @endif
+
+                        @if (session('error'))
+                            <script>
+                                Swal.fire({
+                                    icon: 'error',
+                                    title: 'Error',
+                                    html: `<div style="min-height: 50px;">{{ session('error') }}</div>`,
+                                    showConfirmButton: false,
+                                    showCloseButton: true,
+                                });
+                            </script>
+                        @endif
+
                     </div>
                 </div>
                 <!-- event image -->
@@ -121,7 +176,6 @@
                     <img src="{{ asset('storage/' . $event->cover_image_path) }}"
                         class="object-cover w-full h-64 md:h-full" alt="Owl image" />
                 </div>
-
             </div>
 
             <h2 class="mx-auto mt-20 mb-4 text-3xl tracking-tight font-extrabold button-text-color max-w-screen-xl">
@@ -133,7 +187,8 @@
                 @foreach ($event->gallery as $image)
                     <div class="w-100 h-64 sm:overflow-hidden sm:rounded-lg">
                         <img src="{{ asset('storage/' . $image->image_path) }}"
-                            alt="Model wearing plain white basic tee." class="h-full w-full object-cover object-center">
+                            alt="Model wearing plain white basic tee."
+                            class="h-full w-full object-cover object-center">
                     </div>
                 @endforeach
             </div>
@@ -142,14 +197,13 @@
                 Similar Events
             </h2>
 
-            <!-- Image gallery -->
+            <!-- Similar Events -->
             @foreach ($similarEvents as $similarEvent)
                 <x-event-card-user :event="$similarEvent" />
             @endforeach
         </div>
     </section>
 
-    <x-footer>
+    <x-footer></x-footer>
 
-    </x-footer>
 </x-header>

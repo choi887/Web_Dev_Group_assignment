@@ -2,17 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Category;
-use App\Models\Event;
-use App\Models\Gallery;
 use Exception;
+use App\Models\Event;
+use App\Models\Order;
+use App\Models\Gallery;
+use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
+use Intervention\Image\ImageManager;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Validator;
 use Intervention\Image\Drivers\Gd\Driver;
 use Intervention\Image\Laravel\Facades\Image;
-use Intervention\Image\ImageManager;
 
 
 class EventController extends Controller
@@ -193,6 +195,33 @@ class EventController extends Controller
                 'success' => false,
                 'message' => "Error fetching events: " . $e->getMessage()
             ], 500);
+        }
+    }
+
+    public function joinEvent(Request $request)
+    {
+        try {
+            $validator = Validator::make($request->all(), [
+                'event_id' => 'required|integer',
+                'user_id' => 'required|integer',
+            ]);
+
+            if ($validator->fails()) {
+                throw new Exception($validator->errors()->first());
+            }
+
+            $orderInputData = [
+                'item_id' => $request->event_id,
+                'user_id' => $request->user_id,
+                'order_date' => now(),
+            ];
+            Order::create($orderInputData);
+
+            return redirect()->back()->with('success', 'Event joined successfully!');
+        } catch (Exception $e) {
+            Log::error("Error joining event: " . $e->getMessage());
+
+            return redirect()->back()->with('error', 'Error joining event: ' . $e->getMessage());
         }
     }
 }
