@@ -60,6 +60,11 @@
                 </a>
             </div>
         @endforeach
+
+        <!-- Add Pagination Links -->
+        <div class="mt-4">
+            {{ $events->links('pagination') }}
+        </div>
     @endif
 
 </div>

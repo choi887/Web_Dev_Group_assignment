@@ -112,11 +112,13 @@ class EventController extends Controller
     public function showEventList(Request $request)
     {
         $events = $this->getAllEvents(null, $request);
+
         if ($request->ajax()) {
             return view('components.event-list', [
                 'events' => $events,
             ])->render();
         }
+
         return view('event-list', [
             'events' => $events,
         ]);
@@ -141,14 +143,15 @@ class EventController extends Controller
     {
         try {
             $query = Event::query()->with('category');
+
             if ($categoryId) {
-                $events = Event::where('category_id', $categoryId)
-                    ->with('category')
-                    ->get();
-            } elseif ($request) {
+                $query->where('category_id', $categoryId);
+            }
+
+            if ($request) {
                 // Category filter
                 if ($request->has('categories')) {
-                    $query->whereIn('category_id', $request->categories); // input name
+                    $query->whereIn('category_id', $request->categories);
                 }
 
                 // Date range filter
@@ -163,10 +166,9 @@ class EventController extends Controller
                 if ($request->filled('max_price')) {
                     $query->where('price', '<=', $request->max_price);
                 }
-                $events = $query->get();
-            } else {
-                $events = Event::all();
             }
+
+            $events = $query->paginate(10);
 
             return $events;
         } catch (Exception $e) {

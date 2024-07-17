@@ -50,6 +50,11 @@
                             </div>
                         </a>
                     @endforeach
+
+                    <!-- Add Pagination Links -->
+                    <div class="mt-4">
+                        {{ $packages->links('pagination') }}
+                    </div>
                 </x-filter>
             </div>
         @endif

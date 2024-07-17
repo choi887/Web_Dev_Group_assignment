@@ -99,9 +99,9 @@ class PackageController extends Controller
     public function getAllPackages()
     {
         try {
-            $package = Package::get();
+            $packages = Package::paginate(10); // Use paginate instead of get
 
-            return $package;
+            return $packages;
         } catch (Exception $e) {
             Log::error("Error fetching packages: " . $e->getMessage());
             return response()->json([
