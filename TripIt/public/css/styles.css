@@ -9,7 +9,9 @@
 .main-color {
     color: #05adff;
 }
-
+.bg-main-color {
+    background-color: #05adff;
+}
 .button-bg-color {
     background-color: rgba(30, 79, 255, 1);
 }
@@ -41,4 +43,19 @@
 
 .nav-link:hover::after {
     transform: scaleX(1);
+}
+@keyframes bounce-left-right {
+    0%,
+    100% {
+        transform: translateX(-1.5%);
+        animation-timing-function: cubic-bezier(0.8, 0, 1, 1);
+    }
+    50% {
+        transform: translateX(1.5%);
+        animation-timing-function: cubic-bezier(0, 0, 0.2, 1);
+    }
+}
+
+.animate-bounce-left-right {
+    animation: bounce-left-right 1s infinite;
 }

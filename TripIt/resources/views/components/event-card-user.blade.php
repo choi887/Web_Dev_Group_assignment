@@ -1,4 +1,4 @@
-<div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow h-full flex flex-col">
+<div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow-xl h-full flex flex-col ">
     <a href="{{ route('event-specific', ['category' => $event->name, 'event_id' => $event->id]) }}">
         <img class="rounded-t-lg h-48 w-full object-cover" src="{{ asset('storage/' . $event->cover_image_path) }}"
             alt="" />

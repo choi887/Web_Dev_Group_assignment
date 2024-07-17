@@ -14,7 +14,7 @@ use Intervention\Image\ImageManager;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 use Intervention\Image\Drivers\Gd\Driver;
-use Intervention\Image\Laravel\Facades\Image;
+
 
 
 class EventController extends Controller
@@ -111,7 +111,12 @@ class EventController extends Controller
 
     public function showEventList(Request $request)
     {
-        $events = $this->getAllEvents();
+        $events = $this->getAllEvents(null, $request);
+        if ($request->ajax()) {
+            return view('components.event-list', [
+                'events' => $events,
+            ])->render();
+        }
         return view('event-list', [
             'events' => $events,
         ]);
@@ -132,16 +137,35 @@ class EventController extends Controller
     }
 
 
-    public function getAllEvents($categoryId = null)
+    public function getAllEvents($categoryId = null, Request $request = null)
     {
         try {
+            $query = Event::query()->with('category');
             if ($categoryId) {
                 $events = Event::where('category_id', $categoryId)
                     ->with('category')
                     ->get();
+            } elseif ($request) {
+                // Category filter
+                if ($request->has('categories')) {
+                    $query->whereIn('category_id', $request->categories); // input name
+                }
+
+                // Date range filter
+                if ($request->filled('start_date') && $request->filled('end_date')) {
+                    $query->whereBetween('start_date', [$request->start_date, $request->end_date]);
+                }
+
+                // Price range filter
+                if ($request->filled('min_price')) {
+                    $query->where('price', '>=', $request->min_price);
+                }
+                if ($request->filled('max_price')) {
+                    $query->where('price', '<=', $request->max_price);
+                }
+                $events = $query->get();
             } else {
-                $events = Event::with('category')
-                    ->get();
+                $events = Event::all();
             }
 
             return $events;

@@ -42,17 +42,18 @@
                                 {{ $event->name }}
 
                             </div>
-                            <div class="flex-none self-end text-xl text-black me-3">
+                            <div class="flex-none self-end text-xl text-gray-800 mr-12">
                                 ${{ $event->price }}
                             </div>
                         </h2>
                     </div>
-                    <p class="font-bold text-md text-blue-600 mb-2">
+                    <p class="font-semibold text-md text-blue-600 ">
                         Date: {{ $event->start_date }} to {{ $event->end_date }}
                     </p>
-                    <p class="font-bold text-md text-blue-600 mb-2">
+                    <p class="font-semibold text-md text-blue-600 mb-2 leading-relaxed ">
                         Address: {{ $event->address }}
                     </p>
+
                     <p
                         class=" pt-4 text-md main-color border-t border-grey-300 tracking-wide leading-relaxed line-clamp-3 ">
                         {{ $event->description }}
@@ -65,6 +66,8 @@
                             </svg>
                         </span>
                     </button>
+
+
 
                     <!-- Modal toggle -->
 
@@ -124,17 +127,18 @@
                                     <button type="submit" name="submit"
                                         class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center">
                                         Join Now
-                                        <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true"
+                                        <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2 animate-bounce" aria-hidden="true"
                                             xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
                                             <path stroke="currentColor" stroke-linecap="round"
                                                 stroke-linejoin="round" stroke-width="2"
                                                 d="M1 5h12m0 0L9 1m4 4L9 9" />
                                         </svg>
+
                                     </button>
                                 </form>
                             @else
                                 <a href="{{ route('login') }}"
-                                    class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center">
+                                    class="animate-bounce-left-right text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center">
                                     Join Now
                                     <svg class="rtl:rotate-180 w-3.5 h-3.5 ms-2" aria-hidden="true"
                                         xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 14 10">
@@ -174,7 +178,7 @@
                 <!-- event image -->
                 <div class="relative w-full md:w-2/5 m-0 overflow-hidden ">
                     <img src="{{ asset('storage/' . $event->cover_image_path) }}"
-                        class="object-cover w-full h-64 md:h-full" alt="Owl image" />
+                        class="object-cover w-full h-64 md:h-full rounded-lg" alt="Owl image" />
                 </div>
             </div>
 

@@ -24,30 +24,22 @@
                     </button>
 
                     <div class="hidden lg:block">
-                        <form id="{{ $filterFormId }}" class="space-y-10 divide-y divide-gray-200">
+                        <form id="filter_form_event" class="space-y-10 divide-y divide-gray-200">
                             @if (in_array('category', $filters))
                                 <div class="pt-4">
                                     <fieldset>
-                                        <legend class="block text-sm font-medium text-gray-900">Category</legend>
-                                        <div class="space-y-3 pt-6">
-                                            <div class="flex items-center">
-                                                <input id="category-0" name="category[]" value="hiking" type="checkbox"
-                                                    class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500">
-                                                <label for="category-0"
-                                                    class="ml-3 text-sm text-gray-600">Hiking</label>
-                                            </div>
-                                            <div class="flex items-center">
-                                                <input id="category-1" name="category[]" value="golf" type="checkbox"
-                                                    class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500">
-                                                <label for="category-1" class="ml-3 text-sm text-gray-600">Golf</label>
-                                            </div>
-                                            <div class="flex items-center">
-                                                <input id="category-2" name="category[]" value="scuba-diving"
-                                                    type="checkbox"
-                                                    class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500">
-                                                <label for="category-2" class="ml-3 text-sm text-gray-600">Scuba
-                                                    Diving</label>
-                                            </div>
+                                        <legend class="block text-sm font-medium text-gray-900 mb-4">Category</legend>
+                                        <div class="space-y-3  pl-2 overflow-hidden overflow-y-auto max-h-44">
+                                            @foreach ($categories as $category)
+                                                <div class="flex items-center">
+                                                    <input id="category-{{ $category->id }}" name="categories[]"
+                                                        value="{{ $category->id }}" type="checkbox"
+                                                        class="h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500"
+                                                        {{ in_array($category->id, request('categories', [])) ? 'checked' : '' }}>
+                                                    <label for="category-{{ $category->id }}"
+                                                        class="ml-3 text-sm text-gray-600">{{ $category->name }}</label>
+                                                </div>
+                                            @endforeach
                                         </div>
                                     </fieldset>
                                 </div>
@@ -56,37 +48,14 @@
                             @if (in_array('date', $filters))
                                 <div class="pt-4">
                                     <fieldset>
-                                        <legend class="block text-sm font-medium text-gray-900">Date</legend>
-                                        <div id="date-range-picker" date-rangepicker class="mt-3 items-center">
-                                            <div class="relative">
-                                                <div
-                                                    class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
-                                                    <svg class="w-4 h-4 text-gray-500 dark:text-gray-400"
-                                                        aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                                                        fill="currentColor" viewBox="0 0 20 20">
-                                                        <path
-                                                            d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z" />
-                                                    </svg>
-                                                </div>
-                                                <input id="datepicker-range-start" name="start" type="text"
-                                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5"
-                                                    placeholder="Start Date">
-                                            </div>
-                                            <span class="mx-4 text-gray-500">to</span>
-                                            <div class="relative">
-                                                <div
-                                                    class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
-                                                    <svg class="w-4 h-4 text-gray-500 dark:text-gray-400"
-                                                        aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                                                        fill="currentColor" viewBox="0 0 20 20">
-                                                        <path
-                                                            d="M20 4a2 2 0 0 0-2-2h-2V1a1 1 0 0 0-2 0v1h-3V1a1 1 0 0 0-2 0v1H6V1a1 1 0 0 0-2 0v1H2a2 2 0 0 0-2 2v2h20V4ZM0 18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V8H0v10Zm5-8h10a1 1 0 0 1 0 2H5a1 1 0 0 1 0-2Z" />
-                                                    </svg>
-                                                </div>
-                                                <input id="datepicker-range-end" name="end" type="text"
-                                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5"
-                                                    placeholder="End Date">
-                                            </div>
+                                        <legend class="block text-sm font-medium text-gray-900">Date Range</legend>
+                                        <div class="mt-3">
+                                            <input type="date" name="start_date" value="{{ request('start_date') }}"
+                                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                                                placeholder="Start Date">
+                                            <input type="date" name="end_date" value="{{ request('end_date') }}"
+                                                class="mt-2 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                                                placeholder="End Date">
                                         </div>
                                     </fieldset>
                                 </div>
@@ -95,19 +64,27 @@
                             @if (in_array('food', $filters))
                                 <div class="pt-4">
                                     <fieldset>
-                                        <legend class="block text-sm font-medium text-gray-900">Food</legend>
+                                        <legend class="block text-sm font-medium text-gray-900">Logistics Filter
+                                        </legend>
                                         <div class="space-y-3 pt-6">
                                             <div class="flex items-center">
-                                                <input id="food-0" name="food[]" value="provided" type="checkbox"
+                                                <input id="food" name="food" value="1" type="checkbox"
                                                     class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500">
-                                                <label for="food-0"
-                                                    class="ml-3 text-sm text-gray-600">Provided</label>
+                                                <label for="food-0" class="ml-3 text-sm text-gray-600">Food
+                                                    Provided</label>
                                             </div>
                                             <div class="flex items-center">
-                                                <input id="food-1" name="food[]" value="not_provided"
+                                                <input id="transportation" name="transportation" value="1"
                                                     type="checkbox"
                                                     class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500">
-                                                <label for="food-1" class="ml-3 text-sm text-gray-600">Not
+                                                <label for="food-1" class="ml-3 text-sm text-gray-600">Transportation
+                                                    Provided</label>
+                                            </div>
+                                            <div class="flex items-center">
+                                                <input id="lodging" name="transportation" value="1"
+                                                    type="checkbox"
+                                                    class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500">
+                                                <label for="food-1" class="ml-3 text-sm text-gray-600">Lodging
                                                     Provided</label>
                                             </div>
                                         </div>
@@ -127,22 +104,19 @@
                                                     class="ml-3 text-sm text-gray-600">&lt;5,000</label>
                                             </div>
                                             <div class="flex items-center">
-                                                <input id="price-1" name="price[]" value="5000-10000"
-                                                    type="checkbox"
+                                                <input id="price-1" name="price[]" value="5000-10000" type="checkbox"
                                                     class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500">
                                                 <label for="price-1"
                                                     class="ml-3 text-sm text-gray-600">5,000-10,000</label>
                                             </div>
                                             <div class="flex items-center">
-                                                <input id="price-2" name="price[]" value="10000-25000"
-                                                    type="checkbox"
+                                                <input id="price-2" name="price[]" value="10000-25000" type="checkbox"
                                                     class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500">
                                                 <label for="price-2"
                                                     class="ml-3 text-sm text-gray-600">10,000-25,000</label>
                                             </div>
                                             <div class="flex items-center">
-                                                <input id="price-3" name="price[]" value="25000-50000"
-                                                    type="checkbox"
+                                                <input id="price-3" name="price[]" value="25000-50000" type="checkbox"
                                                     class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500">
                                                 <label for="price-3"
                                                     class="ml-3 text-sm text-gray-600">25,000-50,000</label>
@@ -171,7 +145,7 @@
                 <!-- Product grid -->
                 <div class="mt-6 lg:col-span-2 lg:mt-0 xl:col-span-3">
                     <!-- Your content -->
-                    <div class="col-span-3">
+                    <div id="event-list-container" class="col-span-3">
                         {{ $slot }}
                     </div>
                 </div>
