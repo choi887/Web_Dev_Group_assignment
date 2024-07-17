@@ -15,6 +15,7 @@ class Order extends Model
         'order_date',
         'item_id',
         'user_id',
+        'type',
     ];
     protected $casts = [
         'status' => OrderStatus::class,
