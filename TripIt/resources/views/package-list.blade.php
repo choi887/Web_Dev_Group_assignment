@@ -6,9 +6,8 @@
         <div class="py-8 px-4 mx-auto max-w-screen-xl w-full">
             <x-filter item="package" :filters="['date', 'price']">
                 <x-slot:filterFormId></x-slot:filterFormId>
-                HAHA here is Packages
                 @foreach ($packages as $package)
-                    <a href="#"
+                    <a href="{{ route('package-specific', ['package_id' => $package->id]) }}"
                         class="my-4 flex flex-col bg-white rounded-lg shadow md:flex-row w-full hover:bg-gray-100">
                         <div
                             class="relative w-full md:w-2/5 m-0 overflow-hidden rounded-t-lg md:rounded-l-lg md:rounded-tr-none">

@@ -15,6 +15,7 @@ Route::get('/', [WelcomeController::class, 'showWelcome'])->name('welcome');
 Route::get('/event-list', [EventController::class, 'showEventList'])->name('event-list');
 Route::get('/event-list/{category}/{event_id}', [EventController::class, 'showEvent'])->name('event-specific');
 Route::get('/package-list', [PackageController::class, 'showPackageList'])->name('package-list');
+Route::get('/package-list/{package_id}', [PackageController::class, 'showPackage'])->name('package-specific');
 Route::get('/package', function () {
     return view('package');
 })->name('package');
@@ -35,6 +36,7 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::post('/join-event', [EventController::class, 'joinEvent'])->name('join-event');
+    Route::post('/join-package', [PackageController::class, 'joinPackage'])->name('join-package');
 });
 //authenticated functions end ( Usually for Users )
 

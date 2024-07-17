@@ -202,9 +202,11 @@
             </h2>
 
             <!-- Similar Events -->
-            @foreach ($similarEvents as $similarEvent)
-                <x-event-card-user :event="$similarEvent" />
-            @endforeach
+            <div class="mx-auto items-center gap-4 grid md:grid-cols-3 max-w-screen-xl">
+                @foreach ($similarEvents as $similarEvent)
+                    <x-card :item="$similarEvent" type="event" />
+                @endforeach
+            </div>
         </div>
     </section>
 

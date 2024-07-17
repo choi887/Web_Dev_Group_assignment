@@ -21,4 +21,9 @@ class Package extends Model
     {
         return $this->hasMany(packageEventsList::class);
     }
+
+    public function events()
+    {
+        return $this->belongsToMany(Event::class, 'package_events_list', 'package_id', 'event_id');
+    }
 }
