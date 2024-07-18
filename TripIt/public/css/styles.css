@@ -6,6 +6,15 @@
     background-color: rgba(246, 246, 241, 1);
 }
 
+.secondary-button {
+    border-color: #05adff;
+    border: 1px solid;
+}
+
+.secondary-button:hover {
+ background-color: #05acff33;
+}
+
 .main-color {
     color: #05adff;
 }
