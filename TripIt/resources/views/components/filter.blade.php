@@ -50,10 +50,10 @@
                                     <fieldset>
                                         <legend class="block text-sm font-medium text-gray-900">Date Range</legend>
                                         <div class="mt-3">
-                                            <input type="date" name="start_date" value="{{ request('start_date') }}"
+                                            <input type="date" name="start_date" value="start_date"
                                                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                                                 placeholder="Start Date">
-                                            <input type="date" name="end_date" value="{{ request('end_date') }}"
+                                            <input type="date" name="end_date" value="end_date"
                                                 class="mt-2 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                                                 placeholder="End Date">
                                         </div>
@@ -68,24 +68,32 @@
                                         </legend>
                                         <div class="space-y-3 pt-6">
                                             <div class="flex items-center">
+                                                <input id="food" name="food" value="0" type="checkbox"
+                                                    hidden />
                                                 <input id="food" name="food" value="1" type="checkbox"
                                                     class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500">
                                                 <label for="food-0" class="ml-3 text-sm text-gray-600">Food
-                                                    Provided</label>
+                                                    Provided
+                                                </label>
                                             </div>
                                             <div class="flex items-center">
+                                                <input id="transportation" name="transportation" value="0"
+                                                    type="checkbox" hidden />
                                                 <input id="transportation" name="transportation" value="1"
                                                     type="checkbox"
                                                     class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500">
                                                 <label for="food-1" class="ml-3 text-sm text-gray-600">Transportation
-                                                    Provided</label>
+                                                    Provided
+                                                </label>
                                             </div>
                                             <div class="flex items-center">
-                                                <input id="lodging" name="transportation" value="1"
-                                                    type="checkbox"
+                                                <input id="lodging" name="lodging" value="0" type="checkbox"
+                                                    hidden />
+                                                <input id="lodging" name="lodging" value="1" type="checkbox"
                                                     class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500">
                                                 <label for="food-1" class="ml-3 text-sm text-gray-600">Lodging
-                                                    Provided</label>
+                                                    Provided
+                                                </label>
                                             </div>
                                         </div>
                                     </fieldset>
@@ -98,25 +106,27 @@
                                         <legend class="block text-sm font-medium text-gray-900">Price</legend>
                                         <div class="space-y-3 pt-6">
                                             <div class="flex items-center">
-                                                <input id="price-0" name="price[]" value="<5000" type="checkbox"
+                                                <input id="price" name="price" value="5000" type="checkbox"
                                                     class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500">
                                                 <label for="price-0"
                                                     class="ml-3 text-sm text-gray-600">&lt;5,000</label>
                                             </div>
                                             <div class="flex items-center">
-                                                <input id="price-1" name="price[]" value="5000-10000" type="checkbox"
+                                                <input id="price-1" name="price[]" value="10000" type="checkbox"
                                                     class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500">
                                                 <label for="price-1"
                                                     class="ml-3 text-sm text-gray-600">5,000-10,000</label>
                                             </div>
                                             <div class="flex items-center">
-                                                <input id="price-2" name="price[]" value="10000-25000" type="checkbox"
+                                                <input id="price-2" name="price[]" value="10000-25000"
+                                                    type="checkbox"
                                                     class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500">
                                                 <label for="price-2"
                                                     class="ml-3 text-sm text-gray-600">10,000-25,000</label>
                                             </div>
                                             <div class="flex items-center">
-                                                <input id="price-3" name="price[]" value="25000-50000" type="checkbox"
+                                                <input id="price-3" name="price[]" value="25000-50000"
+                                                    type="checkbox"
                                                     class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500">
                                                 <label for="price-3"
                                                     class="ml-3 text-sm text-gray-600">25,000-50,000</label>

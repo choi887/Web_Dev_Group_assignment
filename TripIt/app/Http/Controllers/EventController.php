@@ -158,22 +158,27 @@ class EventController extends Controller
             }
 
             if ($request) {
-                // Category filter
+                // filter the categories
                 if ($request->has('categories')) {
                     $query->whereIn('category_id', $request->categories);
                 }
 
-                // Date range filter
+                // filter between the dates
                 if ($request->filled('start_date') && $request->filled('end_date')) {
-                    $query->whereBetween('start_date', [$request->start_date, $request->end_date]);
+                    $query->whereBetween('start_date', [$request->start_date, $request->end_date])->whereBetween('end_date', [$request->start_date, $request->end_date]);
                 }
-
-                // Price range filter
-                if ($request->filled('min_price')) {
-                    $query->where('price', '>=', $request->min_price);
+                if ($request->filled('food')) {
+                    $query->where('food', '=', '1');
                 }
-                if ($request->filled('max_price')) {
-                    $query->where('price', '<=', $request->max_price);
+                if ($request->filled('transportation')) {
+                    $query->where('transportation', '=', '1');
+                }
+                if ($request->filled('lodging')) {
+                    $query->where('lodging', '=', '1');
+                }
+                // filter betw
+                if ($request->filled('price')) {
+                    $query->whereIn('price', '>=', $request->price);
                 }
             }
 
