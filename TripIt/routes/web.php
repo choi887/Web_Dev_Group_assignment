@@ -45,9 +45,7 @@ Route::prefix('administrator')->middleware(['auth', 'checkRole'])->group(functio
         return view('dashboard');
     })->name('dashboard');
     Route::prefix('event')->group(function () {
-        Route::get('/event-list-admin', function () {
-            return view('event-admin-list'); // the blade page
-        })->name('event.list.admin');
+        Route::get('/event-list-admin', [EventController::class, 'showAdminEventList'])->name('event.list.admin');
         Route::get('/event-create', function () {
             return view('event-create'); //page to create event
         })->name('event.create');
