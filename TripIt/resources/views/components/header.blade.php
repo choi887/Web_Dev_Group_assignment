@@ -22,16 +22,17 @@
 <body class="font-poppins">
     <header class="py-4 min-h-20 border border-grey-100 sticky top-0 z-50 bg-white shadow-md">
         <div class="container mx-auto flex items-center justify-between px-4 ">
-            <a href="{{ route('welcome') }}">
-                <img src="{{ asset('images/download.png') }}" style="height:50px;" alt="">
-            </a>
+            <div class="flex items-center ms-32">
+                <a href="{{ route('welcome') }}">
+                    <img src="{{ asset('images/download.png') }}" style="height:50px;" alt="">
+                </a>
 
-            <nav class="hidden pl-10 md:flex space-x-6 main-color justify-center mt-2">
-                <a href="#" class="nav-link">All categories</a>
-                <a href="{{ route('event-list') }}" class="nav-link">Events</a>
-                <a href="{{ route('package-list') }}" class="nav-link">Packages</a>
-                <a href="#" class="nav-link">FAQs</a>
-            </nav>
+                <nav class="hidden pl-10 md:flex space-x-6 main-color justify-center mt-2">
+                    <a href="{{ route('event-list') }}" class="nav-link">Events</a>
+                    <a href="{{ route('package-list') }}" class="nav-link">Packages</a>
+                    <a href="#" class="nav-link">FAQs</a>
+                </nav>
+            </div>
             <div class="flex space-x-4 items-center text-white">
                 @if (Route::has('login'))
                     @auth
