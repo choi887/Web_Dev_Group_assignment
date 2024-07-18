@@ -15,7 +15,7 @@
                     <div class="mt-2">
                         <input type="text" name="name" id="name"
                             class=" border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 "
-                            placeholder="Type Event name" required="">
+                            placeholder="Type Package name" required="">
                     </div>
                 </div>
                 <div class="sm:col-span-4">

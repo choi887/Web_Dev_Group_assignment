@@ -9,7 +9,10 @@ use Illuminate\Http\Request;
 use App\Models\PackageEventsList;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
+use Intervention\Image\Drivers\Gd\Driver;
+use Intervention\Image\ImageManager;
 
 class PackageController extends Controller
 
@@ -27,7 +30,7 @@ class PackageController extends Controller
             $data = $request->validate([ // from the form submission first
                 'name' => 'required|string|max:255',
                 'price' => 'required|numeric|min:0',
-                'description' => 'required|string|max:5000',
+                'description' => 'required|string|max:3000',
                 'cover_image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
                 'selected_events' => 'required|string',
             ]);
@@ -37,12 +40,29 @@ class PackageController extends Controller
             $selectedEvents = json_decode($selectedEvents, true); // decode first
             unset($data['selected_events']);
             if ($request->hasFile('cover_image')) {
+
                 $file = $request->file('cover_image');
                 $fileName = time() . '_' . $file->getClientOriginalName();
-                $filePath = $file->storeAs('event_images', $fileName, 'public');
+
+                // Create an instance of ImageManager
+                $manager = new ImageManager(new Driver());
+
+                //then Read the image to change it
+                $image = $manager->read($file);
+
+                // Resize the image to avoid dif size
+                $image->resize(1200, 900);
+
+                // Generate the file path
+                $filePath = 'event_images/' . $fileName;
+
+                // Save the resized image to the storage
+                Storage::disk('public')->put($filePath, $image->encode());
+
                 $data['cover_image_path'] = $filePath;
                 unset($data['cover_image']);
             }
+
             foreach ($selectedEvents as $eventDetails) {
                 $name = $eventDetails['name'];
                 $eventDetails = PackageController::getEventWithName($name);
