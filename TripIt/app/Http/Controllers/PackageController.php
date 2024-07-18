@@ -31,7 +31,7 @@ class PackageController extends Controller
                 'name' => 'required|string|max:255',
                 'price' => 'required|numeric|min:0',
                 'description' => 'required|string|max:3000',
-                'cover_image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+                'cover_image' => 'required|image|mimes:jpeg,png,jpg,gif|max:8000|dimensions:min_width=800,min_height=600',
                 'selected_events' => 'required|string',
             ]);
 
