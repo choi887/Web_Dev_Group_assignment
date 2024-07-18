@@ -143,7 +143,7 @@
                 @endif
             </div>
 
-            <img class="w-full hidden dark:block" src="{{ asset('storage/' . $package->cover_image_path) }}"
+            <img class="w-full hidden rounded-xl dark:block" src="{{ asset('storage/' . $package->cover_image_path) }}"
                 alt="cover image">
         </div>
 

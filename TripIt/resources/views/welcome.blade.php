@@ -22,7 +22,8 @@
                 </div>
             </div>
 
-            <img class="w-full hidden dark:block" src="{{ asset('images/travel.jpg') }}" alt="dashboard image">
+            <img class="w-full hidden rounded-xl dark:block" src="{{ asset('images/travel.jpg') }}"
+                alt="dashboard image">
         </div>
 
         <h2 class="mx-auto mb-4 text-3xl tracking-tight font-extrabold button-text-color max-w-screen-xl">
