@@ -50,7 +50,7 @@
         <h2 class="mx-auto mt-20 mb-4 text-3xl tracking-tight font-extrabold button-text-color max-w-screen-xl">
             Review to Us
         </h2>
-        <div class="mx-auto mb-20 items-center gap-4 grid md:grid-cols-3 max-w-screen-xl">
+        <div class="mx-auto mb-20 items-center gap-16 grid md:grid-cols-3 max-w-screen-xl">
             <div
                 class="relative flex w-full max-w-[26rem] flex-col rounded-xl bg-transparent bg-clip-border text-gray-700 shadow-none">
                 <div
