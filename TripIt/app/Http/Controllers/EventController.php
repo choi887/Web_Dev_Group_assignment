@@ -56,10 +56,10 @@ class EventController extends Controller
                 // Create an instance of ImageManager
                 $manager = new ImageManager(new Driver());
 
-                // Read the image
+                //then Read the image to change it
                 $image = $manager->read($file);
 
-                // Resize the image
+                // Resize the image to avoid dif size
                 $image->resize(1200, 900);
 
                 // Generate the file path
@@ -151,8 +151,7 @@ class EventController extends Controller
     public function getAllEvents($categoryId = null, Request $request = null)
     {
         try {
-            $query = Event::query()->with('category');
-
+            $query = Event::query()->with('category')->orderBy('created_at', 'desc');
             if ($categoryId) {
                 $query->where('category_id', $categoryId);
             }

@@ -138,8 +138,7 @@ class PackageController extends Controller
     public function getAllPackages()
     {
         try {
-            $packages = Package::paginate(10); // Use paginate instead of get
-
+            $packages = Package::orderBy('created_at', 'desc')->paginate(10);
             return $packages;
         } catch (Exception $e) {
             Log::error("Error fetching packages: " . $e->getMessage());

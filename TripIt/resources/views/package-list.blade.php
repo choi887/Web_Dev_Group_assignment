@@ -39,7 +39,7 @@
                                     <p class="font-normal text-gray-600 line-clamp-3">
                                         {{ $package->description }}
                                     </p>
-                                    <div class="flex items-center">
+                                    <div class="flex items-center justify-end">
                                         <div
                                             class="text-sm self-end button-text-color font-semibold flex items-center hover:underline">
                                             More Details
