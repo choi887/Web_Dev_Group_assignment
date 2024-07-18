@@ -178,7 +178,27 @@ class EventController extends Controller
                 }
                 // filter betw
                 if ($request->filled('price')) {
-                    $query->whereIn('price', '>=', $request->price);
+                    $priceRange = $request->price;
+                    switch ($priceRange) {
+                        case '<5000':
+                            $query->where('price', '<', 5000);
+                            break;
+                        case '5000-10000':
+                            $query->whereBetween('price', [5000, 10000]);
+                            break;
+                        case '10000-25000':
+                            $query->whereBetween('price', [10000, 25000]);
+                            break;
+                        case '25000-50000':
+                            $query->whereBetween('price', [25000, 50000]);
+                            break;
+                        case '50000-100000':
+                            $query->whereBetween('price', [50000, 100000]);
+                            break;
+                        case '>100000':
+                            $query->where('price', '>', 100000);
+                            break;
+                    }
                 }
             }
 
