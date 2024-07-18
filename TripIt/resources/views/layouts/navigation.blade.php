@@ -58,7 +58,8 @@
                             class="z-10 hidden bg-white divide-y divide-gray-100 shadow w-44 rounded-md ring-1 ring-black ring-opacity-5 dropdown 0.3s ease-out forwards">
                             <ul class=" text-sm text-gray-700 " aria-labelledby="packageDropdownHoverButton">
                                 <li>
-                                    <a href="#" class="block px-4 py-2 hover:bg-gray-100 ">Package
+                                    <a href="{{ route('package.list.admin') }}"
+                                        class="block px-4 py-2 hover:bg-gray-100 ">Package
                                         List</a>
                                 </li>
                                 <li>
