@@ -27,15 +27,15 @@
                         <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                             {{ __('Dashboard') }}
                         </x-nav-link>
-                        <button id="dropdownHoverButton" data-dropdown-toggle="dropdownHover"
+                        <button id="eventDropdownHoverButton" data-dropdown-toggle="eventDropdownHover"
                             data-dropdown-trigger="hover"
                             class="inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm font-medium leading-5 text-gray-500 hover:text-gray-700 hover:border-gray-300 focus:outline-none focus:text-gray-700 focus:border-gray-300 transition duration-150 ease-in-out "
                             type="button">Events
                         </button>
                         <!-- Dropdown menu start -->
-                        <div id="dropdownHover"
+                        <div id="eventDropdownHover"
                             class="z-10 hidden bg-white divide-y divide-gray-100 shadow w-44 rounded-md ring-1 ring-black ring-opacity-5 dropdown 0.3s ease-out forwards">
-                            <ul class=" text-sm text-gray-700 " aria-labelledby="dropdownHoverButton">
+                            <ul class=" text-sm text-gray-700 " aria-labelledby="eventDropdownHoverButton">
                                 <li>
                                     <a href="{{ route('event.list.admin') }}"
                                         class="block px-4 py-2 hover:bg-gray-100 ">Event
@@ -44,6 +44,26 @@
                                 <li>
                                     <a href="{{ route('event.create') }}"
                                         class="block px-4 py-2 hover:bg-gray-100 ">Create Event</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <!-- Dropdown menu end -->
+                        <button id="packageDropdownHoverButton" data-dropdown-toggle="packageDropdownHover"
+                            data-dropdown-trigger="hover"
+                            class="inline-flex items-center px-1 pt-1 border-b-2 border-transparent text-sm font-medium leading-5 text-gray-500 hover:text-gray-700 hover:border-gray-300 focus:outline-none focus:text-gray-700 focus:border-gray-300 transition duration-150 ease-in-out "
+                            type="button">Packages
+                        </button>
+                        <!-- Dropdown menu start -->
+                        <div id="packageDropdownHover"
+                            class="z-10 hidden bg-white divide-y divide-gray-100 shadow w-44 rounded-md ring-1 ring-black ring-opacity-5 dropdown 0.3s ease-out forwards">
+                            <ul class=" text-sm text-gray-700 " aria-labelledby="packageDropdownHoverButton">
+                                <li>
+                                    <a href="#" class="block px-4 py-2 hover:bg-gray-100 ">Package
+                                        List</a>
+                                </li>
+                                <li>
+                                    <a href="{{ route('package.create') }}"
+                                        class="block px-4 py-2 hover:bg-gray-100 ">Create Package</a>
                                 </li>
                             </ul>
                         </div>

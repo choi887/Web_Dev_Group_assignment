@@ -72,6 +72,25 @@ class PackageController extends Controller
         }
     }
 
+    public function showAdminPackageList(Request $request)
+    {
+        $packages = $this->getAllPackages();
+
+        foreach ($packages as $package) {
+            if ($package->is_active == '1') {
+                $package->is_active = 'Active';
+                $package->active_color = 'text-green-600';
+            } elseif ($package->is_active == '0') {
+                $package->is_active = 'Inactive';
+                $package->active_color = 'text-red-600';
+            }
+        }
+
+        return view('package-admin-list', [
+            'packages' => $packages,
+        ]);
+    }
+
     public function showPackageList(Request $request)
     {
         $packages = $this->getAllPackages();

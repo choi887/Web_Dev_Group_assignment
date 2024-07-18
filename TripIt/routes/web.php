@@ -16,18 +16,6 @@ Route::get('/event-list', [EventController::class, 'showEventList'])->name('even
 Route::get('/event-list/{category}/{event_id}', [EventController::class, 'showEvent'])->name('event-specific');
 Route::get('/package-list', [PackageController::class, 'showPackageList'])->name('package-list');
 Route::get('/package-list/{package_id}', [PackageController::class, 'showPackage'])->name('package-specific');
-Route::get('/package', function () {
-    return view('package');
-})->name('package');
-
-Route::get('/homepage', function () {
-    return view('homepage');
-});
-
-Route::get('/order', function () {
-    return view('order');
-})->name('order');
-
 //public routes for all end
 
 //authenticated functions start ( Usually for Users)
@@ -52,6 +40,7 @@ Route::prefix('administrator')->middleware(['auth', 'checkRole'])->group(functio
         Route::post('/addevent', [EventController::class, 'store'])->name('event.add');
     });
     Route::prefix('package')->group(function () {
+        Route::get('/package-list-admin', [PackageController::class, 'showAdminPackageList'])->name('package.list.admin');
         Route::get('/package-create', function () {
             return view('package-create');
         })->name('package.create');
