@@ -160,6 +160,7 @@ class PackageController extends Controller
             $validator = Validator::make($request->all(), [
                 'package_id' => 'required|integer',
                 'user_id' => 'required|integer',
+                'number_pax' => 'required|min:1|max:10'
             ]);
 
             if ($validator->fails()) {
@@ -169,6 +170,7 @@ class PackageController extends Controller
             $orderInputData = [
                 'item_id' => $request->package_id,
                 'user_id' => $request->user_id,
+                'number_pax' => $request->number_pax,
                 'order_date' => now(),
                 'type' => 'package',
             ];

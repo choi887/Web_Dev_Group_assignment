@@ -244,6 +244,7 @@ class EventController extends Controller
             $validator = Validator::make($request->all(), [
                 'event_id' => 'required|integer',
                 'user_id' => 'required|integer',
+                'number_pax' => 'required|min:1|max:10'
             ]);
 
             if ($validator->fails()) {
@@ -253,6 +254,7 @@ class EventController extends Controller
             $orderInputData = [
                 'item_id' => $request->event_id,
                 'user_id' => $request->user_id,
+                'number_pax' => $request->number_pax,
                 'order_date' => now(),
             ];
             Order::create($orderInputData);
