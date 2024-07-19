@@ -91,6 +91,7 @@
                                     <th scope="col" class="px-4 py-4">Event name</th>
                                     <th scope="col" class="px-4 py-3">Category</th>
                                     <th scope="col" class="px-4 py-3">Date</th>
+                                    <th scope="col" class="px-4 py-3">Status</th>
                                     <th scope="col" class="px-4 py-3">Price</th>
                                     <th scope="col" class="px-4 py-3">Created By</th>
                                     <th scope="col" class="px-4 py-3">
@@ -107,6 +108,13 @@
                                         </th>
                                         <td class="px-4 py-3">{{ $event->category->name }}</td>
                                         <td class="px-4 py-3">{{ $event->start_date }} - {{ $event->end_date }}</td>
+
+                                        @if ($event->is_active == 1)
+                                            <td class="px-4 py-3 text-green-600 font-semibold items-center">Active</td>
+                                        @else
+                                            <td class="px-4 py-3 font-semibold text-red-600">Inactive</td>
+                                        @endif
+
                                         <td class="px-4 py-3 max-w-[12rem] truncate">
                                             ${{ $event->price }}
                                         </td>
@@ -180,7 +188,7 @@
                         </table>
                     </div>
 
-                    <div class="space-y-3 space-y-0 p-4">
+                    <div class="space-y-3  p-4">
                         {{ $events->links('pagination') }}
                     </div>
 

@@ -44,10 +44,10 @@
                         ${{ $package->price }}
                     </div>
                 </h2>
-                <p class="font-semibold text-md text-blue-600 ">
+                <p class="font-semibold text-md text-blue-600 mt-4">
                     Date: {{ $package->start_date }} to {{ $package->end_date }}
                 </p>
-                <p class=" font-light text-lg main-color line-clamp-3 mt-10">
+                <p class=" font-light text-lg main-color line-clamp-3 mt-4">
                     {{ $package->description }}
                 </p>
                 <button data-modal-target="description-modal" data-modal-toggle="description-modal"
@@ -111,25 +111,27 @@
                                 </div>
                                 <!-- Modal body -->
                                 <div class="p-4 md:p-5">
-                                    <form action="{{ route('join-package') }}" class="space-y-4" method="POST">
-                                        @csrf
-                                        <input type="hidden" name="package_id" value="{{ $package->id }}">
-                                        <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
-                                        <div>
-                                            <label for="number_pax"
-                                                class="block mb-2 text-sm font-medium text-gray-900">
-                                                Number of pax
-                                            </label>
-                                            <input type="number" name="number_pax" id="number_pax" min="1"
-                                                max="10"
-                                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
-                                                placeholder="maximum 10 pax per order" required />
-                                        </div>
-                                        <button type="submit"
-                                            class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">
-                                            Submit
-                                        </button>
-                                    </form>
+                                    @if (Auth::user())
+                                        <form action="{{ route('join-package') }}" class="space-y-4" method="POST">
+                                            @csrf
+                                            <input type="hidden" name="package_id" value="{{ $package->id }}">
+                                            <input type="hidden" name="user_id" value="{{ Auth::user()->id }}">
+                                            <div>
+                                                <label for="number_pax"
+                                                    class="block mb-2 text-sm font-medium text-gray-900">
+                                                    Number of pax
+                                                </label>
+                                                <input type="number" name="number_pax" id="number_pax"
+                                                    min="1" max="10"
+                                                    class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                                                    placeholder="maximum 10 pax per order" required />
+                                            </div>
+                                            <button type="submit"
+                                                class="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center">
+                                                Submit
+                                            </button>
+                                        </form>
+                                    @endif
                                 </div>
                             </div>
                         </div>

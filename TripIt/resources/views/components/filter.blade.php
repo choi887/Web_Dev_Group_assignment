@@ -71,7 +71,7 @@
                                                 <input id="food" name="food" value="0" type="checkbox"
                                                     hidden />
                                                 <input id="food" name="food" value="1" type="checkbox"
-                                                    class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500">
+                                                    class="h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500">
                                                 <label for="food-0" class="ml-3 text-sm text-gray-600">Food
                                                     Provided</label>
                                             </div>
@@ -80,7 +80,7 @@
                                                     type="checkbox" hidden />
                                                 <input id="transportation" name="transportation" value="1"
                                                     type="checkbox"
-                                                    class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500">
+                                                    class="h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500">
                                                 <label for="food-1" class="ml-3 text-sm text-gray-600">Transportation
                                                     Provided</label>
                                             </div>
@@ -88,7 +88,7 @@
                                                 <input id="lodging" name="lodging" value="0" type="checkbox"
                                                     hidden />
                                                 <input id="lodging" name="lodging" value="1" type="checkbox"
-                                                    class="h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500">
+                                                    class="h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500">
                                                 <label for="food-1" class="ml-3 text-sm text-gray-600">Lodging
                                                     Provided</label>
                                             </div>
@@ -104,40 +104,40 @@
                                         <div class="space-y-3 pt-6">
                                             <div class="flex items-center">
                                                 <input id="price-0" name="price" value="<5000" type="checkbox"
-                                                    class="price-checkbox h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500">
+                                                    class="price-checkbox h-4 w-4 rounded border-gray-300  text-blue-600 focus:ring-blue-500">
                                                 <label for="price-0"
                                                     class="ml-3 text-sm text-gray-600">&lt;5,000</label>
                                             </div>
                                             <div class="flex items-center">
                                                 <input id="price-1" name="price" value="5000-10000" type="checkbox"
-                                                    class="price-checkbox h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500">
+                                                    class="price-checkbox h-4 w-4 rounded border-gray-300  text-blue-600 focus:ring-blue-500">
                                                 <label for="price-1"
                                                     class="ml-3 text-sm text-gray-600">5,000-10,000</label>
                                             </div>
                                             <div class="flex items-center">
                                                 <input id="price-2" name="price" value="10000-25000"
                                                     type="checkbox"
-                                                    class="price-checkbox h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500">
+                                                    class="price-checkbox h-4 w-4 rounded border-gray-300  text-blue-600 focus:ring-blue-500">
                                                 <label for="price-2"
                                                     class="ml-3 text-sm text-gray-600">10,000-25,000</label>
                                             </div>
                                             <div class="flex items-center">
                                                 <input id="price-3" name="price" value="25000-50000"
                                                     type="checkbox"
-                                                    class="price-checkbox h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500">
+                                                    class="price-checkbox h-4 w-4 rounded border-gray-300  text-blue-600 focus:ring-blue-500">
                                                 <label for="price-3"
                                                     class="ml-3 text-sm text-gray-600">25,000-50,000</label>
                                             </div>
                                             <div class="flex items-center">
                                                 <input id="price-4" name="price" value="50000-100000"
                                                     type="checkbox"
-                                                    class="price-checkbox h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500">
+                                                    class="price-checkbox h-4 w-4 rounded border-gray-300  text-blue-600 focus:ring-blue-500">
                                                 <label for="price-4"
                                                     class="ml-3 text-sm text-gray-600">50,000-100,000</label>
                                             </div>
                                             <div class="flex items-center">
                                                 <input id="price-5" name="price" value=">100000" type="checkbox"
-                                                    class="price-checkbox h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-500">
+                                                    class="price-checkbox h-4 w-4 rounded border-gray-300  text-blue-600 focus:ring-blue-500">
                                                 <label for="price-5"
                                                     class="ml-3 text-sm text-gray-600">&gt;100,000</label>
                                             </div>

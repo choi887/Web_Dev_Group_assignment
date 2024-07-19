@@ -111,8 +111,7 @@ class EventController extends Controller
 
     public function showAdminEventList(Request $request)
     {
-        $events = $this->getAllEvents(null, $request);
-
+        $events = $this->getAllEvents();
         return view('event-admin-list', [
             'events' => $events,
         ]);
