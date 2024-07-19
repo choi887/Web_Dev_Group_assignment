@@ -33,7 +33,7 @@
                     <a href="#" class="nav-link">FAQs</a>
                 </nav>
             </div>
-            <div class="flex space-x-4 items-center text-white">
+            <div class="flex space-x-4 items-center text-white me-32">
                 @if (Route::has('login'))
                     @auth
                         <div class="hidden mt-2 sm:flex sm:items-center sm:ms-6">
