@@ -13,7 +13,7 @@ trait Filterable
         }
 
         if (isset($filters['price'])) {
-            $this->applyPriceFilter($query, $filters['price']);
+            $this->applyPriceFilter($query, (array)$filters['price']);
         }
 
         if (isset($filters['categories'])) {
@@ -48,27 +48,33 @@ trait Filterable
         }
     }
 
-    protected function applyPriceFilter(Builder $query, string $priceRange)
+    protected function applyPriceFilter(Builder $query, array $priceRanges)
     {
-        switch ($priceRange) {
-            case '<5000':
-                $query->where('price', '<', 5000);
-                break;
-            case '5000-10000':
-                $query->whereBetween('price', [5000, 10000]);
-                break;
-            case '10000-25000':
-                $query->whereBetween('price', [10000, 25000]);
-                break;
-            case '25000-50000':
-                $query->whereBetween('price', [25000, 50000]);
-                break;
-            case '50000-100000':
-                $query->whereBetween('price', [50000, 100000]);
-                break;
-            case '>100000':
-                $query->where('price', '>', 100000);
-                break;
+        if (!empty($priceRanges)) {
+            $query->where(function ($q) use ($priceRanges) {
+                foreach ($priceRanges as $range) {
+                    switch ($range) {
+                        case '<5000':
+                            $q->orWhere('price', '<', 5000);
+                            break;
+                        case '5001-10000':
+                            $q->orWhereBetween('price', [5001, 10000]);
+                            break;
+                        case '10001-25000':
+                            $q->orWhereBetween('price', [10001, 25000]);
+                            break;
+                        case '25001-50000':
+                            $q->orWhereBetween('price', [25001, 50000]);
+                            break;
+                        case '50001-100000':
+                            $q->orWhereBetween('price', [50001, 100000]);
+                            break;
+                        case '>100000':
+                            $q->orWhere('price', '>', 100000);
+                            break;
+                    }
+                }
+            });
         }
     }
 

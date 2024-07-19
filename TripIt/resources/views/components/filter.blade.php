@@ -102,18 +102,18 @@
                                             @php
                                                 $priceRanges = [
                                                     '<5000' => '<5,000',
-                                                    '5000-10000' => '5,000-10,000',
-                                                    '10000-25000' => '10,000-25,000',
-                                                    '25000-50000' => '25,000-50,000',
-                                                    '50000-100000' => '50,000-100,000',
+                                                    '5001-10000' => '5,001-10,000',
+                                                    '10001-25000' => '10,001-25,000',
+                                                    '25001-50000' => '25,001-50,000',
+                                                    '50001-100000' => '50,001-100,000',
                                                     '>100000' => '>100,000',
                                                 ];
                                             @endphp
                                             @foreach ($priceRanges as $value => $label)
                                                 <div class="flex items-center">
-                                                    <input id="price-{{ $loop->index }}" name="price"
-                                                        value="{{ $value }}" type="radio"
-                                                        {{ request('price') == $value ? 'checked' : '' }}
+                                                    <input id="price-{{ $loop->index }}" name="price[]"
+                                                        value="{{ $value }}" type="checkbox"
+                                                        {{ in_array($value, (array) request('price', [])) ? 'checked' : '' }}
                                                         class="auto-submit h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500">
                                                     <label for="price-{{ $loop->index }}"
                                                         class="ml-3 text-sm text-gray-600">{{ $label }}</label>
