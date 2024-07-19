@@ -263,11 +263,18 @@
             Similar Packages
         </h2>
 
-        <div class="mx-auto items-center gap-4 grid md:grid-cols-3 max-w-screen-xl">
-            @foreach ($similarPackages as $similarPackage)
-                <x-card :item="$similarPackage" type="package" />
-            @endforeach
-        </div>
+        <!-- Similar Packages -->
+        @if ($similarPackages->isEmpty())
+            <div class="text-center mt-[10%] py-8 max-w-screen-xl mx-auto">
+                <p class="button-text-color font-semibold text-lg">No similar packages found.</p>
+            </div>
+        @else
+            <div class="mx-auto items-center gap-4 grid md:grid-cols-3 max-w-screen-xl">
+                @foreach ($similarPackages as $similarPackage)
+                    <x-card :item="$similarPackage" type="package" />
+                @endforeach
+            </div>
+        @endif
     </section>
 
     <x-footer>

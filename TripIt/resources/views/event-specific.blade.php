@@ -253,11 +253,17 @@
             </h2>
 
             <!-- Similar Events -->
-            <div class="mx-auto items-center gap-4 grid md:grid-cols-3 max-w-screen-xl">
-                @foreach ($similarEvents as $similarEvent)
-                    <x-card :item="$similarEvent" type="event" />
-                @endforeach
-            </div>
+            @if ($similarEvents->isEmpty())
+                <div class="text-center mt-[10%] py-8 max-w-screen-xl mx-auto">
+                    <p class="button-text-color font-semibold text-lg">No similar events found.</p>
+                </div>
+            @else
+                <div class="mx-auto items-center gap-4 grid md:grid-cols-3 max-w-screen-xl">
+                    @foreach ($similarEvents as $similarEvent)
+                        <x-card :item="$similarEvent" type="event" />
+                    @endforeach
+                </div>
+            @endif
         </div>
     </section>
 
