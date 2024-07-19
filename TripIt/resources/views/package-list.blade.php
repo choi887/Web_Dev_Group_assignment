@@ -36,15 +36,25 @@
                                             Date: {{ $package->start_date }} to {{ $package->end_date }}
                                         </p>
                                     </div>
-                                    <p class="font-normal text-gray-600 line-clamp-3">
+                                    <p class="font-normal text-gray-600 mb-5 line-clamp-3">
                                         {{ $package->description }}
                                     </p>
-                                    <div class="flex items-center justify-end">
-                                        <div
-                                            class="text-sm self-end button-text-color font-semibold flex items-center hover:underline">
-                                            More Details
+                                    <div class="flex justify-between items-center">
+                                        <div class="flex items-center">
+                                            <img class="w-10 h-10 rounded-full mr-4" src="{{ asset('images/owl.jpg') }}"
+                                                alt="Avatar of Jonathan Reinink">
+                                            <div class="text-sm">
+                                                <p class="text-gray-900 leading-none">{{ $package->created_by }}</p>
+                                                <p class="text-gray-600">{{ $package->phone_number }}</p>
+                                            </div>
                                         </div>
-                                        <span aria-hidden="true" class="ml-1">→</span>
+                                        <div class="flex items-center">
+                                            <div
+                                                class="text-sm self-end button-text-color font-semibold flex items-center hover:underline">
+                                                More Details
+                                            </div>
+                                            <span aria-hidden="true" class="ml-1">→</span>
+                                        </div>
                                     </div>
                                 </div>
                             </a></div>

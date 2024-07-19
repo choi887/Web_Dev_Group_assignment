@@ -51,7 +51,7 @@
                     {{ $package->description }}
                 </p>
                 <button data-modal-target="description-modal" data-modal-toggle="description-modal"
-                    class="flex justify-start main-color hover:underline font-semibold my-2 w-max">See More
+                    class="flex justify-start main-color hover:underline font-semibold mt-2 w-max mb-5">See More
                     <span><svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20" stroke-width="1.5"
                             stroke="currentColor" class="size-5">
                             <path stroke-linecap="round" stroke-linejoin="round" d="m8.25 4.5 7.5 7.5-7.5 7.5" />
@@ -61,7 +61,14 @@
 
 
                 <div class="flex justify-between items-center">
-                    <div></div>
+                    <div class="flex items-center">
+                        <img class="w-10 h-10 rounded-full mr-4" src="{{ asset('images/owl.jpg') }}"
+                            alt="Avatar of Jonathan Reinink">
+                        <div class="text-sm">
+                            <p class="text-gray-900 leading-none">{{ $package->created_by }}</p>
+                            <p class="text-gray-600">{{ $package->phone_number }}</p>
+                        </div>
+                    </div>
                     <div class="flex items-center">
                         @if (Auth::user())
                             <button data-modal-target="join-now-modal" data-modal-toggle="join-now-modal"
