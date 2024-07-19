@@ -22,4 +22,9 @@ class Order extends Model
         'status' => OrderStatus::class,
         'type' => Type::class,
     ];
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
 }

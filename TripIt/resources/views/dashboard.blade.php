@@ -151,8 +151,7 @@
                     <!-- line chart end -->
                 </div>
 
-                <div
-                    class="col-span-full  w-full bg-white rounded-lg border border-gray-200 mb-10 shadow-xl p-4 md:p-6">
+                <div class="col-span-full  w-full bg-white rounded-lg border border-gray-200 mb-10 shadow-xl p-10">
                     <div class="flex justify-between mb-5">
                         <div>
                             <h5 class="leading-none text-3xl font-bold text-blue-600  pb-2">$23,250
@@ -217,6 +216,75 @@
                     </div>
                 </div>
                 <!-- col-span-ful chart end-->
+                <div class="grid w-full  grid-cols-2 gap-4 mt-4 xl:grid-cols-1 2xl:grid-cols-2 mb-10">
+                    <div
+                        class="relative w-full border border-gray-200 overflow-x-auto mx-auto px-8 shadow-md sm:rounded-lg overflow-auto p-4">
+                        <h5 class="leading-none text-xl font-bold text-blue-600 border-b border-gray-300 pb-4 my-4 ">
+                            Recent
+                            Orders from Customers
+                        </h5>
+                        <div class="max-h-80 ">
+                            <table
+                                class="w-full text-sm text-left rtl:text-right text-gray-500 rounded-xl items-center">
+                                <thead class="text-xs text-black uppercase bg-gray-100 rounded-xl">
+                                    <tr>
+                                        <th scope="col" class="px-6 py-3">
+                                            Customer Name
+                                        </th>
+                                        <th scope="col" class="px-6 py-3">
+                                            Type
+                                        </th>
+                                        <th scope="col" class="px-6 py-3">
+                                            Status
+                                        </th>
+                                        <th scope="col" class="px-6 py-3">
+                                            Order Date
+                                        </th>
+                                        <th scope="col" class="px-6 py-3">
+                                            Item ID
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach ($orders as $order)
+                                        <tr class="odd:bg-white  even:bg-gray-50">
+                                            <th scope="row"
+                                                class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap ">
+                                                {{ $order->user->name }}
+                                            </th>
+                                            <th scope="row"
+                                                class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap ">
+                                                {{ $order->type }}
+                                            </th>
+                                            @if ($order->status->label() == 'ongoing')
+                                                <td class="px-6 py-4 font-medium text-green-600">
+                                                    {{ $order->status }}
+                                                </td>
+                                            @elseif($order->status->label() == 'Cancelled')
+                                                <td class="px-6 py-4 font-medium text-red-600">
+                                                    {{ $order->status }}
+                                                </td>
+                                            @else
+                                                <td class="px-6 py-4 font-medium text-blue-600">
+                                                    {{ $order->status }}
+                                                </td>
+                                            @endif
+                                            <td class="px-6 py-4">
+                                                {{ $order->order_date }}
+                                            </td>
+                                            <td class="px-6 py-4 items-center">
+                                                {{ $order->item_id }}
+                                            </td>
+
+                                        </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+
+                    </div>
+
+                </div>
             </div>
 
         </div>

@@ -3,10 +3,12 @@
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\EventController;
 use App\Http\Controllers\LodgingsController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\PackageController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\TransportationController;
 use App\Http\Controllers\WelcomeController;
+use App\Models\Order;
 use App\Models\Package;
 use Illuminate\Support\Facades\Route;
 
@@ -32,9 +34,9 @@ Route::middleware('auth')->group(function () {
 //authenticated functions end ( Usually for Users )
 
 Route::prefix('administrator')->middleware(['auth', 'checkRole'])->group(function () {
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
+    // Route::get('/dashboard', function () {
+    // })->name('dashboard');
+    Route::get('/dashboard', [OrderController::class, 'showOrderList'])->name('dashboard');
     Route::prefix('event')->group(function () {
         Route::get('/event-list-admin', [EventController::class, 'showAdminEventList'])->name('event.list.admin');
         Route::get('/event-create', function () {
