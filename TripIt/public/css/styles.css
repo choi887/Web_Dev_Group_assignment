@@ -12,7 +12,7 @@
 }
 
 .secondary-button:hover {
- background-color: #05acff33;
+    background-color: #05acff33;
 }
 
 .main-color {
@@ -67,4 +67,38 @@
 
 .animate-bounce-left-right {
     animation: bounce-left-right 1s infinite;
+}
+.slideshow-container {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+}
+
+.slideshow-track {
+    display: flex;
+    transition: transform 0.5s ease;
+}
+
+.slideshow-item {
+    flex: 0 0 calc(33.333% - 20px); /* Adjust based on how many items you want visible */
+    margin: 0 10px;
+    /* Add your item styling here */
+}
+
+.slideshow-button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.prev {
+    left: 10px;
+}
+.next {
+    right: 10px;
 }

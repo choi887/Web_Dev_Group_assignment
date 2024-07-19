@@ -238,14 +238,25 @@
             </h2>
 
             <!-- Image gallery -->
-            <div class="mx-auto mt-6 max-w-7xl px-2 flex justify-between">
-                @foreach ($event->gallery as $image)
-                    <div class="w-100 h-64 sm:overflow-hidden sm:rounded-lg">
-                        <img src="{{ asset('storage/' . $image->image_path) }}"
-                            alt="Model wearing plain white basic tee."
-                            class="h-full w-full object-cover object-center">
+
+            <div class="mx-auto mt-6 max-w-7xl px-2 flex gap-20 justify-center">
+                <div class="slideshow-container overflow-hidden relative">
+                    <div class="slideshow-track">
+                        <!-- Add your slideshow items here -->
+                        @foreach ($event->gallery as $image)
+                            <div class="slideshow-item w-100 h-64 sm:overflow-hidden sm:rounded-lg">
+                                <img src="{{ asset('storage/' . $image->image_path) }}"
+                                    alt="Model wearing plain white basic tee."
+                                    class="h-full w-full object-cover object-center">
+                            </div>
+                        @endforeach
+
+                        <!-- Add more items as needed -->
                     </div>
-                @endforeach
+                    <button id="prev-button" class="slideshow-button prev ">&#10094;</button>
+                    <button id="next-button" class="slideshow-button next">&#10095;</button>
+                </div>
+
             </div>
 
             <h2 class="mx-auto mt-20 mb-4 text-3xl tracking-tight font-extrabold button-text-color max-w-screen-xl">
@@ -270,3 +281,37 @@
     <x-footer></x-footer>
 
 </x-header>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const track = document.querySelector('.slideshow-track');
+        const items = document.querySelectorAll('.slideshow-item');
+        const prevButton = document.getElementById('prev-button');
+        const nextButton = document.getElementById('next-button');
+
+        const itemWidth = items[0].offsetWidth + 15;
+        const itemsPerScreen = 3; // can adjust to show num of card
+        let currentIndex = 0;
+
+        function updateSlideshow() {
+            const offset = -currentIndex * itemWidth;
+            track.style.transform = `translateX(${offset}px)`;
+        }
+
+        function moveNext() {
+            if (currentIndex < items.length - itemsPerScreen) {
+                currentIndex++;
+                updateSlideshow();
+            }
+        }
+
+        function movePrev() {
+            if (currentIndex > 0) {
+                currentIndex--;
+                updateSlideshow();
+            }
+        }
+
+        nextButton.addEventListener('click', moveNext);
+        prevButton.addEventListener('click', movePrev);
+    });
+</script>

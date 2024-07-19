@@ -36,7 +36,6 @@ class EventController extends Controller
                 'phone_number' => 'nullable|string|max:50',
                 'price' => 'required|numeric|min:0',
                 'category_id' => 'required|exists:categories,id',
-                'max_number_pax' => 'required|numeric|min:0',
                 'address' => 'required|string|max:255',
                 'start_date' => 'required|date',
                 'end_date' => 'required|date',
@@ -44,8 +43,8 @@ class EventController extends Controller
                 'transportation' => 'boolean',
                 'lodging' => 'boolean',
                 'description' => 'required|string|max:3000',
-                'cover_image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048|dimensions:min_width=800,min_height=600',
-                'multiple_file_upload.*' => 'image|mimes:jpeg,png,jpg,gif|max:10240|dimensions:min_width=800,min_height=600', // 10MB max size for each file
+                'cover_image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048|dimensions:min_width=700,min_height=500',
+                'multiple_file_upload.*' => 'image|mimes:jpeg,png,jpg,gif|max:10240|dimensions:min_width=700,min_height=500', // 10MB max size for each file
             ]);
             $data['created_by'] =  $request->user()->name;
 
