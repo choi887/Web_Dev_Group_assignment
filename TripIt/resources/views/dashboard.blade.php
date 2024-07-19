@@ -12,10 +12,10 @@
         <x-fail-notification></x-fail-notification>
         <div class="flex">
             <x-sidebar-create></x-sidebar-create>
-            <div class="max-w-screen-xl w-full mt-4  lg:px-12 overflow-hidden">
-                <div class=" grid w-full grid-cols-1 gap-4 mt-4 xl:grid-cols-2 2xl:grid-cols-3 mb-10 ">
+            <div class="max-w-screen-xl w-full mt-4 lg:px-12 overflow-hidden">
+                <div class="grid w-full grid-cols-1 gap-4 mt-4 xl:grid-cols-2 2xl:grid-cols-3 mb-10">
                     <!-- Card with graph start -->
-                    <div class="max-w-sm w-full border border-gray-200 rounded-lg shadow-xl  p-4 md:p-6">
+                    <div class="max-w-sm w-full border border-gray-200 rounded-lg shadow-xl mx-auto  p-4 md:p-6">
                         <div class="flex justify-between pb-4 mb-4 border-b border-gray-200 ">
                             <div class="flex items-center">
                                 <div class="w-12 h-12 rounded-lg bg-blue-800  flex items-center justify-center me-3">
@@ -28,15 +28,15 @@
                                     </svg>
                                 </div>
                                 <div>
-                                    <h5 class="leading-none text-2xl font-bold text-gray-900 ">3.4k
+                                    <h5 class="leading-none text-2xl font-bold text-blue-600 ">3.4k
                                     </h5>
-                                    <p class="text-sm font-normal text-gray-500 ">Leads generated per
+                                    <p class="text-sm font-semibold text-blue-500 ">Ads generated per
                                         week</p>
                                 </div>
                             </div>
                             <div>
                                 <span
-                                    class="bg-green-100 text-green-800 text-xs font-medium inline-flex items-center px-2.5 py-1 rounded-md">
+                                    class="bg-green-200 text-green-700 text-xs font-medium inline-flex items-center px-2.5 py-1 rounded-md">
                                     <svg class="w-2.5 h-2.5 me-1.5" aria-hidden="true"
                                         xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 14">
                                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
@@ -63,12 +63,13 @@
 
                     </div>
                     <!-- bar chart end -->
-                    <div class="max-w-sm w-full border border-gray-200 bg-white rounded-lg shadow-xl p-4 md:p-6">
+                    <div
+                        class="max-w-sm w-full border border-gray-200 bg-white rounded-lg shadow-xl mx-auto p-4 md:p-6">
 
                         <div class="flex justify-between mb-3">
                             <div class="flex justify-center items-center">
-                                <h5 class="text-xl font-bold leading-none text-gray-900  pe-1">Website
-                                    traffic</h5>
+                                <h5 class="text-xl font-bold leading-none text-blue-600 pe-1">Website
+                                    Traffic</h5>
                                 <svg data-popover-target="chart-info" data-popover-placement="bottom"
                                     class="w-3.5 h-3.5 text-gray-500  hover:text-gray-900  cursor-pointer ms-1"
                                     aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
@@ -107,18 +108,14 @@
                                     <input id="desktop" type="checkbox" value="desktop"
                                         class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 focus:ring-2">
                                     <label for="desktop"
-                                        class="ms-2 text-sm font-medium text-gray-900 ">Desktop</label>
+                                        class="ms-2 text-sm font-medium text-blue-500 ">Packages</label>
                                 </div>
                                 <div class="flex items-center me-4">
                                     <input id="tablet" type="checkbox" value="tablet"
                                         class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 focus:ring-2 ">
-                                    <label for="tablet" class="ms-2 text-sm font-medium text-gray-900 ">Tablet</label>
+                                    <label for="tablet" class="ms-2 text-sm font-medium text-blue-500 ">Events</label>
                                 </div>
-                                <div class="flex items-center me-4">
-                                    <input id="mobile" type="checkbox" value="mobile"
-                                        class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 focus:ring-2 ">
-                                    <label for="mobile" class="ms-2 text-sm font-medium text-gray-900 ">Mobile</label>
-                                </div>
+
                             </div>
                         </div>
                         <!-- Donut Chart -->
@@ -130,9 +127,96 @@
                     </div>
                     <!-- donut chart end -->
 
+                    <div
+                        class="mx-auto max-w-sm w-full border border-gray-200 bg-white rounded-lg shadow-xl p-4 md:p-6">
+                        <div class="flex justify-between mb-5">
+                            <div>
+                                <h5 class="leading-none text-3xl font-bold text-blue-600  pb-2">$20,423
+                                </h5>
+                                <p class="text-base font-normal text-gray-500">Sales this week</p>
+                            </div>
+                            <div
+                                class="flex items-center px-2.5 py-0.5 text-base font-semibold text-green-500 text-center">
+                                23%
+                                <svg class="w-3 h-3 ms-1" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                                    fill="none" viewBox="0 0 10 14">
+                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                        stroke-width="2" d="M5 13V1m0 0L1 5m4-4 4 4" />
+                                </svg>
+                            </div>
+                        </div>
+                        <div id="legend-chart"></div>
+
+                    </div>
+                    <!-- line chart end -->
                 </div>
 
+                <div
+                    class="col-span-full  w-full bg-white rounded-lg border border-gray-200 mb-10 shadow-xl p-4 md:p-6">
+                    <div class="flex justify-between mb-5">
+                        <div>
+                            <h5 class="leading-none text-3xl font-bold text-blue-600  pb-2">$23,250
+                            </h5>
+                            <p class="text-base font-normal text-gray-500 ">Sales this month</p>
+                        </div>
+                        <div class="flex items-center px-2.5 py-0.5 text-base font-semibold text-red-500 text-center">
+                            10%
+                            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 28 24" fill="currentColor"
+                                class="w-4 h-4 ms-1" stroke-width="2">
+                                <path fill-rule="evenodd" stroke="currentColor" stroke-linecap="round"
+                                    stroke-linejoin="round" stroke-width="2"
+                                    d="M12 2.25a.75.75 0 0 1 .75.75v16.19l6.22-6.22a.75.75 0 1 1 1.06 1.06l-7.5 7.5a.75.75 0 0 1-1.06 0l-7.5-7.5a.75.75 0 1 1 1.06-1.06l6.22 6.22V3a.75.75 0 0 1 .75-.75Z"
+                                    clip-rule="evenodd" />
+                            </svg>
 
+                        </div>
+                    </div>
+                    <div id="grid-chart"></div>
+                    <div class="grid grid-cols-1 items-center border-gray-200 border-t  justify-between mt-5">
+                        <div class="flex justify-between items-center pt-5">
+                            <!-- Button -->
+                            <button id="dropdownDefaultButton" data-dropdown-toggle="lastDaysdropdown"
+                                data-dropdown-placement="bottom"
+                                class="text-sm font-medium text-gray-500  hover:text-gray-900 text-center inline-flex items-center "
+                                type="button">
+                                Last 12 Months
+                                <svg class="w-2.5 m-2.5 ms-1.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                                    fill="none" viewBox="0 0 10 6">
+                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                        stroke-width="2" d="m1 1 4 4 4-4" />
+                                </svg>
+                            </button>
+                            <!-- Dropdown menu -->
+                            <div id="lastDaysdropdown"
+                                class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 ">
+                                <ul class="py-2 text-sm text-gray-700 " aria-labelledby="dropdownDefaultButton">
+                                    <li>
+                                        <a href="#" class="block px-4 py-2 hover:bg-gray-100 ">Last
+                                            month</a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="block px-4 py-2 hover:bg-gray-100 ">last
+                                            2 months</a>
+                                    </li>
+                                    <li>
+                                        <a href="#" class="block px-4 py-2 hover:bg-gray-100 ">last
+                                            5 Months</a>
+                                    </li>
+                                </ul>
+                            </div>
+                            <a href="#"
+                                class="uppercase text-sm font-semibold inline-flex items-center rounded-lg text-blue-600 hover:text-blue-700   hover:bg-gray-100 px-3 py-2">
+                                Sales Report
+                                <svg class="w-2.5 h-2.5 ms-1.5 rtl:rotate-180" aria-hidden="true"
+                                    xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
+                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                        stroke-width="2" d="m1 9 4-4-4-4" />
+                                </svg>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <!-- col-span-ful chart end-->
             </div>
 
         </div>
@@ -142,6 +226,7 @@
     </section>
 </x-app-layout>
 <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+<!-- bar chart scripts start -->
 <script>
     const options = {
         colors: ["#1A56DB", "#FDBA8C"],
@@ -292,7 +377,8 @@
         chart.render();
     }
 </script>
-
+<!-- bar chart scripts end -->
+<!-- donut chart start -->
 <script>
     const getChartOptions = () => {
         return {
@@ -414,3 +500,183 @@
         });
     }
 </script>
+<!-- donut chart end -->
+<!-- line chart start -->
+<script>
+    const options2 = {
+
+        series: [{
+                name: "Last Week",
+                data: [1600, 1418, 1456, 1626, 1756, 1456, 1541],
+                color: "#1A56DB",
+            },
+            {
+                name: "This Week",
+                data: [1843, 1613, 1765, 1452, 1623, 1731, 1681],
+                color: "#7E3BF2",
+            },
+        ],
+        chart: {
+            height: "64%",
+            maxWidth: "64%",
+            type: "area",
+            fontFamily: "Inter, sans-serif",
+            dropShadow: {
+                enabled: false,
+            },
+            toolbar: {
+                show: false,
+            },
+        },
+        tooltip: {
+            enabled: true,
+            x: {
+                show: false,
+            },
+        },
+        legend: {
+            show: true
+        },
+        fill: {
+            type: "gradient",
+            gradient: {
+                opacityFrom: 0.55,
+                opacityTo: 0,
+                shade: "#1C64F2",
+                gradientToColors: ["#1C64F2"],
+            },
+        },
+        dataLabels: {
+            enabled: false,
+        },
+        stroke: {
+            width: 6,
+        },
+        grid: {
+            show: false,
+            strokeDashArray: 4,
+            padding: {
+                left: 2,
+                right: 2,
+                top: -26
+            },
+        },
+        xaxis: {
+            categories: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday',
+                'Sunday'
+            ],
+            labels: {
+                show: false,
+            },
+            axisBorder: {
+                show: false,
+            },
+            axisTicks: {
+                show: false,
+            },
+        },
+        yaxis: {
+            show: false,
+            labels: {
+                formatter: function(value) {
+                    return '$' + value;
+                }
+            }
+        },
+    }
+
+    if (document.getElementById("legend-chart") && typeof ApexCharts !== 'undefined') {
+        const chart = new ApexCharts(document.getElementById("legend-chart"), options2);
+        chart.render();
+    }
+</script>
+<!-- line chart end -->
+<script>
+    const options3 = {
+
+        grid: {
+            show: true,
+            strokeDashArray: 4,
+            padding: {
+                left: 2,
+                right: 2,
+                top: -26
+            },
+        },
+        series: [{
+                name: "This Month",
+                data: [1500, 1518, 1456, 1526, 1456, 1556, 1700, 1631, 1731, 1800],
+                color: "#1A56DB",
+            },
+            {
+                name: "Last Month",
+                data: [1643, 1613, 1565, 1712, 1523, 1731, 1500, 1580, 1510, 1600],
+                color: "#7E3BF2",
+            },
+        ],
+        chart: {
+            height: "100%",
+            maxWidth: "100%",
+            type: "area",
+            fontFamily: "Inter, sans-serif",
+            dropShadow: {
+                enabled: false,
+            },
+            toolbar: {
+                show: false,
+            },
+        },
+        tooltip: {
+            enabled: true,
+            x: {
+                show: false,
+            },
+        },
+        legend: {
+            show: true
+        },
+        fill: {
+            type: "gradient",
+            gradient: {
+                opacityFrom: 0.55,
+                opacityTo: 0,
+                shade: "#1C64F2",
+                gradientToColors: ["#1C64F2"],
+            },
+        },
+        dataLabels: {
+            enabled: false,
+        },
+        stroke: {
+            width: 6,
+        },
+        xaxis: {
+            categories: ['January', 'February', 'March', 'May', 'June', 'July',
+                'August', 'September', 'November', 'December'
+            ],
+            labels: {
+                show: false,
+            },
+            axisBorder: {
+                show: false,
+            },
+            axisTicks: {
+                show: false,
+            },
+        },
+        yaxis: {
+            show: false,
+            labels: {
+                formatter: function(value) {
+                    return '$' + value;
+                }
+            }
+        },
+    }
+
+    if (document.getElementById("grid-chart") && typeof ApexCharts !== 'undefined') {
+        const chart = new ApexCharts(document.getElementById("grid-chart"), options3);
+        chart.render();
+    }
+</script>
+<!-- col-span line chart end -->
