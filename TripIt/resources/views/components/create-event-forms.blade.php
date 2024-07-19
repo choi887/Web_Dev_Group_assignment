@@ -45,13 +45,7 @@
                 <!-- phone end -->
                 <x-category-dropdown />
                 <!-- dropdown end -->
-                <div class="sm:col-span-4">
-                    <label for="max_number_pax" class="block mb-2 text-sm font-medium text-black">Max Number of
-                        Pax</label>
-                    <input type="number" name="max_number_pax" id="max_number_pax"
-                        class="border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 "
-                        required="" min="0" placeholder="Example: 10">
-                </div>
+
                 <div class="sm:col-span-4">
                     <label for="address" class="block mb-2 text-sm font-medium text-black">Address</label>
                     <div class="relative max-w-sm">
