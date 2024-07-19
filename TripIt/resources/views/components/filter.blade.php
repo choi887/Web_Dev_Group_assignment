@@ -24,17 +24,17 @@
                     </button>
 
                     <div class="hidden lg:block">
-                        <form id="filter_form_event" class="space-y-10 divide-y divide-gray-200">
+                        <form id="filter_form" class="space-y-10 divide-y divide-gray-200" method="GET">
                             @if (in_array('category', $filters))
                                 <div class="pt-4">
                                     <fieldset>
                                         <legend class="block text-sm font-medium text-gray-900 mb-4">Category</legend>
-                                        <div class="space-y-3  pl-2 overflow-hidden overflow-y-auto max-h-44">
+                                        <div class="space-y-3 pl-2 overflow-hidden overflow-y-auto max-h-44">
                                             @foreach ($categories as $category)
                                                 <div class="flex items-center">
                                                     <input id="category-{{ $category->id }}" name="categories[]"
                                                         value="{{ $category->id }}" type="checkbox"
-                                                        class="h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500"
+                                                        class="auto-submit h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500"
                                                         {{ in_array($category->id, request('categories', [])) ? 'checked' : '' }}>
                                                     <label for="category-{{ $category->id }}"
                                                         class="ml-3 text-sm text-gray-600">{{ $category->name }}</label>
@@ -50,46 +50,43 @@
                                     <fieldset>
                                         <legend class="block text-sm font-medium text-gray-900">Date Range</legend>
                                         <div class="mt-3">
-                                            <input type="date" name="start_date" value="start_date"
-                                                class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                                            <input type="date" name="start_date" value="{{ request('start_date') }}"
+                                                class="auto-submit bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                                                 placeholder="Start Date">
-                                            <input type="date" name="end_date" value="end_date"
-                                                class="mt-2 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
+                                            <input type="date" name="end_date" value="{{ request('end_date') }}"
+                                                class="auto-submit mt-2 bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5"
                                                 placeholder="End Date">
                                         </div>
                                     </fieldset>
                                 </div>
                             @endif
 
-                            @if (in_array('food', $filters))
+                            @if (in_array('logistics', $filters))
                                 <div class="pt-4">
                                     <fieldset>
                                         <legend class="block text-sm font-medium text-gray-900">Logistics Filter
                                         </legend>
                                         <div class="space-y-3 pt-6">
                                             <div class="flex items-center">
-                                                <input id="food" name="food" value="0" type="checkbox"
-                                                    hidden />
                                                 <input id="food" name="food" value="1" type="checkbox"
-                                                    class="h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500">
-                                                <label for="food-0" class="ml-3 text-sm text-gray-600">Food
+                                                    class="auto-submit h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500"
+                                                    {{ request('food') ? 'checked' : '' }}>
+                                                <label for="food" class="ml-3 text-sm text-gray-600">Food
                                                     Provided</label>
                                             </div>
                                             <div class="flex items-center">
-                                                <input id="transportation" name="transportation" value="0"
-                                                    type="checkbox" hidden />
                                                 <input id="transportation" name="transportation" value="1"
                                                     type="checkbox"
-                                                    class="h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500">
-                                                <label for="food-1" class="ml-3 text-sm text-gray-600">Transportation
-                                                    Provided</label>
+                                                    class="auto-submit h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500"
+                                                    {{ request('transportation') ? 'checked' : '' }}>
+                                                <label for="transportation"
+                                                    class="ml-3 text-sm text-gray-600">Transportation Provided</label>
                                             </div>
                                             <div class="flex items-center">
-                                                <input id="lodging" name="lodging" value="0" type="checkbox"
-                                                    hidden />
                                                 <input id="lodging" name="lodging" value="1" type="checkbox"
-                                                    class="h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500">
-                                                <label for="food-1" class="ml-3 text-sm text-gray-600">Lodging
+                                                    class="auto-submit h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500"
+                                                    {{ request('lodging') ? 'checked' : '' }}>
+                                                <label for="lodging" class="ml-3 text-sm text-gray-600">Lodging
                                                     Provided</label>
                                             </div>
                                         </div>
@@ -102,45 +99,26 @@
                                     <fieldset>
                                         <legend class="block text-sm font-medium text-gray-900">Price</legend>
                                         <div class="space-y-3 pt-6">
-                                            <div class="flex items-center">
-                                                <input id="price-0" name="price" value="<5000" type="checkbox"
-                                                    class="price-checkbox h-4 w-4 rounded border-gray-300  text-blue-600 focus:ring-blue-500">
-                                                <label for="price-0"
-                                                    class="ml-3 text-sm text-gray-600">&lt;5,000</label>
-                                            </div>
-                                            <div class="flex items-center">
-                                                <input id="price-1" name="price" value="5000-10000" type="checkbox"
-                                                    class="price-checkbox h-4 w-4 rounded border-gray-300  text-blue-600 focus:ring-blue-500">
-                                                <label for="price-1"
-                                                    class="ml-3 text-sm text-gray-600">5,000-10,000</label>
-                                            </div>
-                                            <div class="flex items-center">
-                                                <input id="price-2" name="price" value="10000-25000"
-                                                    type="checkbox"
-                                                    class="price-checkbox h-4 w-4 rounded border-gray-300  text-blue-600 focus:ring-blue-500">
-                                                <label for="price-2"
-                                                    class="ml-3 text-sm text-gray-600">10,000-25,000</label>
-                                            </div>
-                                            <div class="flex items-center">
-                                                <input id="price-3" name="price" value="25000-50000"
-                                                    type="checkbox"
-                                                    class="price-checkbox h-4 w-4 rounded border-gray-300  text-blue-600 focus:ring-blue-500">
-                                                <label for="price-3"
-                                                    class="ml-3 text-sm text-gray-600">25,000-50,000</label>
-                                            </div>
-                                            <div class="flex items-center">
-                                                <input id="price-4" name="price" value="50000-100000"
-                                                    type="checkbox"
-                                                    class="price-checkbox h-4 w-4 rounded border-gray-300  text-blue-600 focus:ring-blue-500">
-                                                <label for="price-4"
-                                                    class="ml-3 text-sm text-gray-600">50,000-100,000</label>
-                                            </div>
-                                            <div class="flex items-center">
-                                                <input id="price-5" name="price" value=">100000" type="checkbox"
-                                                    class="price-checkbox h-4 w-4 rounded border-gray-300  text-blue-600 focus:ring-blue-500">
-                                                <label for="price-5"
-                                                    class="ml-3 text-sm text-gray-600">&gt;100,000</label>
-                                            </div>
+                                            @php
+                                                $priceRanges = [
+                                                    '<5000' => '<5,000',
+                                                    '5000-10000' => '5,000-10,000',
+                                                    '10000-25000' => '10,000-25,000',
+                                                    '25000-50000' => '25,000-50,000',
+                                                    '50000-100000' => '50,000-100,000',
+                                                    '>100000' => '>100,000',
+                                                ];
+                                            @endphp
+                                            @foreach ($priceRanges as $value => $label)
+                                                <div class="flex items-center">
+                                                    <input id="price-{{ $loop->index }}" name="price"
+                                                        value="{{ $value }}" type="radio"
+                                                        {{ request('price') == $value ? 'checked' : '' }}
+                                                        class="auto-submit h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500">
+                                                    <label for="price-{{ $loop->index }}"
+                                                        class="ml-3 text-sm text-gray-600">{{ $label }}</label>
+                                                </div>
+                                            @endforeach
                                         </div>
                                     </fieldset>
                                 </div>

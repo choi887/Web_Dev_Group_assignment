@@ -4,7 +4,7 @@
     </x-slot:titleName>
     <section class="bg-white ">
         <div class="py-8 px-4 mx-auto max-w-screen-xl w-full">
-            <x-filter item="event" :filters="['category', 'date', 'food', 'price']">
+            <x-filter item="event" :filters="['category', 'date', 'logistics', 'price']">
                 <x-event-list :events="$events" />
             </x-filter>
         </div>

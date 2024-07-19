@@ -94,7 +94,7 @@ class PackageController extends Controller
 
     public function showAdminPackageList(Request $request)
     {
-        $packages = $this->getAllPackages();
+        $packages = $this->getAllPackages($request);
 
         foreach ($packages as $package) {
             if ($package->is_active == '1') {
@@ -113,7 +113,7 @@ class PackageController extends Controller
 
     public function showPackageList(Request $request)
     {
-        $packages = $this->getAllPackages();
+        $packages = $this->getAllPackages($request);
         return view('package-list', [
             'packages' => $packages,
         ]);
@@ -135,10 +135,21 @@ class PackageController extends Controller
     }
 
 
-    public function getAllPackages()
+    public function getAllPackages(Request $request)
     {
         try {
-            $packages = Package::orderBy('created_at', 'desc')->paginate(10);
+            $filters = [
+                'date_range' => [
+                    'start' => $request->start_date,
+                    'end' => $request->end_date,
+                ],
+                'price' => $request->price,
+            ];
+
+            $packages = Package::applyFilters($filters)
+                ->orderBy('created_at', 'desc')
+                ->paginate(10);
+
             return $packages;
         } catch (Exception $e) {
             Log::error("Error fetching packages: " . $e->getMessage());

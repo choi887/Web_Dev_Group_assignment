@@ -111,7 +111,7 @@ class EventController extends Controller
 
     public function showAdminEventList(Request $request)
     {
-        $events = $this->getAllEvents();
+        $events = $this->getAllEvents($request);
         return view('event-admin-list', [
             'events' => $events,
         ]);
@@ -119,7 +119,7 @@ class EventController extends Controller
 
     public function showEventList(Request $request)
     {
-        $events = $this->getAllEvents(null, $request);
+        $events = $this->getAllEvents($request);
 
         if ($request->ajax()) {
             return view('components.event-list', [
@@ -147,60 +147,27 @@ class EventController extends Controller
     }
 
 
-    public function getAllEvents($categoryId = null, Request $request = null)
+    public function getAllEvents(Request $request)
     {
         try {
-            $query = Event::query()->with('category')->orderBy('created_at', 'desc');
-            if ($categoryId) {
-                $query->where('category_id', $categoryId);
-            }
+            $filters = [
+                'date_range' => [
+                    'start' => $request->start_date,
+                    'end' => $request->end_date,
+                ],
+                'price' => $request->price,
+                'categories' => $request->categories,
+                'logistics' => [
+                    'food' => $request->food,
+                    'transportation' => $request->transportation,
+                    'lodging' => $request->lodging,
+                ],
+            ];
 
-            if ($request) {
-                // filter the categories
-                if ($request->has('categories')) {
-                    $query->whereIn('category_id', $request->categories);
-                }
-
-                // filter between the dates
-                if ($request->filled('start_date') && $request->filled('end_date')) {
-                    $query->whereBetween('start_date', [$request->start_date, $request->end_date])->whereBetween('end_date', [$request->start_date, $request->end_date]);
-                }
-                if ($request->filled('food')) {
-                    $query->where('food', '=', '1');
-                }
-                if ($request->filled('transportation')) {
-                    $query->where('transportation', '=', '1');
-                }
-                if ($request->filled('lodging')) {
-                    $query->where('lodging', '=', '1');
-                }
-                // filter betw
-                if ($request->filled('price')) {
-                    $priceRange = $request->price;
-                    switch ($priceRange) {
-                        case '<5000':
-                            $query->where('price', '<', 5000);
-                            break;
-                        case '5000-10000':
-                            $query->whereBetween('price', [5000, 10000]);
-                            break;
-                        case '10000-25000':
-                            $query->whereBetween('price', [10000, 25000]);
-                            break;
-                        case '25000-50000':
-                            $query->whereBetween('price', [25000, 50000]);
-                            break;
-                        case '50000-100000':
-                            $query->whereBetween('price', [50000, 100000]);
-                            break;
-                        case '>100000':
-                            $query->where('price', '>', 100000);
-                            break;
-                    }
-                }
-            }
-
-            $events = $query->paginate(10);
+            $events = Event::with('category')
+                ->applyFilters($filters)
+                ->orderBy('created_at', 'desc')
+                ->paginate(10);
 
             return $events;
         } catch (Exception $e) {
