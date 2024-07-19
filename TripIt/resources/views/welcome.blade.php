@@ -1,6 +1,6 @@
 <x-header>
     <x-slot:titleName>
-        Welcome page - TripIt
+        Welcome - TripIt
     </x-slot:titleName>
     <section class="bg-white ">
         <div
