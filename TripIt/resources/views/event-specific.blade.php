@@ -34,7 +34,7 @@
         </nav>
 
         <div class="pb-8 px-4 mx-auto max-w-screen-xl w-full">
-            <div href="#" class="my-4 flex flex-col bg-white rounded-lg  md:flex-row w-full">
+            <div class="my-4 flex flex-col bg-white rounded-lg  md:flex-row w-full">
                 <div class="flex flex-col justify-between leading-normal p-5 w-full  md:w-3/5">
                     <div class="mb-2">
                         <h2 class=" text-3xl tracking-tight font-extrabold button-text-color flex">
@@ -229,7 +229,8 @@
                 <!-- event image -->
                 <div class="relative w-full md:w-2/5 m-0 overflow-hidden ">
                     <img src="{{ asset('storage/' . $event->cover_image_path) }}"
-                        class="object-cover w-full h-64 md:h-full rounded-lg" alt="Owl image" />
+                        class="object-cover w-full h-64 md:h-96 md:w-96 xl:h-ful xl:w-full rounded-lg"
+                        alt="Owl image" />
                 </div>
             </div>
 
