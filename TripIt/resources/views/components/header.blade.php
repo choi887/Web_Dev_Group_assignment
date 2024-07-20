@@ -62,7 +62,7 @@
                                             {{ __('Dashboard') }}
                                         </x-dropdown-link>
                                     @else
-                                        <x-dropdown-link :href="route('order')" :active="request()->routeIs('order')">
+                                        <x-dropdown-link :href="route('order-list')" :active="request()->routeIs('order-list')">
                                             {{ __('My Orders') }}
                                         </x-dropdown-link>
                                     @endif

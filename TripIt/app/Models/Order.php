@@ -27,4 +27,13 @@ class Order extends Model
     {
         return $this->belongsTo(User::class);
     }
+    public function event()
+    {
+        return $this->belongsTo(Event::class, 'item_id');
+    }
+
+    public function package()
+    {
+        return $this->belongsTo(Package::class, 'item_id');
+    }
 }

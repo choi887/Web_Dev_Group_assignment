@@ -7,11 +7,11 @@
         @foreach ($events as $event)
             <div class="event-list-container">
                 <a href="{{ route('event-specific', ['category' => $event->category->name, 'event_id' => $event->id]) }}"
-                    class="my-4 flex flex-col bg-white rounded-lg shadow md:flex-row w-full hover:bg-gray-100">
+                    class="my-4 flex flex-col bg-white rounded-lg shadow-md border border-gray-100 md:flex-row w-full hover:bg-gray-100">
                     <div
                         class="relative w-full md:w-2/5 m-0 overflow-hidden rounded-t-lg md:rounded-l-lg md:rounded-tr-none">
-                        <img src="{{ asset('storage/' . $event->cover_image_path) }}" class="object-cover w-full h-48"
-                            alt="Owl image" />
+                        <img src="{{ asset('storage/' . $event->cover_image_path) }}"
+                            class="object-cover w-full h-50 md:h-full" alt="Owl image" />
                     </div>
 
                     <div class=" flex flex-col justify-between leading-normal p-4 w-full md:w-3/5">
@@ -32,6 +32,9 @@
                             </div>
                             <p class="font-normal text-gray-600">
                                 Date: {{ $event->start_date }} to {{ $event->end_date }}
+                            </p>
+                            <p class="font-normal text-gray-600 line-clamp-2">
+                                {{ $event->description }}
                             </p>
                         </div>
                         <div class="flex flex-row mb-5">

@@ -12,11 +12,11 @@
                 @else
                     @foreach ($packages as $package)
                         <div><a href="{{ route('package-specific', ['package_id' => $package->id]) }}"
-                                class="my-4 flex flex-col bg-white rounded-lg shadow md:flex-row w-full hover:bg-gray-100">
+                                class="my-4 flex flex-col bg-white rounded-lg border border-gray-100 shadow-md md:flex-row w-full hover:bg-gray-100">
                                 <div
                                     class="relative w-full md:w-2/5 m-0 overflow-hidden rounded-t-lg md:rounded-l-lg md:rounded-tr-none">
                                     <img src="{{ asset('storage/' . $package->cover_image_path) }}"
-                                        class="object-cover w-full h-48 md:h-full" alt="Owl image" />
+                                        class="object-cover w-full h-50 md:h-full" alt="Owl image" />
                                 </div>
 
                                 <div class="flex flex-col justify-between leading-normal p-4 w-full md:w-3/5">

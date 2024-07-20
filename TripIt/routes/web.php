@@ -18,6 +18,7 @@ Route::get('/event-list', [EventController::class, 'showEventList'])->name('even
 Route::get('/event-list/{category}/{event_id}', [EventController::class, 'showEvent'])->name('event-specific');
 Route::get('/package-list', [PackageController::class, 'showPackageList'])->name('package-list');
 Route::get('/package-list/{package_id}', [PackageController::class, 'showPackage'])->name('package-specific');
+Route::get('/order-list', [OrderController::class, 'showOrderPage'])->name('order-list');
 Route::get('/faq', function () {
     return view('faq');
 })->name('faq');

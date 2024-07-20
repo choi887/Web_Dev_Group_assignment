@@ -6,7 +6,7 @@
                 <!-- Logo -->
                 <div class="shrink-0 flex items-center">
                     @if (Auth::user()->role_id == 1)
-                        <a href="{{ route('order') }}">
+                        <a href="{{ route('welcome') }}">
                             <x-application-logo class="block h-9 w-auto fill-current text-gray-800" />
                             <!-- remember to change to order page -->
                         </a>
@@ -20,8 +20,8 @@
                 <!-- Navigation Links after the logo start-->
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                     @if (Auth::user()->role_id == 1)
-                        <x-nav-link :href="route('order')" :active="request()->routeIs('order')">
-                            {{ __('My Orders') }}
+                        <x-nav-link :href="route('welcome')" :active="request()->routeIs('welcome')">
+                            {{ __('Homepage') }}
                         </x-nav-link>
                     @else
                         <x-nav-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
@@ -98,15 +98,11 @@
                             <x-dropdown-link :href="route('dashboard')" :active="request()->routeIs('dashboard')">
                                 {{ __('Dashboard') }}
                             </x-dropdown-link>
-                        @else
-                            <x-dropdown-link :href="route('order')" :active="request()->routeIs('order')">
-                                {{ __('My Orders') }}
-                            </x-dropdown-link>
                         @endif
                         <x-dropdown-link :href="route('profile.edit')">
                             {{ __('Profile') }}
                         </x-dropdown-link>
-                        <x-dropdown-link :href="route('welcome')"> {{ __('Main Page') }}</x-dropdown-link>
+                        <x-dropdown-link :href="route('welcome')"> {{ __('Homepage') }}</x-dropdown-link>
                         <!-- Authentication -->
                         <form method="POST" action="{{ route('logout') }}">
                             @csrf

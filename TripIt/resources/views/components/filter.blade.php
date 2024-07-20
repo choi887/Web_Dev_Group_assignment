@@ -5,8 +5,16 @@
     <div>
         <main class="mx-auto px-4 py-4 ">
             <div class="border-b border-gray-200 pb-10">
-                <h1 class="text-4xl font-bold tracking-tight button-text-color">New {{ ucfirst($item) }}s</h1>
-                <p class="mt-4 text-base text-gray-500">Check out the latest release of our new {{ $item }}s!</p>
+
+                @if ($item == 'order')
+                    <h1 class="text-4xl font-bold tracking-tight button-text-color">Your Order History</h1>
+                    <p class="mt-4 text-base text-gray-500">Browse your ordered items here !</p>
+                @else
+                    <h1 class="text-4xl font-bold tracking-tight button-text-color">New {{ ucfirst($item) }}s</h1>
+                    <p class="mt-4 text-base text-gray-500">Check out the latest release of our new {{ $item }}s!
+                    </p>
+                @endif
+
             </div>
 
             <div class="pt-4 lg:grid lg:grid-cols-3 lg:gap-x-8 xl:grid-cols-4">
