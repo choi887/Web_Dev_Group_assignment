@@ -12,7 +12,7 @@ class WelcomeController extends Controller
     public function showWelcome(Request $request)
     {
         $packages = Package::inRandomOrder()->take(3)->get();
-        $events = Event::inRandomOrder()->take(3)->get();
+        $events = Event::query()->orderBy('created_at', 'desc')->take(3)->get();
         return view('welcome', [
             'events' => $events,
             'packages' => $packages,

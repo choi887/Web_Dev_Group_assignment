@@ -236,31 +236,48 @@
             Included Events
         </h2>
 
-        <div class="mx-auto items-center gap-4 grid md:grid-cols-3 max-w-screen-xl">
-            @foreach ($events as $event)
-                <x-card :item="$event" type="event" />
-            @endforeach
+        <div class="mx-auto mt-6 max-w-7xl px-2 flex gap-20 justify-center">
+            <div class="slideshow-event-container overflow-hidden relative">
+                <div class="slideshow-event-track pb-4 ">
+                    @foreach ($events as $event)
+                        <div class="slideshow-event-item flex-shrink-0 w-full md:w-1/3 p-4">
+                            <x-card :item="$event" type="event" />
+                        </div>
+                    @endforeach
+                </div>
+                <button id="prev-event-button" class="slideshow-event-button event-prev ">&#10094;</button>
+                <button id="next-event-button" class="slideshow-event-button event-next">&#10095;</button>
+            </div>
         </div>
-
         <h2 class="mx-auto mt-20 text-3xl tracking-tight font-extrabold button-text-color max-w-screen-xl">
             Gallery
         </h2>
 
         <!-- Image gallery -->
-        <div class="mx-auto mt-6 max-w-7xl px-2 flex gap-24">
-            @foreach ($events as $event)
-                @if ($event->gallery->first())
-                    <div class="w-100 h-64 sm:overflow-hidden sm:rounded-lg">
-                        <img src="{{ asset('storage/' . $event->gallery->first()->image_path) }}"
-                            alt="Model wearing plain white basic tee."
-                            class="h-full w-full object-cover object-center">
-                    </div>
-                @endif
-            @endforeach
+
+        <div class="mx-auto mt-6 max-w-7xl px-2 flex gap-20 justify-center">
+            <div class="slideshow-package-container overflow-hidden relative">
+                <div class="slideshow-package-track">
+                    <!-- Add your slideshow items here -->
+                    @foreach ($events as $event)
+                        @if ($event->gallery->first())
+                            <div class="slideshow-package-item w-100 h-64 sm:overflow-hidden sm:rounded-lg">
+                                <img src="{{ asset('storage/' . $event->gallery->first()->image_path) }}"
+                                    alt="Model wearing plain white basic tee."
+                                    class="h-full w-full object-cover object-center">
+                            </div>
+                        @endif
+                    @endforeach
+                    <!-- Add more items as needed -->
+                </div>
+                <button id="prev-package-button" class="slideshow-package-button package-prev ">&#10094;</button>
+                <button id="next-package-button" class="slideshow-package-button package-next">&#10095;</button>
+            </div>
         </div>
+        <!-- Image Gallery end -->
 
         <h2 class="mx-auto mt-20 mb-4 text-3xl tracking-tight font-extrabold button-text-color max-w-screen-xl">
-            Similar Packages
+            Check Out Other Packages
         </h2>
 
         <!-- Similar Packages -->
@@ -281,3 +298,71 @@
 
     </x-footer>
 </x-header>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const track = document.querySelector('.slideshow-package-track');
+        const items = document.querySelectorAll('.slideshow-package-item');
+        const prevButton = document.getElementById('prev-package-button');
+        const nextButton = document.getElementById('next-package-button');
+
+        const itemWidth = items[0].offsetWidth + 17;
+        const itemsPerScreen = 3; // can adjust to show num of card
+        let currentIndex = 0;
+
+        function updateSlideshow() {
+            const offset = -currentIndex * itemWidth;
+            track.style.transform = `translateX(${offset}px)`;
+        }
+
+        function moveNext() {
+            if (currentIndex < items.length - itemsPerScreen) {
+                currentIndex++;
+                updateSlideshow();
+            }
+        }
+
+        function movePrev() {
+            if (currentIndex > 0) {
+                currentIndex--;
+                updateSlideshow();
+            }
+        }
+
+        nextButton.addEventListener('click', moveNext);
+        prevButton.addEventListener('click', movePrev);
+    });
+</script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const track = document.querySelector('.slideshow-event-track');
+        const items = document.querySelectorAll('.slideshow-event-item');
+        const prevButton = document.getElementById('prev-event-button');
+        const nextButton = document.getElementById('next-event-button');
+
+        const itemWidth = items[0].offsetWidth + 17;
+        const itemsPerScreen = 3; // can adjust to show num of card
+        let currentIndex = 0;
+
+        function updateSlideshow() {
+            const offset = -currentIndex * itemWidth;
+            track.style.transform = `translateX(${offset}px)`;
+        }
+
+        function moveNext() {
+            if (currentIndex < items.length - itemsPerScreen) {
+                currentIndex++;
+                updateSlideshow();
+            }
+        }
+
+        function movePrev() {
+            if (currentIndex > 0) {
+                currentIndex--;
+                updateSlideshow();
+            }
+        }
+
+        nextButton.addEventListener('click', moveNext);
+        prevButton.addEventListener('click', movePrev);
+    });
+</script>

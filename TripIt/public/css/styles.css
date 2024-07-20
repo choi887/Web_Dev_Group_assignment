@@ -102,3 +102,74 @@
 .next {
     right: 10px;
 }
+.slideshow-package-container {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+}
+
+.slideshow-package-track {
+    display: flex;
+    transition: transform 0.5s ease;
+    background-color: white;
+}
+
+.slideshow-package-item {
+    flex: 0 0 calc(33.333% - 20px); /* Adjust based on how many items you want visible */
+    margin: 0 10px;
+    /* Add your item styling here */
+}
+
+.slideshow-package-button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.pacakge-prev {
+    left: 10px;
+}
+.package-next {
+    right: 10px;
+}
+
+.slideshow-event-container {
+    position: relative;
+    width: 100%;
+    overflow: hidden;
+}
+
+.slideshow-event-track {
+    display: flex;
+    transition: transform 0.5s ease;
+    background-color: white;
+}
+
+.slideshow-event-item {
+    flex: 0 0 calc(33.333% - 20px); /* Adjust based on how many items you want visible */
+    margin: 0 10px;
+    /* Add your item styling here */
+}
+
+.slideshow-event-button {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+}
+
+.event-prev {
+    left: 10px;
+}
+.event-next {
+    right: 10px;
+}

@@ -30,15 +30,17 @@ class PackageController extends Controller
             $data = $request->validate([ // from the form submission first
                 'name' => 'required|string|max:255',
                 'price' => 'required|numeric|min:0',
+                'phone_number' => 'nullable|string|max:50',
                 'description' => 'required|string|max:3000',
                 'cover_image' => 'required|image|mimes:jpeg,png,jpg,gif|max:8000|dimensions:min_width=800,min_height=600',
                 'selected_events' => 'required|string',
             ]);
-
+            $data['created_by'] =  $request->user()->name;
 
             $selectedEvents = $request->input('selected_events');
             $selectedEvents = json_decode($selectedEvents, true); // decode first
             unset($data['selected_events']);
+
             if ($request->hasFile('cover_image')) {
 
                 $file = $request->file('cover_image');

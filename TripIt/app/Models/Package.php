@@ -19,6 +19,9 @@ class Package extends Model
         'end_date',
         'description',
         'cover_image_path',
+        'created_by',
+        'phone_number',
+
     ];
     public function packageEventsList(): HasMany
     {
