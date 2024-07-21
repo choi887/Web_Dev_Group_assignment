@@ -91,7 +91,7 @@ class PackageController extends Controller
         } //try end
         catch (Exception $e) {
             Log::error("Error storing event: " . $e->getMessage());
-            return redirect()->back()->with('fail', "{$e->getMessage()}");
+            return redirect()->back()->with('fail', "{$e->getMessage()}")->withInput();
         }
     }
 

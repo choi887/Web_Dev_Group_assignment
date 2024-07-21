@@ -37,11 +37,17 @@
                                                 class="w-2 h-2 me-1 {{ $order->bg_color_2 }} rounded-full animate-pulse"></span>
                                             {{ $order->status }}
                                         </span>
-
-                                        <p class="font-normal text-gray-600">
-                                            Event Date: {{ $order->item->start_date }} to
-                                            {{ $order->item->end_date }}
-                                        </p>
+                                        @if (class_basename($order->item) == 'Package')
+                                            <p class="font-normal text-gray-600 mt-1">
+                                                Package Date: {{ $order->item->start_date }} to
+                                                {{ $order->item->end_date }}
+                                            </p>
+                                        @else
+                                            <p class="font-normal text-gray-600 mt-1">
+                                                Event Date: {{ $order->item->start_date }} to
+                                                {{ $order->item->end_date }}
+                                            </p>
+                                        @endif
                                         <p class="font-normal text-gray-600">
                                             Order Date : {{ $order->order_date }}
                                         </p>

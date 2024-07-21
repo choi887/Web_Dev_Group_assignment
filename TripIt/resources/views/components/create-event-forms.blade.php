@@ -14,7 +14,7 @@
                     <div class="mt-2">
                         <input type="text" name="name" id="name"
                             class=" border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 "
-                            placeholder="Type Event name" required="">
+                            placeholder="Type Event name" required="" value="{{ old('name') }}">
                     </div>
                 </div>
                 <!-- name end -->
@@ -32,7 +32,7 @@
                         </div>
                         <input type="text" id="phone_number" name="phone_number"
                             class=" border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5 sm:w- "
-                            placeholder="123-456-7890" required />
+                            placeholder="123-456-7890" required value="{{ old('phone_number') }}" />
                     </div>
                 </div>
                 <div class="sm:col-span-4">
@@ -40,7 +40,7 @@
                     <input type="number" name="price" id="price"
                         class="border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 "
                         required="" min="0" step=".01" pattern="^\d+(\.\d{1,2})?$"
-                        oninput="validateDecimal(this)" placeholder="Example: 1000.50">
+                        oninput="validateDecimal(this)" placeholder="Example: 1000.50" value="{{ old('price') }}">
                 </div>
                 <!-- phone end -->
                 <x-category-dropdown />
@@ -59,7 +59,7 @@
                         </div>
                         <input id="address" name="address" type="text"
                             class="border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5 "
-                            placeholder="Enter Your Address here">
+                            placeholder="Enter Your Address here" value="{{ old('address') }}">
                     </div>
                 </div>
                 <div class="sm:col-span-4">
@@ -74,7 +74,7 @@
                         </div>
                         <input id="start_date" name="start_date" type="date"
                             class="border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5 "
-                            placeholder="Select date">
+                            placeholder="Select date" value="{{ old('start_date') }}">
                     </div>
                 </div>
                 <div class="sm:col-span-4">
@@ -89,7 +89,7 @@
                         </div>
                         <input id="end_date" name="end_date" type="date"
                             class="border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5 "
-                            placeholder="Select date">
+                            placeholder="Select date" value="{{ old('end_date') }}">
                     </div>
                 </div>
                 <!-- checkboxes start -->
@@ -97,14 +97,16 @@
                     <div class="sm:col-span-2">
                         <input type="hidden" name="food" value="0">
                         <input id="food-checkbox" type="checkbox" name="food" value="1"
-                            class="w-4 h-4 text-blue-600  border-gray-300 rounded focus:ring-blue-600 focus:ring-1 ">
+                            class="w-4 h-4 text-blue-600  border-gray-300 rounded focus:ring-blue-600 focus:ring-1 "
+                            {{ old('food') ? 'checked' : '' }}>
                         <label for="food-checkbox" class="ms-2 text-sm font-medium text-gray-900 ">Food
                             Provided</label>
                     </div>
                     <div class="sm:col-span-2">
                         <input type="hidden" name="transportation" value="0">
                         <input id="transportation-checkbox" type="checkbox" name="transportation" value="1"
-                            class="w-4 h-4 text-blue-600  border-gray-300 rounded focus:ring-blue-600 focus:ring-1 ">
+                            class="w-4 h-4 text-blue-600  border-gray-300 rounded focus:ring-blue-600 focus:ring-1 "
+                            {{ old('transportation') ? 'checked' : '' }}>
                         <label for="transportation-checkbox"
                             class="ms-2 text-sm font-medium text-gray-900 ">Transportation
                             Provided</label>
@@ -112,7 +114,8 @@
                     <div class="sm:col-span-2">
                         <input type="hidden" name="lodging" value="0">
                         <input id="lodging-checkbox" type="checkbox" name="lodging" value="1"
-                            class="w-4 h-4 text-blue-600  border-gray-300 rounded focus:ring-blue-600 focus:ring-1 ">
+                            class="w-4 h-4 text-blue-600  border-gray-300 rounded focus:ring-blue-600 focus:ring-1 "
+                            {{ old('lodging') ? 'checked' : '' }}>
                         <label for="lodging-checkbox" class="ms-2 text-sm font-medium text-gray-900 ">Lodging
                             Provided</label>
                     </div>
@@ -123,7 +126,7 @@
                     <label for="description" class="block mb-2 text-sm font-medium text-black">Description</label>
                     <textarea id="description" rows="4" name="description"
                         class="block p-2.5 w-full text-sm text-black  rounded-lg border border-gray-300 focus:ring-primary-500 focus:border-primary-500"
-                        placeholder="Write product description here" maxlength="5000"></textarea>
+                        placeholder="Write product description here" maxlength="5000">{{ old('description') }}</textarea>
                 </div>
             </div>
         </div>

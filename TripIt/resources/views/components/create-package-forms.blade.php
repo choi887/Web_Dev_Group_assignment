@@ -15,7 +15,7 @@
                     <div class="mt-2">
                         <input type="text" name="name" id="name"
                             class=" border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 "
-                            placeholder="Type Package name" required="">
+                            placeholder="Type Package name" required="" value="{{ old('name') }}">
                     </div>
                 </div>
                 <div class="sm:col-span-4">
@@ -23,7 +23,7 @@
                     <input type="number" name="price" id="price"
                         class="border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 "
                         required="" min="0" step=".01" pattern="^\d+(\.\d{1,2})?$"
-                        oninput="validateDecimal(this)" placeholder="Example: 1000.50">
+                        oninput="validateDecimal(this)" placeholder="Example: 1000.50" value="{{ old('price') }}">
                 </div>
                 <div class="sm:col-span-4">
                     <label for="phone_number" class="block mb-2 text-sm font-medium text-black">Phone
@@ -39,14 +39,14 @@
                         </div>
                         <input type="text" id="phone_number" name="phone_number"
                             class=" border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full ps-10 p-2.5 sm:w- "
-                            placeholder="123-456-7890" required />
+                            placeholder="123-456-7890" required value="{{ old('phone_number') }}" />
                     </div>
                 </div>
                 <div class="col-span-full">
                     <label for="description" class="block mb-2 text-sm font-medium text-black">Description</label>
                     <textarea id="description" rows="4" name="description"
                         class="block p-2.5 w-full text-sm text-black  rounded-lg border border-gray-300 focus:ring-primary-500 focus:border-primary-500"
-                        placeholder="Write product description here" maxlength="5000"></textarea>
+                        placeholder="Write product description here" maxlength="5000">{{ old('description') }}</textarea>
                 </div>
             </div>
         </div>
