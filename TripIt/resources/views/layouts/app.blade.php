@@ -16,6 +16,8 @@
     <link href="https://cdn.jsdelivr.net/npm/flowbite@2.4.1/dist/flowbite.min.css" rel="stylesheet" />
     <link rel="stylesheet" type="text/css" href="{{ url('/css/styles.css') }}">
     <link rel="icon" href="{{ asset('images/download.png') }}">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css" rel="stylesheet">
+
     <!-- Scripts -->
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
@@ -153,6 +155,7 @@
             }
         }
     </script>
+    <!-- scripts for category start -->
     <script>
         document.addEventListener('DOMContentLoaded', (event) => {
             const dropdownButton = document.getElementById('dropdownButton');
@@ -180,6 +183,7 @@
             });
         });
     </script>
+    <!-- scripts for category end -->
     <!-- scripts for package start -->
     <script>
         document.addEventListener('DOMContentLoaded', function() {
@@ -189,7 +193,21 @@
 
             // This will store the selected events as an array of objects
             let selectedEvents = [];
-
+            // Configure Toastr options (optional)
+            toastr.options = {
+                "closeButton": true,
+                "progressBar": true,
+                "positionClass": "toast-top-right",
+                "preventDuplicates": true,
+                "showDuration": "300",
+                "hideDuration": "1000",
+                "timeOut": "5000",
+                "extendedTimeOut": "1000",
+                "showEasing": "swing",
+                "hideEasing": "linear",
+                "showMethod": "fadeIn",
+                "hideMethod": "fadeOut"
+            };
             chooseEventButtons.forEach(button => {
                 button.addEventListener('click', function() {
                     const eventName = this.getAttribute('data-event-name');
@@ -212,8 +230,11 @@
                                 eventElement.textContent = event.name;
                                 selectedEventsContainer.appendChild(eventElement);
                             });
+                        // Show success notification
+                        toastr.success(`${eventName} has been selected.`,
+                            'Event Added');
                     } else {
-                        alert(`${eventName} is already selected`);
+                        toastr.warning(`${eventName} is already selected.`, 'Already Selected');
                     }
                 });
             });
@@ -223,6 +244,7 @@
     <!-- scripts for package end -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/flowbite@2.4.1/dist/flowbite.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
 </body>
 
 </html>

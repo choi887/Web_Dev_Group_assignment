@@ -183,3 +183,7 @@
 
     z-index: 1000; /* Ensure it's on top of other content */
 }
+
+#toast-container > div {
+    opacity: 1 !important;
+}

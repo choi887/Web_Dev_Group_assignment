@@ -168,7 +168,7 @@ class EventController extends Controller
             $events = Event::with('category')
                 ->applyFilters($filters)
                 ->orderBy('created_at', 'desc')
-                ->paginate(10);
+                ->paginate(7);
 
             return $events;
         } catch (Exception $e) {

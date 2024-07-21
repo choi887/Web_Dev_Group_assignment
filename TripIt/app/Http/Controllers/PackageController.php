@@ -153,7 +153,7 @@ class PackageController extends Controller
 
             $packages = Package::applyFilters($filters)
                 ->orderBy('created_at', 'desc')
-                ->paginate(10);
+                ->paginate(7);
 
             return $packages;
         } catch (Exception $e) {
