@@ -14,10 +14,10 @@
                     without any hassle.</p>
                 <div class="mt-10 space-x-4">
                     <a href="{{ route('package-list') }}"
-                        class=" button-bg-color text-white px-4 py-3 rounded-2xl transition hover:bg-blue-700">See
+                        class=" button-bg-color text-white px-4 py-3 rounded-2xl transition hover:bg-blue-700 font-bold">See
                         Packages</a>
                     <a href="{{ route('event-list') }}"
-                        class="secondary-button button-text-color px-4 py-3 rounded-2xl transition">See
+                        class="secondary-button button-text-color px-4 py-3 rounded-2xl transition font-bold">See
                         Events</a>
                 </div>
             </div>
