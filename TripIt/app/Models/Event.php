@@ -30,6 +30,7 @@ class Event extends Model
         'address',
         'start_date',
         'end_date',
+        'current_num_pax',
         'created_by',
 
     ];

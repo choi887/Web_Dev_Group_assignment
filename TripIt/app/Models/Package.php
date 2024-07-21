@@ -19,6 +19,7 @@ class Package extends Model
         'end_date',
         'description',
         'cover_image_path',
+        'current_num_pax',
         'created_by',
         'phone_number',
 

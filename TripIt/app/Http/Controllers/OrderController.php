@@ -71,7 +71,7 @@ class OrderController extends Controller
             if ($status === 'ongoing') {
                 $order->bg_color_1 = 'bg-green-200';
                 $order->bg_color_2 = 'bg-green-500';
-                $order->text_color = 'text-green-800';
+                $order->text_color = 'text-green-700';
             } elseif ($status === 'cancelled') {
                 $order->bg_color_1 = 'bg-red-200';
                 $order->bg_color_2 = 'bg-red-500';

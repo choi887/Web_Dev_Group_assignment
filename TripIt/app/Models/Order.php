@@ -17,7 +17,9 @@ class Order extends Model
         'item_id',
         'user_id',
         'type',
-        'number_pax'
+        'number_pax',
+        'type',
+        'status',
     ];
     protected $casts = [
         'status' => OrderStatus::class,
@@ -51,5 +53,23 @@ class Order extends Model
         ];
 
         $this->attributes['type'] = $map[$value] ?? $value;
+    }
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::created(function ($order) {
+            if ($order->type === Event::class) {
+                $event = Event::find($order->item_id);
+                if ($event) {
+                    $event->increment('current_num_pax', $order->number_pax);
+                }
+            } elseif ($order->type === Package::class) {
+                $package = Package::find($order->item_id);
+                if ($package) {
+                    $package->increment('current_num_pax', $order->number_pax);
+                }
+            }
+        });
     }
 }

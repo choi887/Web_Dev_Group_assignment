@@ -53,6 +53,26 @@
         }
     </script>
     <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const eventForm = document.getElementById('form_create');
+            const submitButton = document.getElementById('submitButton');
+            const spinner = document.getElementById('spinner');
+
+            eventForm.addEventListener('submit', function(e) {
+
+                // Show spinner and disable the button
+                spinner.classList.remove('hidden');
+                submitButton.disabled = true;
+
+                // Timeout to hide spinner after 5 seconds
+                setTimeout(() => {
+                    spinner.classList.add('hidden');
+                    submitButton.disabled = false;
+                }, 20000);
+            });
+        });
+    </script>
+    <script>
         var loadFile = function(event) {
             var input = event.target;
             var file = input.files[0]; // always the first file

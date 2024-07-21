@@ -8,6 +8,7 @@ use App\Models\Order;
 use App\Models\Gallery;
 use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Intervention\Image\ImageManager;
@@ -43,7 +44,7 @@ class EventController extends Controller
                 'transportation' => 'boolean',
                 'lodging' => 'boolean',
                 'description' => 'required|string|max:3000',
-                'cover_image' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048|dimensions:min_width=700,min_height=500',
+                'cover_image' => 'required|image|mimes:jpeg,png,jpg,gif|max:5000|dimensions:min_width=700,min_height=500',
                 'multiple_file_upload.*' => 'image|mimes:jpeg,png,jpg,gif|max:10240|dimensions:min_width=700,min_height=500', // 10MB max size for each file
             ]);
             $data['created_by'] =  $request->user()->name;
@@ -133,11 +134,12 @@ class EventController extends Controller
 
     public function showEvent(Request $request)
     {
-        $result = $this->getSpecificEvent($request->event_id);
+        $result = $this->getSpecificEvent($request->event_id, Auth::id(), 'event');
 
         if (is_array($result) && isset($result['event'])) {
             return view('event-specific', [
                 'event' => $result['event'],
+                'orders' => $result['orders'],
                 'similarEvents' => $result['similarEvents'],
             ]);
         } else {
@@ -178,7 +180,7 @@ class EventController extends Controller
         }
     }
 
-    public function getSpecificEvent($eventId)
+    public function getSpecificEvent($eventId, $user_id, $type)
     {
         try {
             if (!$eventId) {
@@ -208,9 +210,10 @@ class EventController extends Controller
                 ->inRandomOrder()
                 ->take(3)
                 ->get();
-
+            $order = Order::query()->where('user_id', $user_id)->where('type', $type)->where('item_id', $eventId)->first();
             return [
                 'event' => $event,
+                'orders' => $order,
                 'similarEvents' => $similarEvents,
             ];
         } catch (Exception $e) {
@@ -228,7 +231,7 @@ class EventController extends Controller
             $validator = Validator::make($request->all(), [
                 'event_id' => 'required|integer',
                 'user_id' => 'required|integer',
-                'number_pax' => 'required|min:1|max:10'
+                'number_pax' => 'required|min:1|max:10',
             ]);
 
             if ($validator->fails()) {
@@ -241,6 +244,7 @@ class EventController extends Controller
                 'number_pax' => $request->number_pax,
                 'type' => 'event',
                 'order_date' => now(),
+
             ];
             Order::create($orderInputData);
 

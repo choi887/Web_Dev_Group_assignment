@@ -7,6 +7,7 @@ use App\Models\Order;
 use App\Models\Package;
 use Illuminate\Http\Request;
 use App\Models\PackageEventsList;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
@@ -123,12 +124,14 @@ class PackageController extends Controller
 
     public function showPackage(Request $request)
     {
-        $result = $this->getSpecificPackage($request->package_id);
+
+        $result = $this->getSpecificPackage($request->package_id, Auth::id(), 'package');
 
         if (is_array($result) && isset($result['package'])) {
             return view('package-specific', [
                 'package' => $result['package'],
                 'events' => $result['events'],
+                'orders' => $result['orders'],
                 'similarPackages' => $result['similarPackages'],
             ]);
         } else {
@@ -162,7 +165,7 @@ class PackageController extends Controller
         }
     }
 
-    public function getSpecificPackage($packageId)
+    public function getSpecificPackage($packageId, $user_id, $type)
     {
         try {
             if (!$packageId) {
@@ -190,10 +193,13 @@ class PackageController extends Controller
                 ->take(3)
                 ->get();
 
+            $order = Order::query()->where('user_id', $user_id)->where('type', $type)->where('item_id', $packageId)->first();
+
             return [
                 'success' => true,
                 'package' => $package,
                 'events' => $events,
+                'orders' => $order,
                 'similarPackages' => $similarPackages
             ];
         } catch (Exception $e) {
