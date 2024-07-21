@@ -3,13 +3,14 @@
 namespace App\Models;
 
 use App\OrderStatus;
+use App\Traits\Filterable;
 use App\Type;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class Order extends Model
 {
-    use HasFactory;
+    use HasFactory, Filterable;
     protected $table = 'order';
     protected $fillable = [
         'order_date',
@@ -20,20 +21,35 @@ class Order extends Model
     ];
     protected $casts = [
         'status' => OrderStatus::class,
-        'type' => Type::class,
     ];
 
     public function user()
     {
         return $this->belongsTo(User::class);
     }
-    public function event()
+
+    public function item()
     {
-        return $this->belongsTo(Event::class, 'item_id');
+        return $this->morphTo(__FUNCTION__, 'type', 'item_id');
     }
 
-    public function package()
+    public function getTypeAttribute($value)
     {
-        return $this->belongsTo(Package::class, 'item_id');
+        $map = [
+            'event' => Event::class,
+            'package' => Package::class,
+        ];
+
+        return $map[$value] ?? $value;
+    }
+
+    public function setTypeAttribute($value)
+    {
+        $map = [
+            Event::class => 'event',
+            Package::class => 'package',
+        ];
+
+        $this->attributes['type'] = $map[$value] ?? $value;
     }
 }

@@ -42,4 +42,9 @@ class Event extends Model
     {
         return $this->hasMany(Gallery::class);
     }
+
+    public function orders()
+    {
+        return $this->morphMany(Order::class, 'item');
+    }
 }

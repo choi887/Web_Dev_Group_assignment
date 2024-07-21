@@ -12,6 +12,14 @@ use Illuminate\Support\Facades\Log;
 
 class OrderController extends Controller
 {
+    public function showAdminOrderList(Request $request)
+    {
+        $orders = $this->getOrders($request);
+
+        return view('order-admin-list', [
+            'orders' => $orders,
+        ]);
+    }
     public function showOrderList(Request $request)
     {
         $orders = Order::query()->orderBy('created_at', 'desc')->take(8)->get();
@@ -20,34 +28,60 @@ class OrderController extends Controller
     }
     public function showOrderPage(Request $request)
     {
-        $orders = $this->getAllOrders($request);
-        return view('order-list', compact('orders'));
-    }
-    public function getAllOrders(Request $request)
-    {
         $user_id = Auth::user()->id;
+        $orders = $this->getOrders($request, $user_id);
 
+        return view('order-list', [
+            'orders' => $orders,
+        ]);
+    }
+    public function getOrders(Request $request, $userId = null)
+    {
         try {
             $filters = [
-                'date_range' => [
-                    'start' => $request->start_date,
-                    'end' => $request->end_date,
-                ],
-                'price' => $request->price,
+                'status' => $request->status,
+                'type' => $request->type,
             ];
-            $orders = Order::query()
-                ->with(['event', 'package'])
-                ->where('user_id', $user_id)
-                ->orderBy('created_at', 'desc')
-                ->paginate(10);
 
-            return $orders;
+            $query = Order::query()
+                ->with(['item', 'user'])
+                ->applyFilters($filters)
+                ->orderBy('created_at', 'desc');
+
+            if ($userId) {
+                $query->where('user_id', $userId);
+            }
+
+            $orders = $query->paginate(10);
+
+            return $this->orderColor($orders);
         } catch (Exception $e) {
-            Log::error("Error fetching packages: " . $e->getMessage());
+            Log::error("Error fetching orders: " . $e->getMessage());
             return response()->json([
                 'success' => false,
-                'message' => "Error fetching packages: " . $e->getMessage()
+                'message' => "Error fetching orders: " . $e->getMessage()
             ], 500);
         }
+    }
+
+    public function orderColor($orders)
+    {
+        foreach ($orders as $order) {
+            $status = $order->status->value;
+            if ($status === 'ongoing') {
+                $order->bg_color_1 = 'bg-green-200';
+                $order->bg_color_2 = 'bg-green-500';
+                $order->text_color = 'text-green-800';
+            } elseif ($status === 'cancelled') {
+                $order->bg_color_1 = 'bg-red-200';
+                $order->bg_color_2 = 'bg-red-500';
+                $order->text_color = 'text-red-800';
+            } else {
+                $order->bg_color_1 = 'bg-blue-200';
+                $order->bg_color_2 = 'bg-blue-500';
+                $order->text_color = 'text-blue-800';
+            }
+        }
+        return $orders;
     }
 }

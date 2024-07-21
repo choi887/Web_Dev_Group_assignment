@@ -69,34 +69,4 @@
             {{ $events->links('pagination') }}
         </div>
     @endif
-
-    <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            const form = document.getElementById('filter_form');
-            const autoSubmitInputs = form.querySelectorAll('.auto-submit');
-
-            autoSubmitInputs.forEach(input => {
-                input.addEventListener('change', function() {
-                    submitForm();
-                });
-            });
-
-            function submitForm() {
-                const formData = new FormData(form);
-                const searchParams = new URLSearchParams(formData);
-
-                // Remove empty parameters
-                for (const [key, value] of searchParams.entries()) {
-                    if (!value) {
-                        searchParams.delete(key);
-                    }
-                }
-
-                // Add a loading indicator if desired
-                // document.getElementById('loading-indicator').style.display = 'block';
-
-                window.location.search = searchParams.toString();
-            }
-        });
-    </script>
 </div>

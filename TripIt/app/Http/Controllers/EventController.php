@@ -239,6 +239,7 @@ class EventController extends Controller
                 'item_id' => $request->event_id,
                 'user_id' => $request->user_id,
                 'number_pax' => $request->number_pax,
+                'type' => 'event',
                 'order_date' => now(),
             ];
             Order::create($orderInputData);

@@ -131,6 +131,46 @@
                                     </fieldset>
                                 </div>
                             @endif
+
+                            @if (in_array('status', $filters))
+                                <div class="pt-4">
+                                    <fieldset>
+                                        <legend class="block text-sm font-medium text-gray-900">Status</legend>
+                                        <div class="space-y-3 pt-6">
+                                            @foreach (['finished', 'ongoing', 'cancelled'] as $status)
+                                                <div class="flex items-center">
+                                                    <input id="status-{{ $status }}" name="status[]"
+                                                        value="{{ $status }}" type="checkbox"
+                                                        {{ in_array($status, (array) request('status', [])) ? 'checked' : '' }}
+                                                        class="auto-submit h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500">
+                                                    <label for="status-{{ $status }}"
+                                                        class="ml-3 text-sm text-gray-600">{{ ucfirst($status) }}</label>
+                                                </div>
+                                            @endforeach
+                                        </div>
+                                    </fieldset>
+                                </div>
+                            @endif
+
+                            @if (in_array('type', $filters))
+                                <div class="pt-4">
+                                    <fieldset>
+                                        <legend class="block text-sm font-medium text-gray-900">Type</legend>
+                                        <div class="space-y-3 pt-6">
+                                            @foreach (['package', 'event'] as $type)
+                                                <div class="flex items-center">
+                                                    <input id="type-{{ $type }}" name="type[]"
+                                                        value="{{ $type }}" type="checkbox"
+                                                        {{ in_array($type, (array) request('type', [])) ? 'checked' : '' }}
+                                                        class="auto-submit h-4 w-4 rounded border-gray-300 text-blue-600 focus:ring-blue-500">
+                                                    <label for="type-{{ $type }}"
+                                                        class="ml-3 text-sm text-gray-600">{{ ucfirst($type) }}</label>
+                                                </div>
+                                            @endforeach
+                                        </div>
+                                    </fieldset>
+                                </div>
+                            @endif
                         </form>
                     </div>
                 </aside>
@@ -156,5 +196,29 @@
                 });
             });
         });
+    });
+
+    document.addEventListener('DOMContentLoaded', function() {
+        const form = document.getElementById('filter_form');
+        const autoSubmitInputs = form.querySelectorAll('.auto-submit');
+
+        autoSubmitInputs.forEach(input => {
+            input.addEventListener('change', function() {
+                submitForm();
+            });
+        });
+
+        function submitForm() {
+            const formData = new FormData(form);
+            const searchParams = new URLSearchParams(formData);
+
+            for (const [key, value] of searchParams.entries()) {
+                if (!value) {
+                    searchParams.delete(key);
+                }
+            }
+
+            window.location.search = searchParams.toString();
+        }
     });
 </script>

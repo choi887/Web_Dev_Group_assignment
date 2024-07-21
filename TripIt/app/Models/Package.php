@@ -32,4 +32,9 @@ class Package extends Model
     {
         return $this->belongsToMany(Event::class, 'package_events_list', 'package_id', 'event_id');
     }
+
+    public function orders()
+    {
+        return $this->morphMany(Order::class, 'item');
+    }
 }

@@ -11,7 +11,7 @@ enum OrderStatus: string
     public function label(): string
     {
         return match ($this) {
-            self::CANCELLED => 'Cancelled',
+            self::CANCELLED => 'cancelled',
             self::FINISHED => 'finished',
             self::ONGOING => 'ongoing',
         };

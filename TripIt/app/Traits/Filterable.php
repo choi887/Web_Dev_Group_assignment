@@ -24,6 +24,14 @@ trait Filterable
             $this->applyLogisticsFilter($query, $filters['logistics']);
         }
 
+        if (isset($filters['status'])) {
+            $this->applyStatusFilter($query, $filters['status']);
+        }
+
+        if (isset($filters['type'])) {
+            $this->applyTypeFilter($query, $filters['type']);
+        }
+
         return $query;
     }
 
@@ -34,16 +42,8 @@ trait Filterable
 
         if ($startDate && $endDate) {
             $query->where(function ($q) use ($startDate, $endDate) {
-                $q->where(function ($q) use ($startDate, $endDate) {
-                    $q->where('start_date', '>=', $startDate)
-                        ->where('start_date', '<=', $endDate);
-                })->orWhere(function ($q) use ($startDate, $endDate) {
-                    $q->where('end_date', '>=', $startDate)
-                        ->where('end_date', '<=', $endDate);
-                })->orWhere(function ($q) use ($startDate, $endDate) {
-                    $q->where('start_date', '<=', $startDate)
-                        ->where('end_date', '>=', $endDate);
-                });
+                $q->where('start_date', '>=', $startDate)
+                    ->where('end_date', '<=', $endDate);
             });
         }
     }
@@ -89,6 +89,20 @@ trait Filterable
             if ($value) {
                 $query->where($key, '=', '1');
             }
+        }
+    }
+
+    protected function applyStatusFilter(Builder $query, array $statuses)
+    {
+        if (!empty($statuses)) {
+            $query->whereIn('status', $statuses);
+        }
+    }
+
+    protected function applyTypeFilter(Builder $query, array $types)
+    {
+        if (!empty($types)) {
+            $query->whereIn('type', $types);
         }
     }
 }

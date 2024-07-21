@@ -69,6 +69,9 @@
                             </ul>
                         </div>
                         <!-- Dropdown menu end -->
+                        <x-nav-link :href="route('order.list.admin')" :active="request()->routeIs('order.list.admin')">
+                            {{ __('Order') }}
+                        </x-nav-link>
                     @endif
                 </div>
             </div>

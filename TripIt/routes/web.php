@@ -18,7 +18,6 @@ Route::get('/event-list', [EventController::class, 'showEventList'])->name('even
 Route::get('/event-list/{category}/{event_id}', [EventController::class, 'showEvent'])->name('event-specific');
 Route::get('/package-list', [PackageController::class, 'showPackageList'])->name('package-list');
 Route::get('/package-list/{package_id}', [PackageController::class, 'showPackage'])->name('package-specific');
-Route::get('/order-list', [OrderController::class, 'showOrderPage'])->name('order-list');
 Route::get('/faq', function () {
     return view('faq');
 })->name('faq');
@@ -31,13 +30,13 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     Route::post('/join-event', [EventController::class, 'joinEvent'])->name('join-event');
     Route::post('/join-package', [PackageController::class, 'joinPackage'])->name('join-package');
+    Route::get('/order-list', [OrderController::class, 'showOrderPage'])->name('order-list');
 });
 //authenticated functions end ( Usually for Users )
 
 Route::prefix('administrator')->middleware(['auth', 'checkRole'])->group(function () {
-    // Route::get('/dashboard', function () {
-    // })->name('dashboard');
     Route::get('/dashboard', [OrderController::class, 'showOrderList'])->name('dashboard');
+    Route::get('/order-list-admin', [OrderController::class, 'showAdminOrderList'])->name('order.list.admin');
     Route::prefix('event')->group(function () {
         Route::get('/event-list-admin', [EventController::class, 'showAdminEventList'])->name('event.list.admin');
         Route::get('/event-create', function () {
