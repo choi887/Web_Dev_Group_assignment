@@ -41,7 +41,7 @@
                             <div class="flex flex-1 items-center button-text-color">
                                 {{ $event->name }}
                                 <span
-                                    class="ml-4 bg-blue-100 text-blue-800 text-sm font-large me-2 px-2.5 py-0.5 rounded">
+                                    class="ml-4 bg-blue-100 text-blue-800 text-sm font-large me-2 px-2.5 py-0.5 rounded-md text-center ">
                                     {{ $event->category->name }}
                                 </span>
                             </div>
