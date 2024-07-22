@@ -21,8 +21,9 @@
         <div>
             <a href="{{ route('welcome') }}">
                 <div class="w-24 h-24"> <x-application-logo class=" fill-current text-gray-500" /></div>
-
             </a>
+            <h2 class="my-4 text-4xl font-bold text-center" style="color: rgba(30, 79, 255, 1);">TripIt
+            </h2>
         </div>
 
         <div class="w-full sm:max-w-md mt-6 px-6 py-4 bg-white shadow-md overflow-hidden sm:rounded-lg">
