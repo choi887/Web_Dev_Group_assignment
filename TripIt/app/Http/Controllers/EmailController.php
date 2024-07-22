@@ -4,12 +4,15 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Mail\InquiryResponseMail;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
 
 class EmailController extends Controller
 {
     public function sendInquiryResponse(Request $request)
     {
+        Log::info('sendInquiryResponse method called.');
+
         $validatedData = $request->validate([
             'first-name' => 'required|string|max:255',
             'last-name' => 'required|string|max:255',
@@ -23,6 +26,7 @@ class EmailController extends Controller
         $enquiry_id = '123456';
 
         Mail::to($validatedData['email'])->send(new InquiryResponseMail($name, $response, $enquiry_id));
+        Log::info('Email sent successfully.');
 
         return back()->with('success', 'Thank you for your inquiry. We will get back to you soon.');
     }
