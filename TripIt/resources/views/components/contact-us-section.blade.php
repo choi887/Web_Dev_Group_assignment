@@ -61,7 +61,8 @@
                 </dl>
             </div>
         </div>
-        <form action="#" class="px-6 pb-14 pt-10">
+        <form action="{{ route('send-inquiry-response') }}" method="POST" class="px-6 pb-14 pt-10">
+            @csrf
             <div class="mx-auto max-w-xl lg:mr-0 lg:max-w-lg">
                 <div class="grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2">
                     <div>

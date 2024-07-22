@@ -1,16 +1,17 @@
 <?php
 
-use App\Http\Controllers\CategoryController;
-use App\Http\Controllers\EventController;
-use App\Http\Controllers\LodgingsController;
-use App\Http\Controllers\OrderController;
-use App\Http\Controllers\PackageController;
-use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\TransportationController;
-use App\Http\Controllers\WelcomeController;
 use App\Models\Order;
 use App\Models\Package;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\EmailController;
+use App\Http\Controllers\EventController;
+use App\Http\Controllers\OrderController;
+use App\Http\Controllers\PackageController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\WelcomeController;
+use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\LodgingsController;
+use App\Http\Controllers\TransportationController;
 
 //public routes for all start
 Route::get('/', [WelcomeController::class, 'showWelcome'])->name('welcome');
@@ -31,6 +32,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/join-event', [EventController::class, 'joinEvent'])->name('join-event');
     Route::post('/join-package', [PackageController::class, 'joinPackage'])->name('join-package');
     Route::get('/order-list', [OrderController::class, 'showOrderPage'])->name('order-list');
+    Route::post('/send-inquiry-response', [EmailController::class, 'sendInquiryResponse'])->name('send-inquiry-response');
 });
 //authenticated functions end ( Usually for Users )
 
