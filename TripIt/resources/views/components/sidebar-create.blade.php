@@ -1,6 +1,6 @@
 <aside id="sidebar-multi-level-sidebar"
     class="relative hidden sm:block w-64  transition-transform -translate-x-full sm:translate-x-0" aria-label="Sidebar">
-    <div class="h-full px-3 py-4 overflow-y-auto bg-gradient-to-r from-cyan-200 to-sky-300">
+    <div class="h-full px-3 py-4 overflow-y-auto bg-white shadow-xl mt-1">
         <ul class="space-y-2 font-medium">
             <li>
                 <a href="{{ route('dashboard') }}"
